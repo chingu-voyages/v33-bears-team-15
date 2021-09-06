@@ -18,4 +18,4 @@ jobs:
         run: |
           npm install
       - name: ESLint Report
-        run: npx eslint '*/**/*.{js,ts,tsx}'
+        run: npx eslint '*/**/*.{js,jsx,ts,tsx}'

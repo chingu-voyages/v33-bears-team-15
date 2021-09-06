@@ -1,5 +1,9 @@
 # voyage-tasks
 
+![Linters](https://github.com/chingu-voyages/v33-bears-team-15/workflows/Linters/badge.svg)
+
+![Test with jest](https://github.com/chingu-voyages/v33-bears-team-15/workflows/Test%20with%20jest/badge
+
 Your project's `readme` is as important to success as your code. For 
 this reason you should put as much care into its creation and maintenance
 as you would any other component of the application.

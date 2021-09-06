@@ -7,11 +7,12 @@
     "test-dev": "jest --watch",
     "test": "jest",
     "lint": "next lint",
-    "lint-f": "eslint '*/**/*.{js,jsx,ts,tsx}' --fix"
+    "lint-f": "eslint '*/**/*.{js,jsx,ts,tsx}' --fix",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn lint-f"
+      "pre-commit": "echo \"[Husky] pre-commit\" && lint-staged && yarn lint-f"
     }
   },
   "lint-staged": {

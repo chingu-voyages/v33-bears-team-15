@@ -1,5 +1,19 @@
 # voyage-tasks
 
+![Linters](https://github.com/chingu-voyages/v33-bears-team-15/workflows/Linters/badge.svg)
+
+![Test with jest](https://github.com/chingu-voyages/v33-bears-team-15/workflows/Test%20with%20jest/badge.svg)
+
+
+#### Setting up Pre-Commit Hook
+- Set up the husky pre-commit hook according to [instructions](https://github.com/typicode/husky)
+- The `husky` tool is already added in package.json, so run `npm install` and then
+```
+npm run prepare
+npx husky add .husky/pre-commit "npm run test && npm run lint"
+git add .husky/pre-commit
+```
+
 Your project's `readme` is as important to success as your code. For 
 this reason you should put as much care into its creation and maintenance
 as you would any other component of the application.

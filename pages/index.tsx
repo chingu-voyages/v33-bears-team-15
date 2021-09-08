@@ -3,38 +3,37 @@ import Head from 'next/head';
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
-  const [mode, setMode] = useState('dark');
   const [checked, setChecked] = useState(true);
 
   const handleChange = (e) => {
     const theme = e.target;
     if (theme.checked) {
+      document.documentElement.classList.add('dark');
       localStorage.theme = 'dark';
       localStorage.checked = true;
-
-      setMode('dark');
       setChecked(true);
     } else {
+      document.documentElement.classList.remove('dark');
+
       localStorage.theme = '';
       localStorage.checked = 'false';
-      setMode('');
       setChecked(false);
     }
   };
   useEffect(() => {
     window.onload = function () {
-      if (localStorage) {
-        setMode(localStorage.theme);
-        setChecked(JSON.parse(localStorage.checked));
-        setLoaded(true);
+      if (localStorage.theme === 'dark') {
+        document.documentElement.classList.add(localStorage.theme);
       }
+      setChecked(JSON.parse(localStorage.checked));
+      setLoaded(true);
     };
   }, []);
   const baseStyle =
     'flex flex-col items-center justify-center min-h-screen py-2';
 
   return loaded ? (
-    <div className={`${baseStyle} ${mode}`}>
+    <div className={`${baseStyle}`}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />

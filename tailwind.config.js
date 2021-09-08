@@ -1,12 +1,22 @@
 module.exports = {
   mode: 'jit',
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class', // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      borderColor: theme => ({
+        DEFAULT: theme('colors.gray.300', 'currentColor'),
+        'neon': '#ccff00'
+      }),
+      backgroundColor: theme => ({
+        'neon': '#ccff00'
+      }),
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['checked'],
+    },
   },
   plugins: [],
 }

@@ -1,4 +1,4 @@
 module.exports = {
-  "*.{js,jsx,ts,tsx,json,md,yaml,yml,graphql}": ["npm run format"],
-  "*.{js,jsx,ts,tsx}": ["npm run lint"],
+  "*.{ts,tsx,json,md,yaml,yml,graphql}": ["npm run format"],
+  "*.{ts,tsx}": ["npm run lint"],
 };

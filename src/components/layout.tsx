@@ -3,7 +3,6 @@ import Footer from "./footer";
 import Header from "./header";
 
 export interface ILayout {
-  home?: boolean;
   children?: ReactNode;
 }
 

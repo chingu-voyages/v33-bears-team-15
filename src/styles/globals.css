@@ -13,17 +13,17 @@
   }
 
   body {
-    @apply bg-gray-50 dark:bg-gray-900
+    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-50
   }
 
   #toggle-switch::after {
     content: '';
-    @apply h-32 w-32 rounded-full bg-neon absolute left-0 top-0 transform scale-110 transition duration-200;
+    @apply h-14 w-14 rounded-full bg-neon absolute left-0 top-0 transform scale-100 transition duration-200;
   }
   
   #toggle-switch:checked::after {
     /* content: ''; */
-    @apply transform scale-110 translate-x-32;
+    @apply transform scale-100 translate-x-16;
   }
 }
 

@@ -1,22 +1,27 @@
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
+import MoonIcon from "~/assets/icons/moonIcon";
+import SunIcon from "~/assets/icons/sunIcon";
+import Container from "./ui/container";
 
+// @TODO We need a better API to work with
+// `localStorage`. Need to add to a `utils`
 export default function Header(): JSX.Element {
-  const [checked, setChecked] = useState(false);
+  const [isDark, setIsDark] = useState(false);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const theme = e.target;
-    if (theme.checked) {
+  // @TODO We need to extract theaming logic into a hook
+  const handleThemeSwitch = (type: "dark" | "light") => {
+    if (type === "dark") {
       document.documentElement.classList.add("dark");
 
       localStorage.setItem("theme", "dark");
       localStorage.setItem("checked", JSON.stringify(true));
-      setChecked(true);
+      setIsDark(true);
     } else {
       document.documentElement.classList.remove("dark");
 
       localStorage.setItem("theme", "light");
       localStorage.setItem("checked", JSON.stringify(false));
-      setChecked(false);
+      setIsDark(false);
     }
   };
 
@@ -26,22 +31,31 @@ export default function Header(): JSX.Element {
     }
 
     if (localStorage.getItem("checked")) {
-      setChecked(JSON.parse(localStorage.getItem("checked")));
+      setIsDark(JSON.parse(localStorage.getItem("checked")));
     }
   }, []);
 
   return (
-    <header>
-      <label htmlFor="toggle-switch" className="flex py-8">
-        <h1 className="text-3xl text-blue-600 font-bold py-8 px-5">Dark mode: </h1>
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={handleChange}
-          id="toggle-switch"
-          className="cursor-pointer h-32 w-64 rounded-full appearance-none bg-white bg-opacity-10 border-neon border-2 checked:bg-gray-600 transition duration-200 relative"
-        />
-      </label>
+    <header className="h-20">
+      <Container className="flex justify-between items-center h-full">
+        <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-50">Setism</h1>
+
+        <div className="flex items-center">
+          {isDark ? (
+            <button type="button" onClick={() => handleThemeSwitch("light")}>
+              <SunIcon className="w-6 text-gray-900 dark:text-gray-50" />
+            </button>
+          ) : (
+            <button type="button" onClick={() => handleThemeSwitch("dark")}>
+              <MoonIcon className="w-6 text-gray-900 dark:text-gray-50" />
+            </button>
+          )}
+
+          <button type="button" className="ml-6">
+            Sign In
+          </button>
+        </div>
+      </Container>
     </header>
   );
 }

@@ -16,7 +16,6 @@ module.exports = {
   },
   coverageReporters: ["html", "text"],
   moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
-  testMatch: ["**/*.(test|spec).(js|jsx|ts|tsx)"],
   moduleNameMapper: {
     /* Handle CSS imports (with CSS modules)
     https://jestjs.io/docs/webpack#mocking-css-modules */
@@ -28,7 +27,10 @@ module.exports = {
     /* Handle image imports
     https://jestjs.io/docs/webpack#handling-static-assets */
     "^.+\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js",
+    "~/(.*)": "<rootDir>/src/$1",
+    "~components/(.*)": "<rootDir>/src/components/$1",
   },
+  testMatch: ["**/*.(test|spec).(js|jsx|ts|tsx)"],
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/.next/"],
   testEnvironment: "jsdom",
   transform: {

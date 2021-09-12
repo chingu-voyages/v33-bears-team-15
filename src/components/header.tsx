@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import MoonIcon from "~/assets/icons/moonIcon";
 import SunIcon from "~/assets/icons/sunIcon";
 import Link from "./common/link";
@@ -37,24 +38,24 @@ export default function Header(): JSX.Element {
   }, []);
 
   return (
-    <header className="h-20">
+    <header className="z-30 h-24 relative">
       <Container className="flex justify-between items-center h-full">
         <Link href="/">
-          <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-50">Setism</h1>
+          <Image width={125} height={37} src="/images/logo.png" />
         </Link>
 
         <div className="flex items-center">
           {isDark ? (
             <button type="button" onClick={() => handleThemeSwitch("light")}>
-              <SunIcon className="w-6 text-gray-900 dark:text-gray-50" />
+              <SunIcon className="w-6 text-gray-50" />
             </button>
           ) : (
             <button type="button" onClick={() => handleThemeSwitch("dark")}>
-              <MoonIcon className="w-6 text-gray-900 dark:text-gray-50" />
+              <MoonIcon className="w-6 text-gray-50" />
             </button>
           )}
 
-          <Link href="/signin" className="ml-6">
+          <Link href="/signin" className="ml-6 text-gray-50 font-semibold">
             Sign In
           </Link>
         </div>

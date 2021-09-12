@@ -1,9 +1,10 @@
 import Layout from "../components/layout";
+import Hero from "~/components/home/hero";
 
 export default function Home() {
   return (
     <Layout>
-      <h2 className="text-4xl">Home</h2>
+      <Hero />
     </Layout>
   );
 }

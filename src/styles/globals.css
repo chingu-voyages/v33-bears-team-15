@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -ms-overflow-style: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-gray-50 dark:bg-gray-900
+  }
+
+  #toggle-switch::after {
+    content: '';
+    @apply h-32 w-32 rounded-full bg-neon absolute left-0 top-0 transform scale-110 transition duration-200;
+  }
+  
+  #toggle-switch:checked::after {
+    /* content: ''; */
+    @apply transform scale-110 translate-x-32;
+  }
+}
+

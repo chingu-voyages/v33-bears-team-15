@@ -1,19 +1,20 @@
 import { useState, useEffect, ChangeEvent } from "react";
 
 export default function Header(): JSX.Element {
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const theme = e.target;
     if (theme.checked) {
       document.documentElement.classList.add("dark");
+
       localStorage.setItem("theme", "dark");
       localStorage.setItem("checked", JSON.stringify(true));
       setChecked(true);
     } else {
       document.documentElement.classList.remove("dark");
 
-      localStorage.removeItem("theme");
+      localStorage.setItem("theme", "light");
       localStorage.setItem("checked", JSON.stringify(false));
       setChecked(false);
     }
@@ -24,7 +25,9 @@ export default function Header(): JSX.Element {
       document.documentElement.classList.add(localStorage.getItem("theme"));
     }
 
-    setChecked(JSON.parse(localStorage.getItem("checked")));
+    if (localStorage.getItem("checked")) {
+      setChecked(JSON.parse(localStorage.getItem("checked")));
+    }
   }, []);
 
   return (

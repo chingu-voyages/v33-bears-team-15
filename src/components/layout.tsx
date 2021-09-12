@@ -1,52 +1,46 @@
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/dist/client/router';
-import PropTypes from 'prop-types';
+import Head from "next/head";
+import { useState, useEffect, ReactNode } from "react";
+import { useRouter } from "next/router";
 
-const Layout = ({
-  children,
-  home,
-}: {
-  children: React.ReactNode;
+export interface ILayout {
   home?: boolean;
-}) => {
-  const [loaded, setLoaded] = useState(false);
+  children?: ReactNode;
+}
+
+const Layout = ({ home }: ILayout) => {
   const [checked, setChecked] = useState(true);
+
   const router = useRouter();
-  const onClick = () => {
-    router.back();
-  };
+  const onClick = () => router.back();
 
   const handleChange = (e) => {
     const theme = e.target;
     if (theme.checked) {
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-      localStorage.checked = true;
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+      localStorage.setItem("checked", JSON.stringify(true));
       setChecked(true);
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
 
-      localStorage.theme = '';
-      localStorage.checked = 'false';
+      localStorage.removeItem("theme");
+      localStorage.setItem("checked", JSON.stringify(false));
       setChecked(false);
     }
   };
+
   useEffect(() => {
-    window.onload = function () {
-      if (localStorage.theme === 'dark') {
-        document.documentElement.classList.add(localStorage.theme);
-      }
-      setChecked(JSON.parse(localStorage.checked));
-      setLoaded(true);
-    };
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.classList.add(localStorage.getItem("theme"));
+    }
+
+    setChecked(JSON.parse(localStorage.getItem("checked")));
   }, []);
-  return loaded ? (
+
+  return (
     <div className="bg-white dark:bg-black">
       <label htmlFor="toggle-switch" className="flex py-8">
-        <h1 className="text-3xl text-blue-600 font-bold py-8 px-5">
-          Dark mode:{' '}
-        </h1>
+        <h1 className="text-3xl text-blue-600 font-bold py-8 px-5">Dark mode: </h1>
         <input
           type="checkbox"
           checked={checked}
@@ -64,14 +58,14 @@ const Layout = ({
 
           <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
             <h1 className="text-6xl font-bold text-blue-600">
-              Welcome to{' '}
+              Welcome to{" "}
               <a className="text-blue-600" href="https://nextjs.org">
                 Next.js!
               </a>
             </h1>
 
             <p className="mt-3 text-2xl text-blue-600">
-              Get started by editing{' '}
+              Get started by editing{" "}
               <code className="p-3 font-mono text-lg bg-gray-100 rounded-md">
                 pages/index.js
               </code>
@@ -82,9 +76,7 @@ const Layout = ({
                 href="https://nextjs.org/docs"
                 className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
               >
-                <h3 className="text-2xl text-blue-600 font-bold">
-                  Documentation &rarr;
-                </h3>
+                <h3 className="text-2xl text-blue-600 font-bold">Documentation &rarr;</h3>
                 <p className="mt-4 text-xl text-blue-600">
                   Find in-depth information about Next.js features and API.
                 </p>
@@ -94,9 +86,7 @@ const Layout = ({
                 href="https://nextjs.org/learn"
                 className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
               >
-                <h3 className="text-2xl text-blue-600 font-bold">
-                  Learn &rarr;
-                </h3>
+                <h3 className="text-2xl text-blue-600 font-bold">Learn &rarr;</h3>
                 <p className="mt-4 text-xl text-blue-600">
                   Learn about Next.js in an interactive course with quizzes!
                 </p>
@@ -106,9 +96,7 @@ const Layout = ({
                 href="https://github.com/vercel/next.js/tree/master/examples"
                 className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
               >
-                <h3 className="text-2xl font-bold text-blue-600">
-                  Examples &rarr;
-                </h3>
+                <h3 className="text-2xl font-bold text-blue-600">Examples &rarr;</h3>
                 <p className="mt-4 text-xl text-blue-600">
                   Discover and deploy boilerplate example Next.js projects.
                 </p>
@@ -118,12 +106,9 @@ const Layout = ({
                 href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
                 className="p-6 mt-6 text-left border w-96 rounded-xl hover:text-blue-600 focus:text-blue-600"
               >
-                <h3 className="text-2xl font-bold text-blue-600 ">
-                  Deploy &rarr;
-                </h3>
+                <h3 className="text-2xl font-bold text-blue-600 ">Deploy &rarr;</h3>
                 <p className="mt-4 text-xl text-blue-600">
-                  Instantly deploy your Next.js site to a public URL with
-                  Vercel.
+                  Instantly deploy your Next.js site to a public URL with Vercel.
                 </p>
               </a>
             </div>
@@ -136,12 +121,7 @@ const Layout = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Powered by{' '}
-              <img
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className="h-4 bg-white ml-2"
-              />
+              Powered by Vercel
             </a>
           </footer>
         </div>
@@ -153,11 +133,7 @@ const Layout = ({
         </div>
       )}
     </div>
-  ) : null;
-};
-
-Layout.propTypes = {
-  home: PropTypes.bool.isRequired,
+  );
 };
 
 export default Layout;

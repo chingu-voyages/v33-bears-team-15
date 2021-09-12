@@ -1,15 +1,32 @@
-import Image from "next/image";
-import Link from "~/components/common/link";
+import Layout from "~/components/layout";
 import Container from "~/components/ui/container";
+import Input from "~/components/ui/input";
 
 export default function Signin() {
   return (
-    <section className="bg-hero h-hero -translate-y-24 bg-no-repeat bg-center bg-cover flex items-center pt-20">
-      <Container>
-        <Link href="/">
-          <Image src="/images/logo.png" width={200} height={48} />
-        </Link>
-      </Container>
-    </section>
+    <Layout headerProps={{ withBorder: true }}>
+      <section className="py-16">
+        <Container maxW="max-w-md" className="flex flex-col items-center px-12">
+          <h1 className="text-4xl font-bold pb-8">Login to Dekoo</h1>
+
+          <Input
+            type="text"
+            name="email"
+            id="email"
+            autoComplete="email"
+            className="mb-3.5"
+            placeholder="Email Address"
+          />
+
+          <Input
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            placeholder="Password"
+            showPasswordToggle
+          />
+        </Container>
+      </section>
+    </Layout>
   );
 }

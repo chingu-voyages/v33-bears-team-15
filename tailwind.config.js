@@ -10,10 +10,12 @@ module.exports = {
       colors: {
         neon: "#ccff00",
         primary: "#2EF7B9",
-        darkFaded: "rgba(18, 24, 39, 0.8)",
+        darkFaded: "rgba(17, 24, 39, 0.6)",
+        lightFaded: "rgba(249, 249, 249, 0.6)",
       },
       backgroundImage: {
         hero: "linear-gradient(0deg, rgba(17,24,39,1) 0%, rgba(0,0,0,0.5536414394859506) 50%, rgba(17,24,39,1) 100%), url('/images/hero-cover.jpg')",
+        greenish: "linear-gradient(13deg, rgba(10,83,47,1) 0%, rgba(4,32,20,1) 100%)",
       },
       height: {
         hero: "550px",
@@ -25,5 +27,5 @@ module.exports = {
       backgroundColor: ["checked"],
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/forms")],
 };

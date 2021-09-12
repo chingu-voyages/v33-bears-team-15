@@ -1,15 +1,16 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
-import Header from "./header";
+import Header, { IHeader } from "./header";
 
 export interface ILayout {
   children?: ReactNode;
+  headerProps?: IHeader;
 }
 
-const Layout = ({ children }: ILayout) => {
+const Layout = ({ children, headerProps }: ILayout) => {
   return (
     <>
-      <Header />
+      <Header {...headerProps} />
       <main>{children}</main>
       <Footer />
     </>

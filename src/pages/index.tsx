@@ -3,7 +3,7 @@ import Hero from "~/components/home/hero";
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout headerProps={{ variant: "image" }}>
       <Hero />
     </Layout>
   );

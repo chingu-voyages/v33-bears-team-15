@@ -1,5 +1,5 @@
 {
-  "root": true,  
+  "root": true,
   "env": {
     "browser": true,
     "es2020": true,
@@ -16,9 +16,10 @@
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     },
-    "version": "detect"   // Automatically detect the react version
+    "version": "detect" // Automatically detect the react version
   },
   "extends": [
+    "next",
     "next/core-web-vitals",
     "airbnb",
     "plugin:react/recommended",
@@ -48,31 +49,29 @@
         "tsx": "never"
       }
     ],
-    "react/jsx-filename-extension": [
-      2,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "import/no-named-as-default": 1,
-    "react/prefer-stateless-function":1,
+    "react/prefer-stateless-function": 1,
     "no-console": 1,
-    "prettier/prettier": ["error", {}, { "usePrettierrc": true }],  // Use our .prettierrc file as source,
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }], // Use our .prettierrc file as source,
+    "prefer-const": "error",
+    "func-names": "off",
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
-        "react/prop-types": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "react/jsx-props-no-spreading": "warn",
-        "jsx-a11y/anchor-is-valid": [
-            "error",
-            {
-                "components": ["Link"],
-                "specialLink": ["hrefLeft", "hrefRight"],
-                "aspects": ["invalidHref", "preferButton"]
-            }
-        ]
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/state-in-constructor": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ]
   },
-  "ignorePatterns": [
-    "dist/",
-    "build/",
-    "public/"
-  ]
+  "ignorePatterns": ["dist/", "build/", "public/"]
 }

@@ -1,11 +1,14 @@
 import { AppProps } from "next/app";
+import ErrorBoundary from "~/components/common/error-boundary";
 
 import "~/styles/globals.css";
 
-import "tailwindcss/tailwind.css";
-
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <ErrorBoundary>
+      <Component {...pageProps} />
+    </ErrorBoundary>
+  );
 }
 
 export default MyApp;

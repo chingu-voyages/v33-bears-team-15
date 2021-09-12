@@ -60,6 +60,7 @@
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/state-in-constructor": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "jsx-a11y/anchor-is-valid": [

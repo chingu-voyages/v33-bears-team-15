@@ -10,7 +10,7 @@ describe("Home", () => {
 
   it("renders a heading", () => {
     const heading = screen.getByRole("heading", {
-      name: /home/i,
+      name: /endless entertainment and knowledge/i,
     });
 
     expect(heading).toBeInTheDocument();

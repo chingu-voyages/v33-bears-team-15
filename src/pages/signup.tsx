@@ -54,7 +54,7 @@ export default function Signup() {
   return (
     <section className="min-h-screen relative flex items-center">
       <div
-        className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-gray-800 border-r border-gray-700"
+        className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-gray-200 dark:bg-gray-800 border-r border-gray-300 dark:border-gray-700"
         aria-hidden
       />
 
@@ -71,7 +71,7 @@ export default function Signup() {
                   <dt>
                     <div className="absolute flex items-center justify-center">
                       <CheckCircleIcon
-                        className="w-8 text-primary-600"
+                        className="w-8 text-primary-800 dark:text-primary-600"
                         aria-hidden="true"
                       />
                     </div>
@@ -79,7 +79,7 @@ export default function Signup() {
                       {name}
                     </p>
                   </dt>
-                  <dd className="mt-4 ml-14 text-lg font-medium text-gray-300">
+                  <dd className="mt-4 ml-14 text-lg font-medium text-gray-600 dark:text-gray-300">
                     {description}
                   </dd>
                 </div>

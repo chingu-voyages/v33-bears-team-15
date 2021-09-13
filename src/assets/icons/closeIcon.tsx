@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ICloseIcon = ComponentPropsWithoutRef<"svg">;
+export type ICloseIcon = ComponentPropsWithoutRef<'svg'>;
 
 function CloseIcon({ strokeWidth = 2, ...rest }: ICloseIcon): JSX.Element {
   return (

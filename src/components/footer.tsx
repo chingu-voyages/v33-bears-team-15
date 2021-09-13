@@ -1,3 +1,3 @@
 export default function Footer(): JSX.Element {
-  return <footer>Footer</footer>;
+  return <footer className="text-center py-8">Footer</footer>;
 }

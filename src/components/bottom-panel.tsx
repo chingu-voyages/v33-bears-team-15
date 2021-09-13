@@ -1,5 +1,5 @@
-import Image from "next/image";
-import ellipsis from "../../public/images/ellipsis.svg";
+import Image from 'next/image';
+import ellipsis from '../../public/images/ellipsis.svg';
 
 export default function Footer(): JSX.Element {
   return (

@@ -1,5 +1,5 @@
-import Container from "~/components/ui/container";
-import Link from "../common/link";
+import Container from '~/components/ui/container';
+import Link from '../common/link';
 
 export default function Hero() {
   return (

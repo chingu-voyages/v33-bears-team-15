@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type IEyeOffIcon = ComponentPropsWithoutRef<"svg">;
+export type IEyeOffIcon = ComponentPropsWithoutRef<'svg'>;
 
 function EyeOffIcon({ strokeWidth = 2, ...rest }: IEyeOffIcon): JSX.Element {
   return (

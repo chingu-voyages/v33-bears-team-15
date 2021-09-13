@@ -1,10 +1,10 @@
-import GoogleIcon from "~/assets/icons/googleIcon";
-import MailIcon from "~/assets/icons/mailIcon";
-import Link from "~/components/common/link";
-import Layout from "~/components/layout";
-import Button from "~/components/ui/button";
-import Container from "~/components/ui/container";
-import Input from "~/components/ui/input";
+import GoogleIcon from '~/assets/icons/googleIcon';
+import MailIcon from '~/assets/icons/mailIcon';
+import Link from '~/components/common/link';
+import Layout from '~/components/layout';
+import Button from '~/components/ui/button';
+import Container from '~/components/ui/container';
+import Input from '~/components/ui/input';
 
 export default function Signin() {
   return (
@@ -44,7 +44,7 @@ export default function Signin() {
               href="/signup"
               className="text-green-600 dark:text-green-400 hover:underline"
             >
-              {" "}
+              {' '}
               Sign Up
             </Link>
           </p>

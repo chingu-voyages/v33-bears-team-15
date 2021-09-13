@@ -10,5 +10,5 @@
   left: 50%;
   width: 1440px;
   background-size: cover;
-  @apply bg-hero-pattern
+  @apply bg-hero-pattern;
 }

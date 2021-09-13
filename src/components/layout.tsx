@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import Footer from "./footer";
-import Header, { IHeader } from "./header";
+import { ReactNode } from 'react';
+import Footer from './footer';
+import Header, { IHeader } from './header';
 
 export interface ILayout {
   children?: ReactNode;

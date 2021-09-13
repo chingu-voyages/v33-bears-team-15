@@ -1,0 +1,165 @@
+import { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import GoogleIcon from '~/assets/icons/googleIcon';
+import MailIcon from '~/assets/icons/mailIcon';
+import Link from '~/components/common/link';
+import Layout from '~/components/layout';
+import Button from '~/components/ui/button';
+import Container from '~/components/ui/container';
+import Input from '~/components/ui/input';
+import { SIGNUP_SCHEMA } from '~/utils/validations';
+
+type FormValues = {
+  email: string;
+  password: string;
+  fullName: string;
+};
+
+const DEFAULT_FORM_VALUES = {
+  email: '',
+  password: '',
+  fullName: '',
+} as FormValues;
+
+export default function Signup() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting, touchedFields },
+    reset,
+  } = useForm<FormValues>({
+    resolver: yupResolver(SIGNUP_SCHEMA),
+    defaultValues: DEFAULT_FORM_VALUES,
+    mode: 'all',
+  });
+
+  const [serverErrorState, setServerError] = useState<string | null>(null);
+
+  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+    try {
+      // @TODO Implement submit
+      // await onSubmit(formData.email, formData.password);
+
+      reset(DEFAULT_FORM_VALUES);
+      setServerError(null);
+    } catch (error) {
+      setServerError(error.message);
+    }
+  };
+
+  return (
+    <Layout headerProps={{ withBorder: true }}>
+      <section className="py-20">
+        <Container maxW="max-w-md" className="flex flex-col items-center px-12">
+          <h1 className="text-4xl font-bold pb-8">Join the most epic platform</h1>
+
+          <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full">
+            {serverErrorState && (
+              <span
+                role="alert"
+                className="block text-sm dark:text-red-500 text-red-700 mb-2.5 pl-0.5"
+              >
+                {serverErrorState}
+              </span>
+            )}
+
+            <div className="mb-3.5">
+              <label htmlFor="email" className="sr-only">
+                Email address
+              </label>
+
+              <Input
+                type="text"
+                name="email"
+                id="email"
+                autoComplete="email"
+                placeholder="Email Address"
+                aria-invalid={!!errors.email}
+                isError={errors.email && touchedFields.email}
+                error={errors.email?.message}
+                {...register('email')}
+              />
+            </div>
+
+            <div className="mb-3.5">
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+
+              <Input
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                placeholder="Password"
+                showPasswordToggle
+                aria-invalid={!!errors.password}
+                isError={errors.password && touchedFields.password}
+                error={errors.password?.message}
+                {...register('password')}
+              />
+            </div>
+
+            <div className="mb-3.5">
+              <label htmlFor="fullName" className="sr-only">
+                Full Name
+              </label>
+
+              <Input
+                type="text"
+                id="fullName"
+                autoComplete="given-name"
+                placeholder="Full Name"
+                aria-invalid={!!errors.fullName}
+                isError={errors.fullName && touchedFields.fullName}
+                error={errors.fullName?.message}
+                {...register('fullName')}
+              />
+            </div>
+
+            <Button type="submit" variant="primary" size="full" className="mb-3.5">
+              <MailIcon className="w-6 mr-2" />{' '}
+              {isSubmitting ? 'Loading...' : 'Continue with Email'}
+            </Button>
+
+            <Button variant="google" size="full">
+              <GoogleIcon className="w-6 mr-2" /> Continue with Google
+            </Button>
+
+            <p className="mt-6">
+              By clicking continue, you agree to our{' '}
+              <Link
+                href="/legal/terms"
+                className="text-green-700 dark:text-green-400 hover:underline"
+                external
+              >
+                Terms of Service
+              </Link>{' '}
+              and{' '}
+              <Link
+                href="/legal/privacy-policy"
+                className="text-green-700 dark:text-green-400 hover:underline"
+                external
+              >
+                Privacy Policy
+              </Link>
+              .
+            </p>
+
+            <p className="mt-14 w-full pt-5 border-t text-lg border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-50 font-semibold text-center">
+              Already have an account?
+              <Link
+                href="/signin"
+                className="text-green-600 dark:text-green-400 hover:underline"
+              >
+                {' '}
+                Sign In
+              </Link>
+            </p>
+          </form>
+        </Container>
+      </section>
+    </Layout>
+  );
+}

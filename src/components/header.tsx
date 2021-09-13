@@ -1,12 +1,12 @@
-import Image from "next/image";
-import cn from "classnames";
-import { ReactNode } from "react";
+import Image from 'next/image';
+import cn from 'classnames';
+import { ReactNode } from 'react';
 
-import MoonIcon from "~/assets/icons/moonIcon";
-import SunIcon from "~/assets/icons/sunIcon";
-import Link from "./common/link";
-import Container from "./ui/container";
-import useTheme from "~/hooks/use-theme";
+import MoonIcon from '~/assets/icons/moonIcon';
+import SunIcon from '~/assets/icons/sunIcon';
+import Link from './common/link';
+import Container from './ui/container';
+import useTheme from '~/hooks/use-theme';
 
 enum HeaderVariant {
   normal,
@@ -18,17 +18,17 @@ export interface IHeader {
   children?: ReactNode;
 }
 
-export default function Header({ withBorder, variant = "normal" }: IHeader): JSX.Element {
+export default function Header({ withBorder, variant = 'normal' }: IHeader): JSX.Element {
   const { toggle, isDark } = useTheme();
 
-  const rootClass = cn("z-30 relative", {
-    "border-b dark:border-gray-700 border-gray-300 h-20 bg-lightFaded dark:bg-darkFaded":
+  const rootClass = cn('z-30 relative', {
+    'border-b dark:border-gray-700 border-gray-300 h-20 bg-lightFaded dark:bg-darkFaded':
       withBorder,
-    "h-24": !withBorder,
+    'h-24': !withBorder,
   });
   const textClass = cn({
-    "dark:text-gray-50 text-gray-900": variant === "normal",
-    "text-gray-50": variant === "image",
+    'dark:text-gray-50 text-gray-900': variant === 'normal',
+    'text-gray-50': variant === 'image',
   });
 
   return (
@@ -40,11 +40,11 @@ export default function Header({ withBorder, variant = "normal" }: IHeader): JSX
 
         <div className="flex items-center">
           {isDark ? (
-            <button type="button" onClick={() => toggle("light")}>
+            <button type="button" onClick={() => toggle('light')}>
               <SunIcon className={`w-6 ${textClass}`} />
             </button>
           ) : (
-            <button type="button" onClick={() => toggle("dark")}>
+            <button type="button" onClick={() => toggle('dark')}>
               <MoonIcon className={`w-6 ${textClass}`} />
             </button>
           )}

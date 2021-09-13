@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Martel+Sans:wght@900&display=swap');
+.layout {
+  font-family: 'Martel Sans', sans-serif;
+}
+
+.mainSection {
+  bottom: 0;
+  min-height: 495px;
+  right: auto;
+  left: 50%;
+  width: 1440px;
+  /* background: url(../../public/images/hero-cover.jpg) 50% 100% no-repeat; */
+  background-size: cover;
+  /* opacity: 0.9; */
+  @apply bg-hero-pattern
+}

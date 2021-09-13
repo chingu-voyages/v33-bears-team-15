@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
 import Header from "./header";
+import styles from "./layout.module.css";
 
 export interface ILayout {
   children?: ReactNode;
@@ -8,11 +9,11 @@ export interface ILayout {
 
 const Layout = ({ children }: ILayout) => {
   return (
-    <>
+    <section className={styles.layout}>
       <Header />
-      <main>{children}</main>
+      <main className={styles.mainSection}>{children}</main>
       <Footer />
-    </>
+    </section>
   );
 };
 

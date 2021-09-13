@@ -40,7 +40,9 @@ export default function Header(): JSX.Element {
     <header className="h-20">
       <Container className="flex justify-between items-center h-full">
         <Link href="/">
-          <h1 className="text-2xl font-bold text-gray-700 dark:text-gray-50">Setism</h1>
+          <h1 className="uppercase text-2xl font-bold text-gray-700 dark:text-red-700 text-red-700">
+            Setism
+          </h1>
         </Link>
 
         <div className="flex items-center">

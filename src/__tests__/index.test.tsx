@@ -9,10 +9,10 @@ describe("Home", () => {
   });
 
   it("renders a heading", () => {
-    const heading = screen.getByRole("heading", {
-      name: /home/i,
+    const heading = screen.getAllByRole("heading", {
+      name: /setism/i,
     });
 
-    expect(heading).toBeInTheDocument();
+    expect(heading.length).toBe(2);
   });
 });

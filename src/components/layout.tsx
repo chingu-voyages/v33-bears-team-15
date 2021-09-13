@@ -1,21 +1,19 @@
 import { ReactNode } from "react";
 import Footer from "./footer";
-import BottomPanel from "./bottom-panel";
-import Header from "./header";
-import styles from "./layout.module.css";
+import Header, { IHeader } from "./header";
 
 export interface ILayout {
   children?: ReactNode;
+  headerProps?: IHeader;
 }
 
-const Layout = ({ children }: ILayout) => {
+const Layout = ({ children, headerProps }: ILayout) => {
   return (
-    <section className={styles.layout}>
-      <Header />
-      <main className={styles.mainSection}>{children}</main>
-      <BottomPanel />
+    <>
+      <Header {...headerProps} />
+      <main>{children}</main>
       <Footer />
-    </section>
+    </>
   );
 };
 

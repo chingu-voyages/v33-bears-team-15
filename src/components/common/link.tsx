@@ -19,6 +19,7 @@ const Link = forwardRef<HTMLAnchorElement, ILink>((props, ref): JSX.Element => {
   } = props;
 
   const rootClass = cn(
+    "max-w-max",
     {
       flex: fixPosition,
       inline: !fixPosition,

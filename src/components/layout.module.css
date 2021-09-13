@@ -12,7 +12,3 @@
   background-size: cover;
   @apply bg-hero-pattern
 }
-
-.ellipsis {
-  fill: @apply text-red-600
-}

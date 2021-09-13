@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       colors: {
         neon: "#ccff00",
-        primary: "#2EF7B9",
+        primary: { 900: "#00A572", 800: "#0DCC8F", 700: "#0FDD9C", 600: "#2EF7B9" },
         darkFaded: "rgba(17, 24, 39, 0.6)",
         lightFaded: "rgba(249, 249, 249, 0.6)",
       },

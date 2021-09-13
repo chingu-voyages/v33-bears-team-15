@@ -88,12 +88,12 @@ export default function Signup() {
           </div>
 
           <div className="flex flex-col lg:pl-14 max-w-sm">
-            <h2
+            <h1
               className="sm:text-5xl text-4xl font-semibold mb-12"
               style={{ lineHeight: 1.15 }}
             >
               Join the most epic platform
-            </h2>
+            </h1>
             <form onSubmit={handleSubmit(onSubmitHandler)} className="w-full">
               {serverErrorState && (
                 <span

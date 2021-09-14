@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type IMailIcon = ComponentPropsWithoutRef<"svg">;
+export type IMailIcon = ComponentPropsWithoutRef<'svg'>;
 
 function MailIcon({ strokeWidth = 2, ...rest }: IMailIcon): JSX.Element {
   return (

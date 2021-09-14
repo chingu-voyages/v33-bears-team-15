@@ -1,6 +1,6 @@
-import { Component, ErrorInfo, ReactNode } from "react";
-import Layout from "~components/layout";
-import Link from "~components/common/link";
+import { Component, ErrorInfo, ReactNode } from 'react';
+import Layout from '~components/layout';
+import Link from '~components/common/link';
 
 interface Props {
   children?: ReactNode;

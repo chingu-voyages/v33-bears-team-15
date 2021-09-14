@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type IMoonIcon = ComponentPropsWithoutRef<"svg">;
+export type IMoonIcon = ComponentPropsWithoutRef<'svg'>;
 
 function MoonIcon({ strokeWidth = 2, ...rest }: IMoonIcon): JSX.Element {
   return (

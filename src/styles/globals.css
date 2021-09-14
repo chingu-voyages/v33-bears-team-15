@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
   html {
     -ms-overflow-style: none;
@@ -11,16 +10,13 @@
     text-rendering: optimizeLegibility;
     text-size-adjust: 100%;
   }
-
   body {
-    @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-50;
+    @apply bg-gray-100 dark: bg-gray-900 text-gray-800 dark: text-gray-50
   }
-
   #toggle-switch::after {
     content: '';
     @apply h-14 w-14 rounded-full bg-neon absolute left-0 top-0 transform scale-100 transition duration-200;
   }
-
   #toggle-switch:checked::after {
     /* content: ''; */
     @apply transform scale-100 translate-x-16;

@@ -1,12 +1,32 @@
 import * as Yup from 'yup';
 
-const SIGNUP_SCHEMA = Yup.object().shape({
+export const SIGNIN_SCHEMA = Yup.object().shape({
   email: Yup.string()
-    .email('Email address has a wrong format!')
+    .email('Email address must have a valid format!')
     .required('Email address is a required field!'),
   password: Yup.string()
-    .min(6, 'Password must be at least 6 characters long!')
-    .max(24, 'Password must be 24 characters at most!')
+    .min(8, 'Password must be at least 8 characters long!')
+    .max(28, 'Password must be 28 characters at most!')
+    .test({
+      name: 'minNumber',
+      message: 'Password must contain at least one number!',
+      test: (val) => (val.match(/[0-9]/g) || []).length >= 1,
+    })
+    .test({
+      name: 'minUppercase',
+      message: 'Password must contain at least one uppercase character!',
+      test: (val) => (val.match(/[A-Z]/g) || []).length >= 1,
+    })
+    .test({
+      name: 'minLowercase',
+      message: 'Password must contain at least one lowercase character!',
+      test: (val) => (val.match(/[a-z]/g) || []).length >= 1,
+    })
+    .test({
+      name: 'minSymbol',
+      message: 'Password must contain one special character!',
+      test: (val) => (val.match(/[^a-zA-Z0-9\s]/g) || []).length >= 1,
+    })
     .required('Password is a required field!'),
 });
 

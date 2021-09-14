@@ -16,13 +16,10 @@ module.exports = {
       backgroundImage: {
         hero: "linear-gradient(0deg, rgba(17,24,39,1) 0%, rgba(0,0,0,0.5536414394859506) 50%, rgba(17,24,39,1) 100%), url('/images/hero-cover.jpg')",
         greenish: 'linear-gradient(13deg, rgba(10,83,47,1) 0%, rgba(4,32,20,1) 100%)',
+        primaryBtn: 'linear-gradient(115deg,#4cddbd,#06f286)',
       },
       height: {
         hero: '550px',
-      },
-      backgroundImage: {
-        'hero-pattern':
-          "linear-gradient(to right bottom, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 1%, rgba(0,212,255,0.020343171448266806) 66%), url('public/images/hero-cover.jpg')",
       },
     },
   },

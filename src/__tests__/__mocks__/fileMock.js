@@ -1,1 +1,1 @@
-module.exports = '/public/images/ellipsis.svg';
+module.exports = 'test-file-stub';

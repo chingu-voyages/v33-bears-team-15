@@ -1,8 +1,8 @@
-import NextLink, { LinkProps } from "next/link";
-import cn from "classnames";
-import { forwardRef, AnchorHTMLAttributes } from "react";
+import NextLink, { LinkProps } from 'next/link';
+import cn from 'classnames';
+import { forwardRef, AnchorHTMLAttributes } from 'react';
 
-interface ILink extends LinkProps, Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
+interface ILink extends LinkProps, Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
   external?: boolean;
   fixPosition?: boolean;
 }
@@ -19,7 +19,7 @@ const Link = forwardRef<HTMLAnchorElement, ILink>((props, ref): JSX.Element => {
   } = props;
 
   const rootClass = cn(
-    "max-w-max",
+    'max-w-max',
     {
       flex: fixPosition,
       inline: !fixPosition,
@@ -27,7 +27,7 @@ const Link = forwardRef<HTMLAnchorElement, ILink>((props, ref): JSX.Element => {
     className
   );
 
-  const matchInternal = String(href).startsWith("/") || String(href).startsWith("#");
+  const matchInternal = String(href).startsWith('/') || String(href).startsWith('#');
 
   if (external || !matchInternal) {
     return (

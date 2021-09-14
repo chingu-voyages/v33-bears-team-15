@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentPropsWithoutRef } from 'react';
 
-export type ISunIcon = ComponentPropsWithoutRef<"svg">;
+export type ISunIcon = ComponentPropsWithoutRef<'svg'>;
 
 function SunIcon({ strokeWidth = 2, ...rest }: ISunIcon): JSX.Element {
   return (

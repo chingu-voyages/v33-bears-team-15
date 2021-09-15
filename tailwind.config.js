@@ -21,6 +21,7 @@ module.exports = {
       },
       height: {
         hero: '550px',
+        card: '295px',
       },
     },
   },
@@ -29,5 +30,5 @@ module.exports = {
       backgroundColor: ['checked'],
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
 };

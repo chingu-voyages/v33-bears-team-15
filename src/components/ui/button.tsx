@@ -42,7 +42,7 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
     className,
     variant,
     size = 'full',
-    colorScheme = 'primary',
+    colorScheme,
     disabled,
     children,
     loading,

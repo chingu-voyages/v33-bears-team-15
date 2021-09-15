@@ -157,7 +157,7 @@ export default function Signup() {
                 />
               </div>
 
-              <Button type="submit" variant="primary" size="full" className="mb-3.5">
+              <Button type="submit" colorScheme="primary" size="full" className="mb-3.5">
                 <MailIcon className="w-6 mr-2" />{' '}
                 {isSubmitting ? 'Loading...' : 'Continue with Email'}
               </Button>

@@ -10,6 +10,7 @@ export default function Hero() {
         </h1>
         <p className="text-xl text-primary-700 font-bold pb-16">
           Read anytime, anywhere.
+          <span className="text-2xl text-gray-50 font-bold"> Share with the world.</span>
         </p>
         <Link
           href="/signup"

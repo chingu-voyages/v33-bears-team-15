@@ -19,7 +19,7 @@ module.exports = {
         primaryBtn: 'linear-gradient(115deg,#4cddbd,#06f286)',
       },
       height: {
-        hero: '550px',
+        hero: '650px',
       },
     },
   },

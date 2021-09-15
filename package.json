@@ -19,7 +19,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.15.3",
-    "swiper": "^7.0.5",
+    "react-slick": "^0.28.1",
+    "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {
@@ -33,6 +34,7 @@
     "@types/node": "^16.7.10",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
+    "@types/react-slick": "^0.23.5",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "autoprefixer": "^10.3.4",

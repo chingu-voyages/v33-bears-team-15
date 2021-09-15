@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import advantages from '~/data/advantages';
+import advantages from '~data/advantages';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';

@@ -19,7 +19,7 @@
     "paths": {
       "~/*": ["./src/*"],
       "~components/*": ["./src/components/*"],
-      "~data/*": ["src/data/*"]
+      "~data/*": ["./data/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"],

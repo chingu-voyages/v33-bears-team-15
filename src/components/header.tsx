@@ -28,7 +28,7 @@ export default function Header({
   const { toggle, isDark } = useTheme();
 
   const rootClass = cn('z-30 relative', {
-    'border-b dark:border-gray-700 border-gray-300 h-20': withBorder,
+    'border-b dark:border-gray-700 border-gray-300 h-16': withBorder,
     'h-24': !withBorder,
     'bg-gray-100 dark:bg-gray-900': variant === 'solid',
     'bg-lightFaded dark:bg-darkFaded': variant === 'normal',

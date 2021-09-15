@@ -1,0 +1,35 @@
+import Image from 'next/image';
+import Container from '~/components/ui/container';
+
+export default function MostRead() {
+  return (
+    <section className="my-28">
+      <h4 className="text-4xl w-full py-7 text-center font-bold">Most Read Books</h4>
+      <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
+        <div className="p-4 w-full md:w-1/2 lg:w-1/3 bg-gray-400">
+          <div>
+            <Image src="/images/dangerous-globe.jpeg" height="685" width="600" />
+            <h5 className="text-3xl uppercase py-7 text-center font-bold">
+              Dangerous Globe
+            </h5>
+            <h5 className="text-2xl italic py-7 text-center font-bold">Louis Crewe</h5>
+          </div>
+        </div>
+        <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 bg-gray-500">
+          <div>
+            <Image src="/images/van-winkle.jpeg" height="685" width="600" />
+            <h5 className="text-3xl uppercase py-7 text-center font-bold">Van Winkle</h5>
+            <h5 className="text-2xl italic py-7 text-center font-bold">Danny Rie</h5>
+          </div>
+        </div>
+        <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 bg-gray-600">
+          <Image src="/images/the-chambers-of-history.jpeg" height="685" width="600" />
+          <h5 className="text-3xl uppercase py-7 text-center font-bold">
+            The Chambers of History
+          </h5>
+          <h5 className="text-2xl italic py-7 text-center font-bold">Nadia Amoki</h5>
+        </div>
+      </Container>
+    </section>
+  );
+}

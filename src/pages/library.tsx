@@ -4,7 +4,7 @@ import Container from '~/components/ui/container';
 
 export default function Library() {
   return (
-    <Layout headerProps={{ withBorder: true }}>
+    <Layout headerProps={{ withBorder: true, variant: 'solid' }}>
       <Slider />
       <Container>
         <h1>Library</h1>

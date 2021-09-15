@@ -11,20 +11,28 @@ import useTheme from '~/hooks/use-theme';
 enum HeaderVariant {
   normal,
   image,
+  solid,
 }
 export interface IHeader {
   variant?: keyof typeof HeaderVariant;
   withBorder?: boolean;
+  sticky?: boolean;
   children?: ReactNode;
 }
 
-export default function Header({ withBorder, variant = 'normal' }: IHeader): JSX.Element {
+export default function Header({
+  withBorder,
+  variant = 'normal',
+  sticky = false,
+}: IHeader): JSX.Element {
   const { toggle, isDark } = useTheme();
 
   const rootClass = cn('z-30 relative', {
-    'border-b dark:border-gray-700 border-gray-300 h-20 bg-lightFaded dark:bg-darkFaded':
-      withBorder,
+    'border-b dark:border-gray-700 border-gray-300 h-20': withBorder,
     'h-24': !withBorder,
+    'bg-gray-100 dark:bg-gray-900': variant === 'solid',
+    'bg-lightFaded dark:bg-darkFaded': variant === 'normal',
+    'sticky top-0': sticky,
   });
   const textClass = cn({
     'dark:text-gray-50 text-gray-900': variant === 'normal',

@@ -48,7 +48,7 @@ export default function Signin() {
   };
 
   return (
-    <Layout headerProps={{ withBorder: true }}>
+    <Layout headerProps={{ withBorder: true, sticky: true }}>
       <section className="py-20">
         <Container maxW="max-w-md" className="flex flex-col items-center px-12">
           <h1 className="text-4xl font-bold pb-8">Sign In</h1>

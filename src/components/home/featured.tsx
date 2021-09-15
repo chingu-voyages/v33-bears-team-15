@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
+import ReadBtn from '~components/readBtn';
 
 export default function Featured() {
   return (
-    <section className="my-28">
+    <section className="mt-28">
       <h4 className="text-4xl w-full py-7 text-center font-bold">
         Read all the newest books
       </h4>
@@ -18,9 +19,8 @@ export default function Featured() {
             <h5 className="text-3xl uppercase py-7 text-center font-bold">
               Lost in the Woods
             </h5>
-            <h5 className="text-2xl italic py-7 text-center font-bold">
-              Amanda Tolstroy
-            </h5>
+            <h5 className="text-2xl italic text-center font-bold">Amanda Tolstroy</h5>
+            <ReadBtn />
           </div>
         </div>
         <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 bg-gray-500">
@@ -29,7 +29,8 @@ export default function Featured() {
             <h5 className="text-3xl uppercase py-7 text-center font-bold">
               My Person, Shirley
             </h5>
-            <h5 className="text-2xl italic py-7 text-center font-bold">Sunset Gumedie</h5>
+            <h5 className="text-2xl italic pt-0 text-center font-bold">Sunset Gumedie</h5>
+            <ReadBtn />
           </div>
         </div>
         <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 bg-gray-600">
@@ -37,7 +38,8 @@ export default function Featured() {
           <h5 className="text-3xl uppercase py-7 text-center font-bold">
             The River Bend
           </h5>
-          <h5 className="text-2xl italic py-7 text-center font-bold">Nadia Amoki</h5>
+          <h5 className="text-2xl italic text-center font-bold">Nadia Amoki</h5>
+          <ReadBtn />
         </div>
       </Container>
     </section>

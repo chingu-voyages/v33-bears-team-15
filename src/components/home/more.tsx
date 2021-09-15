@@ -6,8 +6,8 @@ export default function More() {
   const { isDark } = useTheme();
   const fill = isDark ? 'white' : 'black';
   return (
-    <section className="-my-14">
-      <Container className="flex justify-center">
+    <section className="-my-20">
+      <Container className="flex justify-center items-center">
         <EllipsisIcon className="w-10" fill={fill} />
       </Container>
     </section>

@@ -20,6 +20,7 @@ module.exports = {
       },
       height: {
         hero: '650px',
+        featured: '750px',
       },
     },
   },

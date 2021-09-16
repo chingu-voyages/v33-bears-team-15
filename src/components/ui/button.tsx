@@ -51,8 +51,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     'bg-blue-500 border border-blue-500 text-white-normal hover:text-gray-200';
   const modernClass =
     'bg-gray-50 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:bg-gray-100 hover:text-gray-700 border border-gray-200';
+  const readClass =
+    'mt-8 mb-5 bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
 
-  const readClass = 'font-bold mt-3 py-2 px-4 rounded bg-primary-700 text-white';
   const rootClass = cn(
     {
       'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700':

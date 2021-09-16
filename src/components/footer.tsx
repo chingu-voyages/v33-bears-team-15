@@ -1,43 +1,30 @@
 import Link from './common/link';
 import Container from './ui/container';
+import quickLinks from '~data/quickLinks';
 
 export default function Footer(): JSX.Element {
   return (
-    <section className="pt-44">
-      <Container className="flex justify-center flex-wrap">
-        <ul className="flex flex-wrap list-none">
-          <Link href="/">
-            <li className="px-7">Home</li>
+    <section className="pt-44 pb-44">
+      <Container className="">
+        <div className="flex justify-center flex-wrap">
+          <ul className="flex flex-wrap list-none">
+            {quickLinks.map(({ hRef, description }) => (
+              <Link href={hRef} key={description}>
+                <li className="px-7">{description}</li>
+              </Link>
+            ))}
+          </ul>
+        </div>
+        <div className="flex justify-center flex-wrap">
+          <Link
+            href="/"
+            className="mt-5 bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide"
+          >
+            Add a Book
           </Link>
-          <Link href="/">
-            <li className="px-7">About</li>
-          </Link>
-          <Link href="/">
-            <li className="px-7">Authors</li>
-          </Link>
-          <Link href="/">
-            <li className="px-7">Publishers</li>
-          </Link>
-          <Link href="/">
-            <li className="px-7">FAQ</li>
-          </Link>
-          <Link href="/">
-            <li className="px-7">Read</li>
-          </Link>
-          <Link href="/">
-            <li className="px-7">Privacy Statement</li>
-          </Link>
-          <Link href="/">
-            <li>Terms of Service</li>
-          </Link>
-          <Link href="/signin">
-            <li className="px-7">Sign in</li>
-          </Link>
-          <Link href="/signup">Sign up</Link>
-        </ul>
+        </div>
         <p className="text-center py-6">
-          DECKOO © 2021 | All rights reserved. Terms under which this service is provided
-          to you. Privacy Policy.
+          Copyright © 2021 DECKOO, Inc | All rights reserved.
         </p>
       </Container>
     </section>

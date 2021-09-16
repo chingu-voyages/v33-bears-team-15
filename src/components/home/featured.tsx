@@ -17,10 +17,10 @@ export default function Featured() {
               height="685"
               width="600"
             />
-            <h5 className="text-3xl uppercase py-7 text-center font-bold">
+            <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
               Lost in the Woods
             </h5>
-            <h5 className="text-2xl italic text-center font-bold">Amanda Tolstroy</h5>
+            <h5 className="text-2xl text-center font-bold">Amanda Tolstroy</h5>
             <ReadBtn />
           </div>
         </div>
@@ -28,22 +28,18 @@ export default function Featured() {
           <div>
             <div className="py-5">
               <Image src="/images/my-person-shirley.jpeg" height="342.5" width="300" />
-              <h5 className="text-3xl uppercase py-7 text-center font-bold">
+              <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
                 My Person, Shirley
               </h5>
-              <h5 className="text-2xl italic pt-0 text-center font-bold">
-                Sunset Gumedie
-              </h5>
+              <h5 className="text-2xl pt-0 text-center font-bold">Sunset Gumedie</h5>
               <ReadBtn />
             </div>
             <div>
               <Image src="/images/northern-lights.jpeg" height="342.5" width="300" />
-              <h5 className="text-3xl uppercase py-7 text-center font-bold">
+              <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
                 Northern Lights
               </h5>
-              <h5 className="text-2xl italic pt-0 text-center font-bold">
-                Sunset Gumedie
-              </h5>
+              <h5 className="text-2xl pt-0 text-center font-bold">Sunset Gumedie</h5>
               <ReadBtn />
             </div>
           </div>
@@ -51,10 +47,10 @@ export default function Featured() {
         <div className="lg:p-4 w-full items-center flex justify-center h-featuredFirst lg:w-1/3 ">
           <div className="">
             <Image src="/images/the-river-bend.jpeg" height="342.5" width="300" />
-            <h5 className="text-3xl uppercase py-7 text-center font-bold">
+            <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
               The River Bend
             </h5>
-            <h5 className="text-2xl italic text-center font-bold">Nadia Amoki</h5>
+            <h5 className="text-2xl text-center font-bold">Nadia Amoki</h5>
             <ReadBtn />
           </div>
         </div>

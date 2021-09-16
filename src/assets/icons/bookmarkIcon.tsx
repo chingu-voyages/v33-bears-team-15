@@ -1,12 +1,14 @@
 import type { ComponentPropsWithoutRef } from 'react';
 
-export type IBookmarkIcon = ComponentPropsWithoutRef<'svg'>;
+export interface IBookmarkIcon extends ComponentPropsWithoutRef<'svg'> {
+  solid?: boolean;
+}
 
-function BookmarkIcon({ strokeWidth = 2, ...rest }: IBookmarkIcon): JSX.Element {
+function BookmarkIcon({ strokeWidth = 2, solid, ...rest }: IBookmarkIcon): JSX.Element {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      fill="none"
+      fill={solid ? 'currentColor' : 'none'}
       viewBox="0 0 24 24"
       stroke="currentColor"
       {...rest}

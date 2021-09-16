@@ -50,14 +50,14 @@ export default function Carousel({
     <div className="my-12 relative">
       {type === 'recommendation' ? (
         <div className="flex sm:flex-row flex-col justify-between sm:items-center">
-          <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-200 flex items-center">
+          <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-200 flex items-center cursor-default">
             {icon} {title} Recommended For You
           </h2>
 
           {moreHref && (
             <Link
               href={moreHref}
-              title={title}
+              title={`View ${title}`}
               className="text-green-600 dark:text-green-400 hover:underline text-sm font-semibold"
             >
               View More
@@ -65,11 +65,11 @@ export default function Carousel({
           )}
         </div>
       ) : type === 'similar' ? (
-        <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-300 flex items-center">
+        <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-300 flex items-center cursor-default">
           {icon} Similar To: {title}
         </h2>
       ) : (
-        <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-300 flex items-center">
+        <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-300 flex items-center cursor-default">
           {icon} {title}
         </h2>
       )}

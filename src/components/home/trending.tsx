@@ -15,7 +15,7 @@ export default function Trending() {
         </div>
         <div className="p-4 w-full h-featured md:w-1/3 lg:w-1/5 ">
           <div>
-            <Image src="/images/ready-for-a-challenge.jpeg" height="300" width="300" />
+            <Image src="/images/ready-for-a-challenge.jpeg" height="342.5" width="300" />
             <h5 className="text-3xl uppercase py-7 text-center font-bold">
               Ready for a Challenge
             </h5>
@@ -44,14 +44,14 @@ export default function Trending() {
         <div className="p-4 w-full h-featured md:w-1/3 lg:w-1/5 ">
           <h4 className="text-4xl w-full py-7 font-bold">More...</h4>
           <button
-            type="button"
-            className="font-bold mt-3 py-2 px-4 rounded bg-transparent text-primary-700"
+            type="submit"
+            className="font-bold bg-transparent hover:bg-primary-500 text-primary-700 hover:text-white py-2 px-4 border border-primary-700 hover:border-transparent rounded"
           >
             SEE ALL BOOKS
           </button>
           <button
-            type="button"
-            className="font-bold mt-3 py-2 px-4 rounded bg-transparent text-primary-700"
+            type="submit"
+            className="mt-5 font-bold bg-transparent hover:bg-primary-500 text-primary-700 hover:text-white py-2 px-4 border border-primary-700 hover:border-transparent rounded"
           >
             SEE ALL TRENDING NOW
           </button>

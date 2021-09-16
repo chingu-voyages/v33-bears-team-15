@@ -54,7 +54,7 @@ export default function Signup() {
   return (
     <section className="min-h-screen relative flex items-center">
       <div
-        className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-gray-100 dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700"
+        className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-lightGray dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700"
         aria-hidden
       />
 
@@ -79,7 +79,7 @@ export default function Signup() {
                       {name}
                     </p>
                   </dt>
-                  <dd className="mt-4 ml-14 text-lg font-medium text-gray-600 dark:text-gray-300">
+                  <dd className="mt-4 ml-14 text-lg font-medium text-gray-700 dark:text-gray-300">
                     {description}
                   </dd>
                 </div>

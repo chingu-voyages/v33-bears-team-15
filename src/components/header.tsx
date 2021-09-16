@@ -30,7 +30,7 @@ export default function Header({
   const rootClass = cn('z-30 relative', {
     'border-b dark:border-gray-700 border-gray-300 h-16': withBorder,
     'h-24': !withBorder,
-    'bg-gray-100 dark:bg-gray-900': variant === 'solid',
+    'bg-lightGray dark:bg-gray-900': variant === 'solid',
     'bg-lightFaded dark:bg-darkFaded': variant === 'normal',
     'sticky top-0': sticky,
   });

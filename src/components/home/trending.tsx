@@ -4,7 +4,7 @@ import ReadBtn from '~components/readBtn';
 
 export default function Trending() {
   return (
-    <section className="my-8">
+    <section className="mb-8 -mt-12">
       <h4 className="text-4xl w-full py-7 text-center font-bold">Trending Now</h4>
       <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
         <div className="p-4 w-full md:w-1/2 lg:w-1/3 bg-gray-400">

@@ -59,6 +59,7 @@ export default function Carousel({
     speed: 650,
     slidesToShow: 6,
     slidesToScroll: 3,
+    lazyLoad: 'ondemand',
     centerMode: true,
     centerPadding: '35px',
     initialSlide: 0,

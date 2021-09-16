@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
-import ReadBtn from '~components/readBtn';
+import { ReadBtn } from '~/components/ui/button';
 
 export default function Trending() {
   return (
@@ -45,13 +45,13 @@ export default function Trending() {
           <h4 className="text-4xl w-full py-7 font-bold">More...</h4>
           <button
             type="button"
-            className="font-bold mt-3 py-2 px-4 rounded bg-primary-700 text-white"
+            className="font-bold mt-3 py-2 px-4 rounded bg-transparent text-primary-700"
           >
             SEE ALL BOOKS
           </button>
           <button
             type="button"
-            className="font-bold mt-3 py-2 px-4 rounded bg-primary-700 text-white"
+            className="font-bold mt-3 py-2 px-4 rounded bg-transparent text-primary-700"
           >
             SEE ALL TRENDING NOW
           </button>

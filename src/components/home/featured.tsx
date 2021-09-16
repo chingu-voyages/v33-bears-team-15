@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
-import ReadBtn from '~components/readBtn';
+import { ReadBtn } from '~/components/ui/button';
 
 export default function Featured() {
   return (

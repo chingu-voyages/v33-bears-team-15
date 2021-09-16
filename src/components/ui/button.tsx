@@ -6,10 +6,12 @@ enum Variant {
   google,
   twitter,
   modern,
+  read,
 }
 
 enum Size {
   full,
+  half,
 }
 
 export interface ButtonProps extends ComponentProps<'button'> {
@@ -50,6 +52,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const modernClass =
     'bg-gray-50 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:bg-gray-100 hover:text-gray-700 border border-gray-200';
 
+  const readClass = 'font-bold mt-3 py-2 px-4 rounded bg-primary-700 text-white';
   const rootClass = cn(
     {
       'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700':
@@ -60,6 +63,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
       [googleClass]: variant === 'google',
       [twitterClass]: variant === 'twitter',
       [modernClass]: variant === 'modern',
+      [readClass]: variant === 'read',
       'w-full py-2.5 flex justify-center items-center': size === 'full',
       'opacity-25': disabled,
     },
@@ -72,5 +76,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
     </Component>
   );
 });
+
+export function ReadBtn(): JSX.Element {
+  return (
+    <div className="flex justify-center">
+      <Button variant="read" size="half">
+        Read Now
+      </Button>
+    </div>
+  );
+}
 
 export default Button;

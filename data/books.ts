@@ -76,12 +76,6 @@ const booksByCategories: BooksCategoriesType[] = [
         rating: 5,
       },
       {
-        name: 'Agile Coaching: Where to Start?',
-        author: 'Dmitri Iarandine',
-        src: 'https://imgv2-2-f.scribdassets.com/img/audiobook_square_badge/421359648/original/216x216/ce4378f819/1629352968?v=1',
-        rating: 5,
-      },
-      {
         name: 'Q & As for the PMBOK® Guide Sixth Edition',
         author: 'Project Management Institute',
         src: 'https://imgv2-1-f.scribdassets.com/img/word_document/363127693/original/216x287/c9100ed0d2/1617224906?v=1',
@@ -112,10 +106,10 @@ const booksByCategories: BooksCategoriesType[] = [
         rating: 4,
       },
       {
-        name: 'The 7 Habits of Highly Effective People',
-        author: 'Stephen R. Covey',
-        src: 'https://imgv2-2-f.scribdassets.com/img/word_document/266265967/original/216x287/54c25f30d1/1630770257?v=1',
-        rating: 4,
+        name: 'Agile Coaching: Where to Start?',
+        author: 'Dmitri Iarandine',
+        src: 'https://imgv2-2-f.scribdassets.com/img/audiobook_square_badge/421359648/original/216x216/ce4378f819/1629352968?v=1',
+        rating: 5,
       },
       {
         name: 'Your Best Year Ever: A 5-Step Plan for Achieving Your Most Important Goals',

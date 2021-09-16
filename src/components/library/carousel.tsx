@@ -28,14 +28,14 @@ export default function Carousel({
   const slidesToShow = 6;
   const totalCardsToShow = slidesToShow <= data.length ? slidesToShow : data.length;
   const widthOffset = data.length > slidesToShow ? 174 : 20 * totalCardsToShow;
-  const totalCarouselWith = totalCardsToShow * BASE_CARD_WIDTH + widthOffset;
+  const totalCarouselWidth = totalCardsToShow * BASE_CARD_WIDTH + widthOffset;
 
   const defaultOptions: SlickOptions = {
     dots: false,
     infinite: true,
-    speed: 650,
+    speed: 450,
     slidesToShow: totalCardsToShow,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     lazyLoad: 'ondemand',
     centerMode: data.length > slidesToShow,
     centerPadding: '35px',
@@ -49,7 +49,7 @@ export default function Carousel({
   return (
     <div className="my-12 relative">
       {type === 'recommendation' ? (
-        <div className="flex justify-between items-center">
+        <div className="flex sm:flex-row flex-col justify-between sm:items-center">
           <h2 className="font-sans text-2xl font-semibold text-gray-800 dark:text-gray-200 flex items-center">
             {icon} {title} Recommended For You
           </h2>
@@ -74,7 +74,7 @@ export default function Carousel({
         </h2>
       )}
 
-      <div style={{ width: totalCarouselWith }}>
+      <div style={{ width: totalCarouselWidth }}>
         <Slick {...defaultOptions} className="mt-6 cursor-move">
           {data.map((b) => (
             <Card key={b.name} width={BASE_CARD_WIDTH} {...b} />

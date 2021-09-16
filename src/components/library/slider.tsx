@@ -1,5 +1,3 @@
-// /* eslint-disable import/no-unresolved */
-
 import Image from 'next/image';
 import Slick, { Settings } from 'react-slick';
 import { Dispatch, SetStateAction, useState } from 'react';
@@ -12,11 +10,11 @@ import ChevronRightIcon from '~/assets/icons/chevronRightIcon';
 import BookmarkIcon from '~/assets/icons/bookmarkIcon';
 import slides, { SlideType } from '~data/slides';
 
+export type SlickOptions = Settings & { ref?: Dispatch<SetStateAction<Slick>> };
+
 interface ISlide extends SlideType {
   sliderRef: Slick | null;
 }
-
-export type SlickOptions = Settings & { ref?: Dispatch<SetStateAction<Slick>> };
 
 function Slide({ name, color, src, sliderRef }: ISlide) {
   return (
@@ -88,6 +86,7 @@ export default function Slider() {
     ref: setSliderRef,
     dots: false,
     speed: 500,
+    lazyLoad: 'ondemand',
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,

@@ -11,7 +11,6 @@ export default function AddBook() {
       <h4 className="text-5xl w-full py-7 text-center font-bold">
         Share your with others...
       </h4>
-
       <Container className="flex justify-center items-center">
         <UploadIcon className="w-10" fill={fill} />
         <div className="flex justify-center flex-wrap">

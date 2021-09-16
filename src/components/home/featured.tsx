@@ -1,10 +1,19 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
 import { ReadBtn } from '~/components/ui/button';
+import Link from '../common/link';
 
 export default function Featured() {
   return (
     <section className="mt-28 mb-5">
+      <div className="flex justify-center flex-wrap">
+        <Link
+          href="/"
+          className="mt-5 mb-5 bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide"
+        >
+          Browse Categories
+        </Link>
+      </div>
       <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
         <div className="p-4 w-full lg:h-featuredFirst lg:w-1/3 ">
           <h4 className="text-6xl w-full py-7 text-center font-bold">

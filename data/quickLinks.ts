@@ -11,6 +11,10 @@ const advantages: QuickLinksType[] = [
   },
   {
     hRef: '/',
+    description: 'Browse Categories',
+  },
+  {
+    hRef: '/',
     description: 'Authors',
   },
   {

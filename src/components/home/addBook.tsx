@@ -9,7 +9,7 @@ export default function AddBook() {
   return (
     <section className="mt-28">
       <h4 className="text-5xl w-full py-7 text-center font-bold">
-        Share your knowledge with others...
+        Share your with others...
       </h4>
 
       <Container className="flex justify-center items-center">

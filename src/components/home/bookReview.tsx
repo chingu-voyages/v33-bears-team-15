@@ -12,7 +12,7 @@ export default function BookReview() {
             <Image src="/images/motor-engines.jpeg" height="685" width="600" />
           </div>
         </div>
-        <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 ">
+        <div className="p-4 w-full lg:h-featured md:w-1/2 lg:w-1/3 ">
           <h5 className="text-2xl text-primary-700 py-7 font-bold">Book Review</h5>
           <h5 className="text-3xl text-primary-700 py-7 font-bold">Mortal Engines</h5>
           <p className="text-2xl">

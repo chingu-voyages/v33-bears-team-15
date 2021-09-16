@@ -4,15 +4,15 @@ import ReadBtn from '~components/readBtn';
 
 export default function BookReview() {
   return (
-    <section className="mt-0">
-      <h4 className="text-4xl w-full py-7 text-center font-bold">Read a book</h4>
+    <section className="mt-0 mb-24">
+      <h4 className="text-5xl w-full py-7 text-center font-bold">Read a book</h4>
       <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
-        <div className="p-4 w-full md:w-1/2 lg:w-1/2 bg-gray-400">
+        <div className="p-4 w-full md:w-1/2 lg:w-1/2 ">
           <div>
             <Image src="/images/motor-engines.jpeg" height="685" width="600" />
           </div>
         </div>
-        <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 bg-gray-400">
+        <div className="p-4 w-full h-featured md:w-1/2 lg:w-1/3 ">
           <h5 className="text-2xl uppercase py-7 font-bold">Coming Soon</h5>
           <h5 className="text-3xl uppercase py-7 font-bold">Mortal Engines</h5>
           <p className="text-2xl">

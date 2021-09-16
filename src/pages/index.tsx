@@ -12,9 +12,9 @@ export default function Home() {
       <Hero />
       <More />
       <Featured />
+      <BookReview />
       <Trending />
       <MostRead />
-      <BookReview />
     </Layout>
   );
 }

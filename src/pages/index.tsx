@@ -5,6 +5,7 @@ import Featured from '~/components/home/featured';
 import Trending from '~/components/home/trending';
 import MostRead from '~/components/home/mostRead';
 import BookReview from '~/components/home/bookReview';
+import AddBook from '~/components/home/addBook';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Hero />
       <More />
       <Featured />
+      <AddBook />
       <BookReview />
       <Trending />
       <MostRead />

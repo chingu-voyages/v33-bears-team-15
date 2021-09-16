@@ -48,8 +48,8 @@ export default function Signin() {
   };
 
   return (
-    <Layout headerProps={{ withBorder: true }}>
-      <section className="py-20">
+    <Layout headerProps={{ withBorder: true, sticky: true }}>
+      <section className="py-16">
         <Container maxW="max-w-md" className="flex flex-col items-center px-12">
           <h1 className="text-4xl font-bold pb-8">Sign In</h1>
 
@@ -99,7 +99,7 @@ export default function Signin() {
               />
             </div>
 
-            <Button type="submit" variant="primary" size="full" className="mb-3.5">
+            <Button type="submit" colorScheme="primary" size="full" className="mb-3.5">
               <MailIcon className="w-6 mr-2" />{' '}
               {isSubmitting ? 'Loading...' : 'Continue with Email'}
             </Button>

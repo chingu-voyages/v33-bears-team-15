@@ -4,7 +4,7 @@ import { ReadBtn } from '~/components/ui/button';
 
 export default function BookReview() {
   return (
-    <section className="mt-16 mb-24">
+    <section className="pt-20 pb-10">
       <h4 className="text-5xl w-full py-7 text-center font-bold">Read a book</h4>
       <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
         <div className="p-4 w-full md:w-1/2 lg:w-1/2 ">

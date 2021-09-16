@@ -4,7 +4,7 @@ import quickLinks from '~data/quickLinks';
 
 export default function Footer(): JSX.Element {
   return (
-    <section className="lg:pt-44 pb-44">
+    <section className="pt-16 pb-20">
       <Container className="">
         <div className="flex justify-center flex-wrap">
           <ul className="sm:inline-block md:inline-block lg:flex lg:flex-wrap list-none">

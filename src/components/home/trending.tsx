@@ -9,10 +9,10 @@ export default function Trending() {
   const fill = isDark ? 'white' : 'black';
 
   return (
-    <section className="lg:-mt-24 lg:mb-0">
+    <section className="py-10">
       <h4 className="text-5xl w-full py-7 text-center font-bold">Trending Now</h4>
       <Container className="md:justify-center px-0 sm:px-0 md:px-0 lg:px-0 xl:px-0 flex-wrap flex">
-        <div className="p-4 w-full lg:h-featured md:w-1/3 lg:w-1/5 ">
+        <div className="p-4 w-full md:w-1/3 lg:w-1/5 ">
           <Image src="/images/best-buddies.jpg" height="342.5" width="300" />
           <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
             Best Buddies
@@ -20,7 +20,7 @@ export default function Trending() {
           <h5 className="text-2xl text-center font-bold">Greene Loungiwe</h5>
           <ReadBtn />
         </div>
-        <div className="p-4 w-full lg:h-featured md:w-1/3 lg:w-1/5 ">
+        <div className="p-4 w-full md:w-1/3 lg:w-1/5 ">
           <div>
             <Image src="/images/ready-for-a-challenge.jpeg" height="342.5" width="300" />
             <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
@@ -30,7 +30,7 @@ export default function Trending() {
             <ReadBtn />
           </div>
         </div>
-        <div className="p-4 w-full lg:h-featured md:w-1/3 lg:w-1/5 ">
+        <div className="p-4 w-full md:w-1/3 lg:w-1/5 ">
           <Image
             src="/images/reflections-of-a-90-yr-old-sage.jpeg"
             height="342.5"
@@ -42,7 +42,7 @@ export default function Trending() {
           <h5 className="text-2xl text-center font-bold">Medie Adam</h5>
           <ReadBtn />
         </div>
-        <div className="p-4 w-full lg:h-featured md:w-1/3 lg:w-1/5 ">
+        <div className="p-4 w-full md:w-1/3 lg:w-1/5 ">
           <Image src="/images/finding-home.jpeg" height="342.5" width="300" />
           <h5 className="text-3xl text-primary-700 py-7 text-center font-bold">
             Finding Home
@@ -50,7 +50,7 @@ export default function Trending() {
           <h5 className="text-2xl text-center font-bold">Evelyn Stoopie</h5>
           <ReadBtn />
         </div>
-        <div className="p-4 w-full lg:h-featured md:w-1/3 lg:w-1/5 ">
+        <div className="p-4 w-full md:w-1/3 lg:w-1/5 ">
           <h4 className="text-4xl w-full py-7 font-bold">More...</h4>
           <section className="relative flex flex-wrap py-8">
             <SearchIcon

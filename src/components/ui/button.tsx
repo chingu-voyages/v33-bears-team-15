@@ -1,22 +1,32 @@
 import cn from 'classnames';
-import { forwardRef, ComponentProps, JSXElementConstructor } from 'react';
+import { forwardRef, ComponentProps, JSXElementConstructor, ForwardedRef } from 'react';
+
+const DEFAULT_TAG = 'button';
 
 enum Variant {
-  primary,
   google,
   twitter,
   modern,
 }
 
-enum Size {
-  full,
+enum Scheme {
+  primary,
+  black,
+  none,
 }
 
-export interface ButtonProps extends ComponentProps<'button'> {
+enum Size {
+  full,
+  normal,
+  small,
+}
+
+export interface IButton extends ComponentProps<typeof DEFAULT_TAG> {
   label?: string;
   href?: string;
   as?: string | JSXElementConstructor<any>;
   variant?: keyof typeof Variant;
+  colorScheme?: keyof typeof Scheme;
   size?: keyof typeof Size;
   disabled?: boolean;
   loading?: boolean;
@@ -24,16 +34,15 @@ export interface ButtonProps extends ComponentProps<'button'> {
   reset?: boolean;
 }
 
-const DEFAULT_TAG = 'button';
-
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref) => {
   const {
     type = 'button',
     label,
     as: Component = DEFAULT_TAG,
     className,
-    variant = 'primary',
+    variant,
     size = 'full',
+    colorScheme,
     disabled,
     children,
     loading,
@@ -42,9 +51,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   } = props;
 
   const primaryClass =
-    'bg-primaryBtn shadow-sm hover:shadow-md text-gray-800 hover:text-black hover:bg-primary-900 border border-green-400';
+    'bg-primaryBtn text-gray-800 hover:text-black hover:bg-primary-900 border border-green-400';
+  const blackClass =
+    'bg-gray-800 text-gray-100 hover:text-gray-50 hover:bg-black border border-gray-900';
+  const transparentClass = 'bg-transparent';
   const googleClass =
-    'bg-gray-100 text-gray-500 shadow-sm hover:shadow-md border border-gray-300 hover:text-gray-700';
+    'bg-gray-100 text-gray-500 border border-gray-300 hover:text-gray-700';
   const twitterClass =
     'bg-blue-500 border border-blue-500 text-white-normal hover:text-gray-200';
   const modernClass =
@@ -52,15 +64,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
 
   const rootClass = cn(
     {
-      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700':
+      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700 shadow-sm  hover:shadow-md':
         !reset,
     },
     {
-      [primaryClass]: variant === 'primary',
       [googleClass]: variant === 'google',
       [twitterClass]: variant === 'twitter',
       [modernClass]: variant === 'modern',
+      //
+      [primaryClass]: colorScheme === 'primary',
+      [blackClass]: colorScheme === 'black',
+      [transparentClass]: colorScheme === 'none',
+      //
       'w-full py-2.5 flex justify-center items-center': size === 'full',
+      'py-2.5 px-6': size === 'normal',
+      'py-2.5 px-3': size === 'small',
       'opacity-25': disabled,
     },
     className

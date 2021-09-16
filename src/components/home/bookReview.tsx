@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
-import { ReadBtn } from '~/components/ui/button';
+import Button from '~/components/ui/button';
 
 export default function BookReview() {
   return (
@@ -20,7 +20,9 @@ export default function BookReview() {
             come together to stop a dark and sinister conspirancy.
           </p>
           <h5 className="text-2xl py-5 font-bold">Roseburg Koo</h5>
-          <ReadBtn />
+          <Button variant="read" size="normal">
+            Read Now
+          </Button>
         </div>
       </Container>
     </section>

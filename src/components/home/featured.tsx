@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
-import { ReadBtn } from '~/components/ui/button';
-import Link from '../common/link';
+import Button from '~/components/ui/button';
 
 export default function Featured() {
   return (
@@ -30,7 +29,9 @@ export default function Featured() {
               Lost in the Woods
             </h5>
             <h5 className="text-2xl text-center font-bold">Amanda Tolstroy</h5>
-            <ReadBtn />
+            <Button variant="read" size="normal">
+              Read Now
+            </Button>
           </div>
         </div>
         <div className="flex justify-center p-4 w-full lg:h-featuredFirst lg:w-1/3 ">
@@ -41,7 +42,9 @@ export default function Featured() {
                 My Person, Shirley
               </h5>
               <h5 className="text-2xl pt-0 text-center font-bold">Sunset Gumedie</h5>
-              <ReadBtn />
+              <Button variant="read" size="normal">
+                Read Now
+              </Button>
             </div>
             <div>
               <Image src="/images/northern-lights.jpeg" height="342.5" width="300" />
@@ -49,7 +52,9 @@ export default function Featured() {
                 Northern Lights
               </h5>
               <h5 className="text-2xl pt-0 text-center font-bold">Sunset Gumedie</h5>
-              <ReadBtn />
+              <Button variant="read" size="normal">
+                Read Now
+              </Button>
             </div>
           </div>
         </div>
@@ -60,7 +65,9 @@ export default function Featured() {
               The River Bend
             </h5>
             <h5 className="text-2xl text-center font-bold">Nadia Amoki</h5>
-            <ReadBtn />
+            <Button variant="read" size="normal">
+              Read Now
+            </Button>
           </div>
         </div>
       </Container>

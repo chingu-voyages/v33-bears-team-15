@@ -8,6 +8,8 @@ enum Variant {
   twitter,
   modern,
   read,
+  outlined,
+  shadow,
 }
 
 enum Scheme {
@@ -17,10 +19,12 @@ enum Scheme {
 }
 
 enum Size {
-  full,
-  half,
-  normal,
+  thin,
   small,
+  normal,
+  wide,
+  half,
+  full,
 }
 
 export interface IButton extends ComponentProps<typeof DEFAULT_TAG> {
@@ -34,6 +38,7 @@ export interface IButton extends ComponentProps<typeof DEFAULT_TAG> {
   loading?: boolean;
   external?: boolean;
   reset?: boolean;
+  withShadow?: boolean;
 }
 
 const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref) => {
@@ -49,6 +54,7 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
     children,
     loading,
     reset = false,
+    withShadow = true,
     ...rest
   } = props;
 
@@ -65,10 +71,14 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
     'bg-gray-50 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:bg-gray-100 hover:text-gray-700 border border-gray-200';
   const readClass =
     'mt-8 mb-5 bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
+  const outlinedClass =
+    'font-bold uppercase text-sm bg-transparent hover:bg-primary-800 text-primary-700 dark:hover:text-gray-800 hover:text-gray-100 border border-primary-700 rounded';
+  const shadowClass =
+    'bg-gray-100 text-gray-500 hover:text-gray-800 dark:bg-darkGray dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-gray-300 text-sm uppercase';
 
   const rootClass = cn(
     {
-      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700 shadow-sm  hover:shadow-md':
+      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700':
         !reset,
     },
     {
@@ -76,15 +86,20 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
       [twitterClass]: variant === 'twitter',
       [modernClass]: variant === 'modern',
       [readClass]: variant === 'read',
+      [outlinedClass]: variant === 'outlined',
+      [shadowClass]: variant === 'shadow',
       //
       [primaryClass]: colorScheme === 'primary',
       [blackClass]: colorScheme === 'black',
       [transparentClass]: colorScheme === 'none',
       //
       'w-full py-2.5 flex justify-center items-center': size === 'full',
-      'py-2.5 px-6': size === 'normal',
-      'py-2.5 px-3': size === 'small',
+      'py-1.5 px-6 max-w-max': size === 'thin',
+      'py-2.5 px-3 max-w-max': size === 'small',
+      'py-2.5 px-6 max-w-max': size === 'normal',
+      'py-2 px-8 max-w-max': size === 'wide',
       'opacity-25': disabled,
+      'shadow-sm hover:shadow-md': withShadow,
     },
     className
   );
@@ -95,15 +110,5 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
     </Component>
   );
 });
-
-export function ReadBtn(): JSX.Element {
-  return (
-    <div className="flex justify-center">
-      <Button variant="read" size="half">
-        Read Now
-      </Button>
-    </div>
-  );
-}
 
 export default Button;

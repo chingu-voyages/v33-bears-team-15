@@ -24,10 +24,12 @@ export default function Featured() {
               height="655"
               width="540"
             />
-            <h3 className="text-3xl text-primary-700 pt-3 font-bold">
+            <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
               Lost in the Woods
             </h3>
-            <p className="text-xl font-bold pb-8">by Amanda Tolstroy</p>
+            <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
+              by Amanda Tolstroy
+            </p>
             <Button variant="read" size="normal">
               Read Now
             </Button>
@@ -37,20 +39,24 @@ export default function Featured() {
           <div className="flex lg:flex-col sm:flex-row flex-col">
             <div className="mb-20 lg:mr-0 md:mr-8 mr-5 px-2.5">
               <Image src="/images/my-person-shirley.jpeg" height="415.5" width="340" />
-              <h3 className="text-3xl text-primary-700 pt-3 font-bold">
+              <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
                 My Person, Shirley
               </h3>
-              <p className="text-xl font-bold pb-8">by Sunset Gumedie</p>
+              <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
+                by Sunset Gumedie
+              </p>
               <Button variant="read" size="normal">
                 Read Now
               </Button>
             </div>
             <div className="sm:mb-0 mb-20 px-2.5">
               <Image src="/images/northern-lights.jpeg" height="415.5" width="340" />
-              <h3 className="text-3xl text-primary-700 pt-3 font-bold">
+              <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
                 Northern Lights
               </h3>
-              <p className="text-xl font-bold pb-8">by Sunset Gumedie</p>
+              <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
+                by Sunset Gumedie
+              </p>
               <Button variant="read" size="normal">
                 Read Now
               </Button>
@@ -60,8 +66,12 @@ export default function Featured() {
         <div className="lg:px-4 flex justify-center lg:mt-48 w-full lg:w-1/3 ">
           <div>
             <Image src="/images/the-river-bend.jpeg" height="425.5" width="340" />
-            <h3 className="text-3xl text-primary-700 pt-3 font-bold">The River Bend</h3>
-            <p className="text-xl font-bold pb-8">by Nadia Amoki</p>
+            <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
+              The River Bend
+            </h3>
+            <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
+              by Nadia Amoki
+            </p>
             <Button variant="read" size="normal">
               Read Now
             </Button>

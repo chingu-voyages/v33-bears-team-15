@@ -70,11 +70,11 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
   const modernClass =
     'bg-gray-50 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:bg-gray-100 hover:text-gray-700 border border-gray-200';
   const readClass =
-    'bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
+    'dark:bg-gray-100 bg-gray-800 hover:bg-gray-900 text-gray-100 dark:text-gray-800 uppercase hover:border-gray-300 hover:shadow dark:hover:opacity-90 hover:text-gray-50 dark:hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
   const outlinedClass =
-    'font-bold uppercase text-sm bg-transparent hover:bg-primary-800 text-primary-700 dark:hover:text-gray-800 hover:text-gray-100 border border-primary-700 rounded';
+    'font-bold uppercase text-sm bg-transparent hover:bg-primary-900 text-primary-800 dark:hover:bg-primary-800 dark:text-primary-700 dark:hover:text-gray-800 hover:text-gray-100 border border-primary-700 rounded';
   const shadowClass =
-    'bg-gray-100 text-gray-500 hover:text-gray-800 dark:bg-darkGray dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-gray-300 text-sm uppercase';
+    'bg-gray-200 text-gray-500 hover:text-gray-800 dark:bg-darkGray dark:hover:bg-gray-700 dark:text-gray-400 dark:hover:text-gray-300 text-sm uppercase';
 
   const rootClass = cn(
     {

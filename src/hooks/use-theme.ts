@@ -1,33 +1,45 @@
 import { useCallback, useEffect, useState } from 'react';
+import { isBrowser, storage } from '~/utils';
 
-// @TODO We need a better API to work with
-// `localStorage`. Need to add to a `utils`
+export enum ThemeMode {
+  DARK = 'dark',
+  LIGHT = 'light',
+}
+export type ThemeModeType = `${ThemeMode}`;
+
+const THEME_KEY = 'dark-theme';
+const THEME_CLASS = 'dark';
+
 export default function useTheme() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState<boolean>(true);
 
-  const toggleTheme = useCallback((type: 'dark' | 'light') => {
-    if (type === 'dark') {
-      document.documentElement.classList.add('dark');
+  const toggleTheme = useCallback((themeMode: ThemeModeType) => {
+    if (isBrowser) {
+      if (themeMode === ThemeMode.DARK) {
+        document.documentElement.classList.add(THEME_CLASS);
 
-      localStorage.setItem('theme', 'dark');
-      localStorage.setItem('checked', JSON.stringify(true));
-      setIsDark(true);
+        storage.set(THEME_KEY, true);
+        setIsDark(true);
+      } else {
+        document.documentElement.classList.remove(THEME_CLASS);
+
+        storage.set(THEME_KEY, false);
+        setIsDark(false);
+      }
     } else {
-      document.documentElement.classList.remove('dark');
-
-      localStorage.setItem('theme', 'light');
-      localStorage.setItem('checked', JSON.stringify(false));
-      setIsDark(false);
+      throw new Error('Theme cannot be used outside the browser!');
     }
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem('theme') === 'dark') {
-      document.documentElement.classList.add(localStorage.getItem('theme'));
+    const storageTheme = storage.get(THEME_KEY);
+
+    if (storageTheme === null) {
+      storage.set(THEME_KEY, true);
     }
 
-    if (localStorage.getItem('checked')) {
-      setIsDark(JSON.parse(localStorage.getItem('checked')));
+    if (storageTheme && isBrowser) {
+      document.documentElement.classList.add(THEME_CLASS);
     }
   }, []);
 

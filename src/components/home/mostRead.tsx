@@ -4,7 +4,7 @@ import Button from '~/components/ui/button';
 
 export default function MostRead() {
   return (
-    <section className="py-12">
+    <section className="pt-12 pb-24">
       <Container>
         <p className="uppercase font-semibold text-lg pb-5 sm:pl-20 pl-6">All Time</p>
         <h2 className="text-6xl w-full pb-10 sm:pl-20 pl-6">

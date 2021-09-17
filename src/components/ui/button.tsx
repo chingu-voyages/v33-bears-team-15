@@ -70,7 +70,7 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
   const modernClass =
     'bg-gray-50 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:bg-gray-100 hover:text-gray-700 border border-gray-200';
   const readClass =
-    'mt-8 mb-5 bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
+    'bg-gray-100 text-gray-800 uppercase hover:border-gray-300 hover:shadow hover:opacity-90 hover:text-gray-900 border border-gray-200 py-3.5 px-12 flex justify-center items-center rounded-sm font-bold tracking-wide';
   const outlinedClass =
     'font-bold uppercase text-sm bg-transparent hover:bg-primary-800 text-primary-700 dark:hover:text-gray-800 hover:text-gray-100 border border-primary-700 rounded';
   const shadowClass =

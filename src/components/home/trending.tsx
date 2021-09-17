@@ -35,7 +35,7 @@ export default function Trending() {
             />
           </div>
 
-          <aside className="min-w-[210px] 2xl:max-w-[320px] sm:max-w-[210px] w-full sm:pl-0 sm:pb-0 pl-6 pb-8 sm:mt-2">
+          <aside className="min-w-[210px] 2xl:max-w-[320px] sm:max-w-[210px] w-full sm:pb-0 pb-8 sm:mt-2">
             <h4 className="text-xl font-bold pb-2 sm:block hidden">More...</h4>
 
             <div className="flex rounded-md shadow-sm mb-8">

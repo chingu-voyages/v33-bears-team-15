@@ -7,6 +7,15 @@ module.exports = {
       sans: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
       serif: ['Source Serif Pro', 'serif'],
     },
+    screens: {
+      sm: '640px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1280px',
+      '2xl': '1370px',
+      '3xl': '1536px',
+      '4xl': '1660px',
+    },
     extend: {
       colors: {
         neon: '#ccff00',

@@ -5,7 +5,7 @@ import Button from '../ui/button';
 
 export default function Trending() {
   return (
-    <section className="py-10">
+    <section className="py-12">
       <Container>
         <p className="uppercase font-semibold text-lg pb-5 sm:pl-20 pl-6">Trending</p>
         <h4 className="text-6xl w-full pb-12 sm:pl-20 pl-6">

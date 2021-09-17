@@ -11,7 +11,9 @@ export default function BookReview() {
         </div>
         <div className="sm:pl-16 pl-0 w-full lg:w-1/2 ">
           <p className="uppercase font-semibold text-lg pb-5 lg:mt-24">Book Review</p>
-          <h2 className="text-6xl text-primary-700 pb-6 font-semibold">Mortal Engines</h2>
+          <h2 className="text-6xl text-green-500 dark:text-green-400 pb-6 font-semibold">
+            Mortal Engines
+          </h2>
           <p className="text-xl font-semibold">
             In a post-apocalyptic era where towns are ever changing to survive, two aliens
             come together to stop a dark and sinister conspirancy.

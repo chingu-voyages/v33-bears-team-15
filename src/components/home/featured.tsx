@@ -23,6 +23,7 @@ export default function Featured() {
               src="/images/pexels-jasmin-chew-7647295.jpg"
               height="655"
               width="540"
+              priority
             />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
               Lost in the Woods
@@ -38,7 +39,12 @@ export default function Featured() {
         <div className="flex justify-center lg:px-4 w-full lg:w-1/3 ">
           <div className="flex lg:flex-col sm:flex-row flex-col">
             <div className="mb-20 lg:mr-0 md:mr-8 mr-5 px-2.5">
-              <Image src="/images/my-person-shirley.jpeg" height="415.5" width="340" />
+              <Image
+                src="/images/my-person-shirley.jpeg"
+                height="415.5"
+                width="340"
+                priority
+              />
               <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
                 My Person, Shirley
               </h3>
@@ -50,7 +56,12 @@ export default function Featured() {
               </Button>
             </div>
             <div className="sm:mb-0 mb-20 px-2.5">
-              <Image src="/images/northern-lights.jpeg" height="415.5" width="340" />
+              <Image
+                src="/images/northern-lights.jpeg"
+                height="415.5"
+                width="340"
+                priority
+              />
               <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
                 Northern Lights
               </h3>
@@ -65,7 +76,12 @@ export default function Featured() {
         </div>
         <div className="lg:px-4 flex justify-center lg:mt-48 w-full lg:w-1/3 ">
           <div>
-            <Image src="/images/the-river-bend.jpeg" height="425.5" width="340" />
+            <Image
+              src="/images/the-river-bend.jpeg"
+              height="425.5"
+              width="340"
+              priority
+            />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
               The River Bend
             </h3>

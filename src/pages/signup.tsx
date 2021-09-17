@@ -54,7 +54,7 @@ export default function Signup() {
 
   return (
     <>
-      <section className="min-h-screen relative flex items-center border-b border-gray-200 dark:border-gray-700">
+      <section className="min-h-screen relative flex items-center">
         <div
           className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-lightGray dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700"
           aria-hidden
@@ -62,7 +62,7 @@ export default function Signup() {
 
         <Container className="py-10">
           <Link href="/" title="Dekoo branding">
-            <Image src="/images/logo.png" width={176} height={42} />
+            <Image src="/images/logo.png" width={176} height={46} />
           </Link>
 
           <div className="lg:grid grid-cols-2 lg:mt-8 mt-12 flex flex-col-reverse items-center lg:items-start">

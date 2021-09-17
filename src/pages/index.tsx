@@ -1,10 +1,18 @@
 import Layout from '../components/layout';
 import Hero from '~/components/home/hero';
+import Featured from '~/components/home/featured';
+import Trending from '~/components/home/trending';
+import MostRead from '~/components/home/mostRead';
+import BookReview from '~/components/home/bookReview';
 
 export default function Home() {
   return (
     <Layout headerProps={{ variant: 'image' }}>
       <Hero />
+      <Featured />
+      <BookReview />
+      <Trending />
+      <MostRead />
     </Layout>
   );
 }

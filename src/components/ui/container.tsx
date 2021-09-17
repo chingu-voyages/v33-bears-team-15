@@ -23,7 +23,7 @@ const Container = forwardRef<HTMLDivElement, IContainer>((props, ref): JSX.Eleme
     maxW,
     {
       'lg:px-14 md:px-12 px-4 mx-auto w-full': !reset,
-      'max-w-screen-2xl': !maxW,
+      'max-w-screen-3xl': !maxW,
     },
     className
   );

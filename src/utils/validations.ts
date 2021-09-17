@@ -42,3 +42,5 @@ export const SIGNUP_SCHEMA = Yup.object().shape({
     .max(54, 'Password must be 54 characters at most!')
     .required('Full name is a required field!'),
 });
+
+export default SIGNUP_SCHEMA;

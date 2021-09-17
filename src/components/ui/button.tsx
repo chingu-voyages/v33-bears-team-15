@@ -78,7 +78,7 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
 
   const rootClass = cn(
     {
-      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700':
+      'rounded-md font-semibold transition duration-150 focus:outline-none focus:ring-2 ring-gray-700 shadow-sm  hover:shadow-md':
         !reset,
     },
     {

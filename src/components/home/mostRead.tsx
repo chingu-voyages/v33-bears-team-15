@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
 import Button from '~/components/ui/button';
+import Link from '~/components/common/link';
 
 export default function MostRead() {
   return (
@@ -24,7 +25,13 @@ export default function MostRead() {
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
               by Mark Manson
             </p>
-            <Button variant="read" size="normal" className="mt-auto">
+            <Button
+              variant="read"
+              size="normal"
+              className="mt-auto"
+              as={Link}
+              href="/library"
+            >
               Read Now
             </Button>
           </div>
@@ -41,7 +48,13 @@ export default function MostRead() {
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
               by Ann Patchett
             </p>
-            <Button variant="read" size="normal" className="mt-auto">
+            <Button
+              variant="read"
+              size="normal"
+              className="mt-auto"
+              as={Link}
+              href="/library"
+            >
               Read Now
             </Button>
           </div>
@@ -58,7 +71,13 @@ export default function MostRead() {
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
               by Margaret Atwood
             </p>
-            <Button variant="read" size="normal" className="mt-auto">
+            <Button
+              variant="read"
+              size="normal"
+              className="mt-auto"
+              as={Link}
+              href="/library"
+            >
               Read Now
             </Button>
           </div>

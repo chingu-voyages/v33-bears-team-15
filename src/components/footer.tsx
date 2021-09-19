@@ -30,7 +30,7 @@ export default function Footer(): JSX.Element {
 
             <div className="grid sm:grid-cols-3 grid-cols-1 md:gap-7 sm:gap-16 gap-8 w-full md:mt-0 sm:mt-10 mt-8">
               <List
-                title="Company"
+                title="Quick Links"
                 data={quickLinks}
                 listItemProps={{ withSpace: false }}
               />
@@ -45,9 +45,9 @@ export default function Footer(): JSX.Element {
         </Container>
       </div>
 
-      <div className="py-6 bg-gray-100 dark:bg-gray-700">
+      <div className="py-4 bg-gray-100 dark:bg-gray-700">
         <Container className="flex sm:flex-row flex-col-reverse justify-between">
-          <p className="text-gray-500 dark:text-gray-200 sm:mt-0 mt-4">
+          <p className="text-gray-500 dark:text-gray-300 font-semibold text-sm sm:mt-0 mt-4">
             Copyright © {new Date(Date.now()).getFullYear()} DECKOO | All rights reserved.
           </p>
         </Container>

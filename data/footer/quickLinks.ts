@@ -18,11 +18,7 @@ const quickLinks: FooterLinksType[] = [
     label: 'Sign up',
   },
   {
-    hRef: '/faq',
-    label: 'FAQ',
-  },
-  {
-    hRef: '/',
+    hRef: '/library',
     label: 'Browse Categories',
   },
 ];

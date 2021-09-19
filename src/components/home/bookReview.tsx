@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
 import Button from '~/components/ui/button';
+import Link from '~/components/common/link';
 
 export default function BookReview() {
   return (
@@ -32,7 +33,7 @@ export default function BookReview() {
           <p className="text-2xl py-5 font-semibold text-gray-600 dark:text-gray-50">
             by Paulette Jiles
           </p>
-          <Button variant="outlined" size="normal">
+          <Button variant="outlined" size="normal" as={Link} href="/library">
             Start Reading Now
           </Button>
         </div>

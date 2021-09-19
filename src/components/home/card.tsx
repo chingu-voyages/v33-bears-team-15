@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Button from '~/components/ui/button';
+import Link from '~/components/common/link';
 
 export interface ICard {
   title?: string;
@@ -15,7 +16,7 @@ export default function Card({ title, author, src }: ICard): JSX.Element {
         {title}
       </h5>
       <p className="font-semibold pb-6 text-gray-600 dark:text-gray-50">by {author}</p>
-      <Button variant="read" size="wide" className="mt-auto">
+      <Button variant="read" size="wide" className="mt-auto" as={Link} href="/library">
         Read Now
       </Button>
     </div>

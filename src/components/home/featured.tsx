@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Container from '~/components/ui/container';
 import Button from '~/components/ui/button';
+import Link from '../common/link';
 
 export default function Featured() {
   return (
@@ -13,7 +14,7 @@ export default function Featured() {
               Read <strong>All</strong>
               <br /> the Newest <strong>Books</strong>
             </h2>
-            <Button variant="outlined" size="normal">
+            <Button variant="outlined" size="normal" as={Link} href="/library">
               Browse Categories
             </Button>
           </div>
@@ -32,7 +33,7 @@ export default function Featured() {
               by Gary John Bishop
             </p>
 
-            <Button variant="read" size="normal">
+            <Button variant="read" size="normal" as={Link} href="/library">
               Read Now
             </Button>
           </div>
@@ -53,7 +54,7 @@ export default function Featured() {
               <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
                 by Philip K. Dick
               </p>
-              <Button variant="read" size="normal">
+              <Button variant="read" size="normal" as={Link} href="/library">
                 Read Now
               </Button>
             </div>
@@ -71,7 +72,7 @@ export default function Featured() {
               <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
                 by Stephanie Dray
               </p>
-              <Button variant="read" size="normal">
+              <Button variant="read" size="normal" as={Link} href="/library">
                 Read Now
               </Button>
             </div>
@@ -92,7 +93,7 @@ export default function Featured() {
             <p className="text-xl font-semibold pb-8 text-gray-600 dark:text-gray-50">
               by Janet Skeslien Charles
             </p>
-            <Button variant="read" size="normal">
+            <Button variant="read" size="normal" as={Link} href="/library">
               Read Now
             </Button>
           </div>

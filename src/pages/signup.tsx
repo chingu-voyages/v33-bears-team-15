@@ -35,7 +35,7 @@ export default function Signup() {
     formState: { errors, isSubmitting, touchedFields },
     reset,
   } = useForm<FormValues>({
-    resolver: yupResolver(SIGNUP_SCHEMA),
+    resolver: yupResolver(SIGNUP_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });

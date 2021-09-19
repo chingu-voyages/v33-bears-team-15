@@ -3,16 +3,17 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import advantages from '~data/advantages';
+import Container from '~/components/ui/container';
+import Footer from '~/components/footer';
+import SEO from '~/components/common/SEO';
+import Link from '~/components/common/link';
+import Button from '~/components/ui/button';
+import Input from '~/components/ui/input';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
-import Link from '~/components/common/link';
-import Button from '~/components/ui/button';
-import Container from '~/components/ui/container';
-import Input from '~/components/ui/input';
+import advantages from '~data/advantages';
 import { SIGNUP_SCHEMA } from '~/utils/validations';
-import Footer from '~/components/footer';
 
 type FormValues = {
   email: string;
@@ -54,6 +55,7 @@ export default function Signup() {
 
   return (
     <>
+      <SEO title="Signup | Dekoo" />
       <section className="min-h-screen relative flex items-center">
         <div
           className="absolute lg:block hidden h-full w-1/2 top-0 left-0 z-0 bg-lightGray dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700"

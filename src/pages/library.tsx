@@ -6,7 +6,10 @@ import booksByCategories from '~data/books';
 
 export default function Library() {
   return (
-    <Layout headerProps={{ withBorder: true, variant: 'solid', sticky: true }}>
+    <Layout
+      headerProps={{ withBorder: true, variant: 'solid', sticky: true }}
+      customMeta={{ title: 'Library | Dekoo' }}
+    >
       <Slider />
       <Container>
         {booksByCategories.map((c) => (

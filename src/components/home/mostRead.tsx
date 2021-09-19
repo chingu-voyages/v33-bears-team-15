@@ -12,36 +12,51 @@ export default function MostRead() {
         </h2>
         <div className="flex-wrap flex justify-center">
           <div className="py-5 sm:mr-5 w-[400px]">
-            <Image src="/images/dangerous-globe.jpeg" height="685" width="520" />
+            <Image
+              src="https://imgv2-1-f.scribdassets.com/img/word_document/322011391/original/216x287/9d5f06ee76/1631959959?v=1"
+              alt="The Subtle Art of Not Giving a F*ck"
+              height="685"
+              width="520"
+            />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
-              Dangerous Globe
+              The Subtle Art of Not Giving a F*ck
             </h3>
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
-              by Louis Crewe
+              by Mark Manson
             </p>
             <Button variant="read" size="normal" className="mt-auto">
               Read Now
             </Button>
           </div>
           <div className="py-5 sm:mr-5 w-[400px]">
-            <Image src="/images/van-winkle.jpeg" height="685" width="520" />
+            <Image
+              src="https://imgv2-2-f.scribdassets.com/img/word_document/427205289/original/216x287/5e89bc6a46/1631703176?v=1"
+              alt="The Dutch House: A Novel"
+              height="685"
+              width="520"
+            />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
-              Van Winkle
+              The Dutch House: A Novel
             </h3>
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
-              by Danny Rie
+              by Ann Patchett
             </p>
             <Button variant="read" size="normal" className="mt-auto">
               Read Now
             </Button>
           </div>
           <div className="py-5 w-[400px]">
-            <Image src="/images/the-chambers-of-history.jpeg" height="685" width="520" />
+            <Image
+              src="https://imgv2-2-f.scribdassets.com/img/word_document/249309210/original/216x287/d234d0831a/1631798433?v=1"
+              alt=""
+              height="685"
+              width="520"
+            />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
-              The Chambers of History
+              The Handmaid's Tale
             </h3>
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
-              by Nadia Amoki
+              by Margaret Atwood
             </p>
             <Button variant="read" size="normal" className="mt-auto">
               Read Now

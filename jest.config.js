@@ -30,6 +30,7 @@ module.exports = {
     '~/(.*)': '<rootDir>/src/$1',
     '~components/(.*)': '<rootDir>/src/components/$1',
     '~data/(.*)': '<rootDir>/data/$1',
+    '~assets/(.*)': '<rootDir>/src/assets/$1',
   },
   testMatch: ['**/*.(test|spec).(js|jsx|ts|tsx)'],
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],

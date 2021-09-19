@@ -62,7 +62,13 @@ export default function Signup() {
 
         <Container className="py-10">
           <Link href="/" title="Dekoo branding">
-            <Image src="/images/logo.png" width={176} height={46} />
+            <Image
+              src={require('../assets/images/logo.png')}
+              alt="Dekoo"
+              priority
+              width={176}
+              height={46}
+            />
           </Link>
 
           <div className="lg:grid grid-cols-2 lg:mt-8 mt-12 flex flex-col-reverse items-center lg:items-start">

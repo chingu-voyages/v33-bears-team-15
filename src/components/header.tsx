@@ -43,7 +43,13 @@ export default function Header({
     <header className={rootClass}>
       <Container className="flex justify-between items-center h-full">
         <Link href="/" title="Dekoo Branding">
-          <Image width={125} height={37} src="/images/logo.png" priority />
+          <Image
+            width={125}
+            height={37}
+            src={require('../assets/images/logo.png')}
+            alt="Dekoo"
+            priority
+          />
         </Link>
 
         <div className="flex items-center">

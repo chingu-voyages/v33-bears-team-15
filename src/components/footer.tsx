@@ -14,7 +14,12 @@ export default function Footer(): JSX.Element {
           <div className="flex md:flex-row flex-col xl:space-x-20 lg:space-x-14 md:space-x-8">
             <div className="flex flex-col xl:max-w-sm md:max-w-xs max-w-sm">
               <Link href="/" title="Dekoo Branding">
-                <Image width={125} height={37} src="/images/logo.png" />
+                <Image
+                  width={125}
+                  height={37}
+                  src={require('../assets/images/logo.png')}
+                  alt="Dekoo"
+                />
               </Link>
 
               <p className="text-lg mt-4 dark:text-gray-200 text-gray-700">

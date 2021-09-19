@@ -7,20 +7,20 @@ export interface ISEO {
 }
 
 export default function SEO({ title, description }: ISEO) {
-  title = title || config.title;
-  description = description || config.descritpion;
+  const siteTitle = title || config.title;
+  const siteDescription = description || config.descritpion;
 
   return (
     <NextSeo
-      title={title}
+      title={siteTitle}
       titleTemplate={config.titleTemplate}
-      description={description}
+      description={siteDescription}
       canonical={config.siteUrl}
       openGraph={{
         type: 'website',
         locale: config.siteLocale,
-        title,
-        description,
+        title: siteTitle,
+        description: siteDescription,
         site_name: config.siteName,
       }}
     />

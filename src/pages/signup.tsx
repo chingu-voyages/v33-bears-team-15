@@ -9,6 +9,7 @@ import SEO from '~/components/common/SEO';
 import Link from '~/components/common/link';
 import Button from '~/components/ui/button';
 import Input from '~/components/ui/input';
+import Logo from '~assets/images/logo.png';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
@@ -64,13 +65,7 @@ export default function Signup() {
 
         <Container className="py-10">
           <Link href="/" title="Dekoo branding">
-            <Image
-              src={require('../assets/images/logo.png')}
-              alt="Dekoo"
-              priority
-              width={176}
-              height={46}
-            />
+            <Image src={Logo} alt="Dekoo" priority width={176} height={46} />
           </Link>
 
           <div className="lg:grid grid-cols-2 lg:mt-8 mt-12 flex flex-col-reverse items-center lg:items-start">

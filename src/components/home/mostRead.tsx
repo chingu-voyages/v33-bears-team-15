@@ -61,12 +61,12 @@ export default function MostRead() {
           <div className="py-5 w-[400px]">
             <Image
               src="https://imgv2-2-f.scribdassets.com/img/word_document/249309210/original/216x287/d234d0831a/1631798433?v=1"
-              alt=""
+              alt="The Handmaid's Tale"
               height="685"
               width="520"
             />
             <h3 className="text-3xl text-green-500 dark:text-green-400 pt-3 font-bold">
-              The Handmaid's Tale
+              The Handmaid&apos;s Tale
             </h3>
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-50 pb-6">
               by Margaret Atwood

@@ -2,8 +2,9 @@ import Image from 'next/image';
 import cn from 'classnames';
 import { ReactNode } from 'react';
 
-import MoonIcon from '~/assets/icons/moonIcon';
-import SunIcon from '~/assets/icons/sunIcon';
+import MoonIcon from '~assets/icons/moonIcon';
+import SunIcon from '~assets/icons/sunIcon';
+import Logo from '~assets/images/logo.png';
 import Link from './common/link';
 import Container from './ui/container';
 import useTheme from '~/hooks/use-theme';
@@ -43,13 +44,7 @@ export default function Header({
     <header className={rootClass}>
       <Container className="flex justify-between items-center h-full">
         <Link href="/" title="Dekoo Branding">
-          <Image
-            width={125}
-            height={37}
-            src={require('../assets/images/logo.png')}
-            alt="Dekoo"
-            priority
-          />
+          <Image width={125} height={37} src={Logo} alt="Dekoo" priority />
         </Link>
 
         <div className="flex items-center">

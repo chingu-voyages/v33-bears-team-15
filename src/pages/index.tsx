@@ -7,7 +7,7 @@ import BookReview from '~/components/home/bookReview';
 
 export default function Home() {
   return (
-    <Layout headerProps={{ variant: 'image' }}>
+    <Layout headerProps={{ variant: 'image' }} customMeta={{ title: 'Home | Dekoo' }}>
       <Hero />
       <Featured />
       <BookReview />

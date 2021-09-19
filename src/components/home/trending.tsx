@@ -14,24 +14,24 @@ export default function Trending() {
         <div className="flex sm:flex-row flex-col-reverse">
           <div className="flex-wrap flex lg:justify-start justify-center">
             <Card
-              title="Best Buddies"
-              author="Greene Loungiwe"
-              src="/images/best-buddies.jpg"
+              title="The Intelligent Investor, Rev. Ed"
+              author="Benjamin Graham"
+              src="https://imgv2-2-f.scribdassets.com/img/word_document/168907403/original/216x287/184af85d56/1631563264?v=1"
             />
             <Card
-              title="Ready for a Challenge"
-              author="Gluey Sing"
-              src="/images/ready-for-a-challenge.jpeg"
+              title="The E-Myth Revisited"
+              author="Michael E. Gerber"
+              src="https://imgv2-1-f.scribdassets.com/img/word_document/163651647/original/216x287/9090d05b6f/1631534025?v=1"
             />
             <Card
-              title="Reflections of a 90-yr-old"
-              author="Medie Adam"
-              src="/images/reflections-of-a-90-yr-old-sage.jpeg"
+              title="Never Split the Difference: Negotiating As If Your Life Depended On It"
+              author="Chris Voss"
+              src="https://imgv2-1-f.scribdassets.com/img/word_document/310560108/original/216x287/7b8f89909b/1631632115?v=1"
             />
             <Card
-              title="Finding Home"
-              author="Evelyn Stoopie"
-              src="/images/finding-home.jpeg"
+              title="Principles: Life and Work"
+              author="Ray Dalio"
+              src="https://imgv2-2-f.scribdassets.com/img/word_document/357813054/original/216x287/2b5f9477ff/1631155022?v=1"
             />
           </div>
 

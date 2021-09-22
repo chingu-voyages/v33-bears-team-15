@@ -27,8 +27,8 @@ export default function Carousel({
 }: ICarousel) {
   const slidesToShow = 6;
   const totalCardsToShow = slidesToShow <= data.length ? slidesToShow : data.length;
-  const widthOffset = data.length > slidesToShow ? 174 : 20 * totalCardsToShow;
-  const totalCarouselWidth = totalCardsToShow * BASE_CARD_WIDTH + widthOffset;
+  // const widthOffset = data.length > slidesToShow ? 174 : 20 * totalCardsToShow;
+  // const totalCarouselWidth = totalCardsToShow * BASE_CARD_WIDTH + widthOffset;
 
   const defaultOptions: SlickOptions = {
     dots: false,
@@ -44,6 +44,38 @@ export default function Carousel({
     swipeToSlide: true,
     prevArrow: <PrevButton />,
     nextArrow: <NextButton />,
+    responsive: [
+      {
+        breakpoint: 1300,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 650,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return (
@@ -74,7 +106,7 @@ export default function Carousel({
         </h2>
       )}
 
-      <div style={{ width: totalCarouselWidth }}>
+      <div>
         <Slick {...defaultOptions} className="mt-6 cursor-move">
           {data.map((b) => (
             <Card key={b.name} width={BASE_CARD_WIDTH} {...b} />

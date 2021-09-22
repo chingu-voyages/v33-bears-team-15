@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 
 import Container from '~/components/ui/container';
 import Footer from '~/components/footer';
@@ -42,11 +43,14 @@ export default function Signup() {
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
+  const router = useRouter();
+
   const onSubmitHandler: SubmitHandler<FormValues> = async () => {
     try {
       // @TODO Implement submit
       // await onSubmit(formData.email, formData.password);
 
+      router.push('/test');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {

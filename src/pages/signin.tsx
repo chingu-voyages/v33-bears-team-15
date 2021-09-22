@@ -25,7 +25,7 @@ export default function Signin() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
+    formState: { errors, isSubmitting, touchedFields, isValid },
     reset,
   } = useForm<FormValues>({
     resolver: yupResolver(SIGNIN_SCHEMA) as any,
@@ -102,7 +102,13 @@ export default function Signin() {
               />
             </div>
 
-            <Button type="submit" colorScheme="primary" size="full" className="mb-3.5">
+            <Button
+              type="submit"
+              colorScheme="primary"
+              size="full"
+              className="mb-3.5"
+              disabled={!isValid}
+            >
               <MailIcon className="w-6 mr-2" />{' '}
               {isSubmitting ? 'Loading...' : 'Continue with Email'}
             </Button>

@@ -1,6 +1,6 @@
 {
-  "projectName": "dekoo",
-  "projectOwner": "v33-bears-team-15",
+  "projectName": "v33-bears-team-15",
+  "projectOwner": "chingu-voyages",
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
@@ -27,7 +27,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "thomasgilmore95",
+      "name": "Thomas Gilmore",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47087608?v=4",
+      "profile": "https://github.com/thomasgilmore95",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }

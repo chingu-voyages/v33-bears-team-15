@@ -143,7 +143,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ## License
 
-Licensed under the MIT license. See [MIT](LICENSE.txt) for more information.
+Licensed under the MIT license. See [MIT](LICENSE) for more information.
 
 <!-- ACKNOWLEDGEMENTS -->
 

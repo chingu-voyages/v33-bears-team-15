@@ -45,7 +45,7 @@
 
 We all seen services that provides virtual books at outrageous subscription prices and at Dekoo we think that is a stopping point for a lot of people. This fact inspired us to build a service that will provide access to free reading titles along with accessible prices for anyone and everyone.
 
-Here's why:
+**Here's why:**
 
 - 33% of people surveyed feel happier after reading.
 - 55% of people surveyed feel more relaxed after reading
@@ -116,7 +116,7 @@ please see the document [How to Contribute](./CONTRIBUTING.md), which covers the
 
 ## Feedback
 
-- [Request a new feature](CONTRIBUTING.md)
+- [Request a new feature](https://github.com/chingu-voyages/v33-bears-team-15/issues)
 - Upvote [feature requests](https://github.com/chingu-voyages/v33-bears-team-15/labels/feature-request)
 - [File an issue](https://github.com/chingu-voyages/v33-bears-team-15/issues/new/choose)
 

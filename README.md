@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <a href="#about">About</a> •
+  <a href="#about-the-project">About</a> •
   <a href="#roadmap">Roadmap</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#feedback">Feedback</a> •

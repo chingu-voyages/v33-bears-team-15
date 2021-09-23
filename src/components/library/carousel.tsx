@@ -36,7 +36,7 @@ export default function Carousel({
     slidesToScroll: 1,
     lazyLoad: 'ondemand',
     centerMode: data.length > slidesToShow,
-    centerPadding: '35px',
+    centerPadding: '15px',
     initialSlide: 0,
     arrows: true,
     swipeToSlide: true,
@@ -68,7 +68,19 @@ export default function Carousel({
         },
       },
       {
-        breakpoint: 480,
+        breakpoint: 440,
+        settings: {
+          slidesToShow: 1.7,
+        },
+      },
+      {
+        breakpoint: 390,
+        settings: {
+          slidesToShow: 1.5,
+        },
+      },
+      {
+        breakpoint: 350,
         settings: {
           slidesToShow: 1,
         },

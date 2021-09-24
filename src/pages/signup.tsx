@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import Container from '~/components/ui/container';
 import Footer from '~/components/footer';
@@ -45,12 +46,45 @@ export default function Signup() {
 
   const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
+    const formDataJson = JSON.stringify(formData);
+
     try {
       // @TODO Implement submit
       // await onSubmit(formData.email, formData.password);
 
-      router.push('/test');
+      // Test
+      // axios({
+      //   method: 'post',
+      //   url: '/api/v1/auth/signup',
+      //   baseURL: 'http://localhost:3000',
+      //   data: {
+      //     email: formData.email,
+      //     password: formData.password,
+      //     fullName: formData.fullName,
+      //   },
+      // })
+      //   .then((response) => {
+      //     alert(response);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+
+      axios
+        .post('/api/v1/auth/signup', {
+          email: formData.email,
+          password: formData.password,
+          fullName: formData.fullName,
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+
+      // router.push('/test');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {

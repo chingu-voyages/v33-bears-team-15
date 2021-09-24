@@ -53,7 +53,7 @@ export default function Signup() {
       // @TODO Implement submit
       // await onSubmit(formData.email, formData.password);
 
-      // Test
+      // Local Test
       // axios({
       //   method: 'post',
       //   url: '/api/v1/auth/signup',
@@ -65,7 +65,7 @@ export default function Signup() {
       //   },
       // })
       //   .then((response) => {
-      //     alert(response);
+      //     console.log(response);
       //   })
       //   .catch((error) => {
       //     console.log(error);

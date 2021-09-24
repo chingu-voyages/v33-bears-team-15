@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
+import axios from 'axios';
 
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
@@ -38,12 +39,48 @@ export default function Signin() {
 
   const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
     try {
       // @TODO Implement submit
       // await onSubmit(formData.email, formData.password);
 
-      router.push('/test');
+      // Local Test
+      // axios({
+      //   method: 'post',
+      //   url: '/api/v1/auth/signin',
+      //   baseURL: 'http://localhost:3000',
+      //   data: {
+      //     email: formData.email,
+      //     password: formData.password,
+      //   },
+      // })
+      //   .then((response) => {
+      //     const resToken = response.data.access_token;
+      //     if (resToken.length > 0) {
+      //       router.push('/');
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     document.getElementById('error_message').textContent =
+      //       'User does not exist or the wrong password was used!';
+      //   });
+
+      axios
+        .post('/api/v1/auth/signin', {
+          email: formData.email,
+          password: formData.password,
+        })
+        .then(function (response) {
+          const resToken = response.data.access_token;
+          if (resToken.length > 0) {
+            router.push('/');
+          }
+        })
+        .catch(function (error) {
+          document.getElementById('error_message').textContent =
+            'User does not exist or the wrong password was used!';
+        });
+
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
@@ -105,6 +142,8 @@ export default function Signin() {
                 {...register('password')}
               />
             </div>
+
+            <div id="error_message" />
 
             <Button
               type="submit"

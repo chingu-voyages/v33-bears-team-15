@@ -1,7 +1,8 @@
 ---
 name: User Story template
-about: A user story is a high-level definition of a requirement. It should contain enough information that the requirement is understood.
-title: '[story] '
+about: A user story is a high-level definition of a requirement. It should contain
+  enough information that the requirement is understood.
+title: "[story] "
 labels: user_story
 assignees: ''
 

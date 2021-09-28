@@ -28,7 +28,7 @@ export default function Signin() {
     formState: { errors, isSubmitting, touchedFields },
     reset,
   } = useForm<FormValues>({
-    resolver: yupResolver(SIGNIN_SCHEMA),
+    resolver: yupResolver(SIGNIN_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
@@ -48,8 +48,11 @@ export default function Signin() {
   };
 
   return (
-    <Layout headerProps={{ withBorder: true }}>
-      <section className="py-20">
+    <Layout
+      headerProps={{ withBorder: true, sticky: true }}
+      customMeta={{ title: 'Signin | Dekoo' }}
+    >
+      <section className="py-16">
         <Container maxW="max-w-md" className="flex flex-col items-center px-12">
           <h1 className="text-4xl font-bold pb-8">Sign In</h1>
 
@@ -99,7 +102,7 @@ export default function Signin() {
               />
             </div>
 
-            <Button type="submit" variant="primary" size="full" className="mb-3.5">
+            <Button type="submit" colorScheme="primary" size="full" className="mb-3.5">
               <MailIcon className="w-6 mr-2" />{' '}
               {isSubmitting ? 'Loading...' : 'Continue with Email'}
             </Button>

@@ -15,6 +15,11 @@ const advantages: AdvantagesType[] = [
       '70% of people surveyed believe that reading has a positive impact on their careers.',
   },
   {
+    name: 'Decreases Depression',
+    description:
+      'Reading stimulates the part of the brain that deals with depression. Self-help books, can help ward off depressive occurrences.',
+  },
+  {
     name: 'Vocabulary Expansion',
     description:
       'Being well-spoken and articulate can help increase job performance and self-esteem.',

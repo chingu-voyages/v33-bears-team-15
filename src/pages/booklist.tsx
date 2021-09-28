@@ -72,8 +72,8 @@ export default function BookList() {
               </div>
             </div>
             <div className="space-y-8">
-              {books.map((book, index) => {
-                return <BookListItem key={index} {...book} />;
+              {books.map((book) => {
+                return <BookListItem key={book.title} {...book} />;
               })}
             </div>
           </div>

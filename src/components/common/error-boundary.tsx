@@ -1,5 +1,5 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
-import Layout from '~components/layout';
+import Layout from '~/components/layouts/default';
 import Link from '~components/common/link';
 
 interface Props {

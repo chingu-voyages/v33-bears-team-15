@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Container from '~/components/ui/container';
-import Footer from '~/components/footer';
+import Footer from '~/components/common/footer';
 import SEO from '~/components/common/SEO';
 import Link from '~/components/common/link';
 import Button from '~/components/ui/button';

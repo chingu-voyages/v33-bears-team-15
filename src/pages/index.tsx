@@ -1,4 +1,4 @@
-import Layout from '../components/layout';
+import Layout from '../components/layouts/default';
 import Hero from '~/components/home/hero';
 import Featured from '~/components/home/featured';
 import Trending from '~/components/home/trending';

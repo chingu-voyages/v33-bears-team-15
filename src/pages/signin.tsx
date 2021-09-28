@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
-import Layout from '~/components/layout';
+import Layout from '~/components/layouts/default';
 import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';

@@ -12,15 +12,15 @@ export interface ICard {
   width?: number;
 }
 
-export default function Card({ name, author, src, rating, width = 178 }: ICard) {
+export default function Card({ name, author, src, rating }: ICard) {
   const [saved, setSaved] = useState<boolean>(false);
 
   const toggleSaved = useCallback(() => setSaved((prevVal) => !prevVal), []);
 
   return (
-    <article className="h-card relative w-[182px] mx-4">
+    <article className="h-card relative w-[182px] mx-2">
       <Link href={`/${name}`} className="flex flex-col h-full" title={name}>
-        <Image src={src} alt={name} height={198} width={width} layout="fixed" />
+        <Image src={src} alt={name} height={198} width={178} layout="fixed" />
         <span className="block leading-5 font-semibold line-clamp-2 py-1">{name}</span>
         <span className="block text-sm font-semibold text-gray-400 truncate">
           {author}

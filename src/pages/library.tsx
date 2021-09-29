@@ -1,6 +1,5 @@
 import Layout from '~/components/layout';
-// import Carousel from '~/components/library/carousel';
-import Carousel2 from '~/components/library/carousel2';
+import Carousel from '~/components/library/carousel';
 import Slider from '~/components/library/slider';
 import Container from '~/components/ui/container';
 import booksByCategories from '~data/books';
@@ -14,12 +13,7 @@ export default function Library() {
       <Slider />
       <Container>
         {booksByCategories.map((c) => (
-          <Carousel2
-            key={c.category}
-            title={c.category}
-            data={c.data}
-            moreHref={c.link}
-          />
+          <Carousel key={c.category} title={c.category} data={c.data} moreHref={c.link} />
         ))}
       </Container>
     </Layout>

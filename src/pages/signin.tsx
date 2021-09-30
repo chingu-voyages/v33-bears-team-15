@@ -1,5 +1,6 @@
 import jwt from 'jwt-decode';
-import { SetStateAction, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
@@ -50,6 +51,12 @@ export default function Signin() {
 
       const token = signInRes.data.access_token;
       const decoded = jwt(token);
+
+      const utcSeconds = decoded.exp;
+      const now = decoded.iat;
+      const remainingDays = Math.floor((utcSeconds - now) / 86400);
+
+      console.log(utcSeconds, now, remainingDays);
 
       console.log(token);
       console.log(decoded);

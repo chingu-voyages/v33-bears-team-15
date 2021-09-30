@@ -57,9 +57,10 @@ export default function Signin() {
       const remainingDays = Math.floor((utcSeconds - now) / 86400);
 
       console.log(utcSeconds, now, remainingDays);
-
       console.log(token);
       console.log(decoded);
+
+      Cookies.set('auth', '', { expires: remainingDays });
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);

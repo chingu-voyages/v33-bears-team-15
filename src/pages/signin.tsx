@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import jwt from 'jwt-decode';
+import { SetStateAction, useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import axios from 'axios';
-
+import { axiosSignIn } from '../services/axiosAPI';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
@@ -36,7 +36,6 @@ export default function Signin() {
   });
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
-
   const router = useRouter();
 
   const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
@@ -44,42 +43,16 @@ export default function Signin() {
       // @TODO Implement submit
       // await onSubmit(formData.email, formData.password);
 
-      // Local Test
-      // axios({
-      //   method: 'post',
-      //   url: '/api/v1/auth/signin',
-      //   baseURL: 'http://localhost:3000',
-      //   data: {
-      //     email: formData.email,
-      //     password: formData.password,
-      //   },
-      // })
-      //   .then((response) => {
-      //     const resToken = response.data.access_token;
-      //     if (resToken.length > 0) {
-      //       router.push('/');
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     document.getElementById('error_message').textContent =
-      //       'User does not exist or the wrong password was used!';
-      //   });
+      const signInPayload = { email: formData.email, password: formData.password };
+      const signInRes = await axiosSignIn('/api/v1/auth/signin', signInPayload);
 
-      axios
-        .post('/api/v1/auth/signin', {
-          email: formData.email,
-          password: formData.password,
-        })
-        .then(function (response) {
-          const resToken = response.data.access_token;
-          if (resToken.length > 0) {
-            router.push('/');
-          }
-        })
-        .catch(function (error) {
-          document.getElementById('error_message').textContent =
-            'User does not exist or the wrong password was used!';
-        });
+      console.log(signInRes);
+
+      const token = signInRes.data.access_token;
+      const decoded = jwt(token);
+
+      console.log(token);
+      console.log(decoded);
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);

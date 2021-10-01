@@ -1,61 +1,99 @@
+import Image from 'next/image';
 import { Disclosure } from '@headlessui/react';
 
+import Link from '../common/link';
+import List from '../ui/list';
+import Avatar from '../ui/avatar';
 import MinusIcon from '~/assets/icons/minusIcon';
 import PlusIcon from '~/assets/icons/plusIcon';
+import Logo from '~assets/images/logo.png';
 import sidebarData from '~data/dashboard/sidebar';
 
 export default function Sidebar() {
   return (
-    <aside className="hidden lg:block w-[280px] p-6 border-r border-gray-700">
-      <ul className="text-sm font-medium text-gray-300 space-y-4 pb-6 border-b border-gray-200">
-        {sidebarData.subCategories.map((category) => (
-          <li key={category.name}>
-            <a href={category.href}>{category.name}</a>
-          </li>
-        ))}
-      </ul>
+    <aside className="hidden lg:block w-[355px] py-7 px-5 border-r dark:border-gray-700 border-gray-300 min-h-screen">
+      {/* Logo */}
+      <Link href="/dashboard/home" title="Dekoo Branding">
+        <Image width={125} height={37} src={Logo} alt="Dekoo" priority />
+      </Link>
 
-      {sidebarData.filters.map((section) => (
-        <Disclosure as="div" key={section.id} className="border-b border-gray-200 py-6">
-          {({ open }) => (
-            <>
-              <h3 className="-my-3 flow-root">
-                <Disclosure.Button className="py-3 bg-white w-full flex items-center justify-between text-sm text-gray-400 hover:text-gray-500">
-                  <span className="font-medium text-gray-900">{section.name}</span>
-                  <span className="ml-6 flex items-center">
-                    {open ? (
-                      <MinusIcon className="h-5 w-5" aria-hidden="true" />
-                    ) : (
-                      <PlusIcon className="h-5 w-5" aria-hidden="true" />
-                    )}
-                  </span>
-                </Disclosure.Button>
-              </h3>
-              <Disclosure.Panel className="pt-6">
-                <div className="space-y-4">
-                  {section.options.map((option, optionIdx) => (
-                    <div key={option.value} className="flex items-center">
-                      <input
-                        id={`filter-${section.id}-${optionIdx}`}
-                        name={`${section.id}[]`}
-                        defaultValue={option.value}
-                        type="checkbox"
-                        defaultChecked={option.checked}
-                        className="h-4 w-4 border-gray-300 rounded text-indigo-600 focus:ring-indigo-500"
+      {/* Avatar */}
+      <div className="flex px-6 py-4 dark:bg-darkGray bg-gray-100 rounded-2xl mt-6 mb-10">
+        <Avatar
+          src="https://res.cloudinary.com/minimal-ui/image/upload/v1614655910/upload_minimal/avatar/minimal_avatar.jpg"
+          title="Avatar Mock"
+          size={44}
+        />
+        <div className="ml-4 flex flex-col">
+          <Link
+            href="/dashboard/home"
+            className="dark:text-gray-50 text-gray-900 font-semibold"
+          >
+            Admin Mock
+          </Link>
+          <span className="leading-5">admin</span>
+        </div>
+      </div>
+
+      {/* Menus */}
+      {sidebarData.map(({ listTitle, menus }) => (
+        <List
+          key={listTitle}
+          title={listTitle}
+          titleClass="tracking-wide uppercase font-semibold text-base"
+          className="mt-4"
+        >
+          {menus.map(({ name, subMenus, icon: Icon, href }) =>
+            subMenus.length > 0 ? (
+              <Disclosure as={List.Item} key={name} withSpace={false}>
+                {({ open }) => (
+                  <div className="w-full">
+                    <Disclosure.Button className="dark:hover:bg-darkGray hover:bg-gray-100 w-full flex relative p-3 rounded-xl">
+                      <Icon
+                        className="w-6 mr-3 dark:text-gray-400 text-gray-500"
+                        aria-hidden="true"
                       />
-                      <label
-                        htmlFor={`filter-${section.id}-${optionIdx}`}
-                        className="ml-3 text-sm text-gray-600"
-                      >
-                        {option.label}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </Disclosure.Panel>
-            </>
+                      <span className="font-semibold mr-6">{name}</span>
+                      <span className="absolute right-3 mt-0.5">
+                        {open ? (
+                          <MinusIcon className="h-5 w-5" aria-hidden="true" />
+                        ) : (
+                          <PlusIcon className="h-5 w-5" aria-hidden="true" />
+                        )}
+                      </span>
+                    </Disclosure.Button>
+
+                    <Disclosure.Panel as={List}>
+                      {subMenus.map((menu) => (
+                        <List.Item key={menu.label} withSpace={false}>
+                          <Link
+                            href={menu.href}
+                            className="flex flex-grow max-w-full pl-11 pr-3 py-3 dark:hover:bg-darkGray hover:bg-gray-100 rounded-xl"
+                          >
+                            {menu.label}
+                          </Link>
+                        </List.Item>
+                      ))}
+                    </Disclosure.Panel>
+                  </div>
+                )}
+              </Disclosure>
+            ) : (
+              <List.Item withSpace={false} key={name}>
+                <Link
+                  href={href}
+                  className="flex flex-grow max-w-full p-3 dark:hover:bg-darkGray hover:bg-gray-100 rounded-xl"
+                >
+                  <Icon
+                    className="w-6 mr-3 dark:text-gray-400 text-gray-500"
+                    aria-hidden="true"
+                  />
+                  <span className="font-semibold">{name}</span>
+                </Link>
+              </List.Item>
+            )
           )}
-        </Disclosure>
+        </List>
       ))}
     </aside>
   );

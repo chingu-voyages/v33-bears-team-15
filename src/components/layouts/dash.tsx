@@ -1,24 +1,28 @@
 import { ReactNode, useState } from 'react';
 
+import SEO, { ISEO } from '../common/SEO';
 import Sidebar from '~/components/dashboard/sidebar';
-import MobileSidebar from '~/components/dashboard/mobile-sidebar';
+import MobileDrawer from '~/components/dashboard/mobile-drawer';
+import Navigation from '../dashboard/navigation';
 
 interface IDashLayout {
   children?: ReactNode;
+  customMeta?: ISEO;
 }
 
-export default function DashLayout({ children }: IDashLayout) {
+export default function DashLayout({ children, customMeta }: IDashLayout) {
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState<boolean>(false);
 
   return (
     <>
-      <MobileSidebar isOpen={mobileSidebarOpen} setIsOpen={setMobileSidebarOpen} />
-
+      <SEO {...customMeta} />
+      <MobileDrawer isOpen={mobileSidebarOpen} setIsOpen={setMobileSidebarOpen} />
       <div className="flex">
-        {/* Filters */}
         <Sidebar />
-        {/* Product grid */}
-        <div className="lg:col-span-3">{children}</div>
+        <div className="w-full px-10">
+          <Navigation setIsOpen={setMobileSidebarOpen} />
+          {children}
+        </div>
       </div>
     </>
   );

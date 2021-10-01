@@ -1,3 +1,5 @@
+import DashLayout from '~/components/layouts/dash';
+
 export default function HomeDashboard() {
-  return <h1>home</h1>;
+  return <DashLayout>home</DashLayout>;
 }

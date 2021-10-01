@@ -1,12 +1,10 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-use-before-define */
-// import Slick from 'react-slick';
 import { useRef } from 'react';
 import Link from '~components/common/link';
 import ChevronLeftIcon from '~/assets/icons/chevronLeftIcon';
 import ChevronRightIcon from '~/assets/icons/chevronRightIcon';
 import Card, { ICard } from './card';
-// import { SlickOptions } from './slider';
 
 export interface ICarousel {
   title: string;
@@ -16,7 +14,7 @@ export interface ICarousel {
   icon?: JSX.Element;
 }
 
-export default function Carousel2({
+export default function Carousel({
   title,
   moreHref,
   type = 'recommendation',

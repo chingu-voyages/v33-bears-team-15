@@ -35,13 +35,8 @@ export default function Book({ name, author, src, rating, description }: IBook) 
               label="Start your free 30 days"
             />
             <br />
-            <Button
-              colorScheme="none"
-              size="small"
-              className="mb-3.5"
-              label="Read preview"
-            />
-            <p>
+            <Button colorScheme="none" size="normal" className="" label="Read preview" />
+            <p className="flex items-center">
               <button
                 type="button"
                 onClick={toggleSaved}
@@ -50,20 +45,26 @@ export default function Book({ name, author, src, rating, description }: IBook) 
               >
                 <BookmarkIcon solid={saved} className="w-5" strokeWidth={1} />
               </button>
-              Save for later
+              <a className="text-lg">Save for later</a>
             </p>
-            <p>Create a list</p>
-            <p>Download to app</p>
-            <p>Share</p>
+            <p className="flex items-center">
+              <a className="text-lg">Create a list</a>
+            </p>
+            <p className="flex items-center">
+              <a className="text-lg">Download to app</a>
+            </p>
+            <p className="flex items-center">
+              <a className="text-lg">Share</a>
+            </p>
           </div>
           <div className="col-span-2">
-            <h1>{name}</h1>
+            <h1 className="text-4xl">{name}</h1>
             <p>By {author}</p>
             <p className="flex">
               <Rating initialValue={rating} allowChange={false} className="mr-1" />(
               {rating}/5) Page Numbers - Amount of Time
             </p>
-            <h3>Description</h3>
+            <h3 className="text-2xl">Description</h3>
             <p>{description}</p>
           </div>
         </div>

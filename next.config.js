@@ -6,6 +6,7 @@ module.exports = {
       'imgv2-2-f.scribdassets.com',
       'images.unsplash.com',
       'minimals.cc',
+      'res.cloudinary.com',
     ],
   },
 };

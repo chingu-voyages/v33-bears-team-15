@@ -2,11 +2,7 @@ import type { ComponentPropsWithoutRef } from 'react';
 
 export type IUploadIcon = ComponentPropsWithoutRef<'svg'>;
 
-function UploadIcon({
-  strokeWidth = 2,
-  fill = 'none',
-  ...rest
-}: IUploadIcon): JSX.Element {
+function UploadIcon({ fill = 'none', ...rest }: IUploadIcon): JSX.Element {
   return (
     <svg
       version="1"

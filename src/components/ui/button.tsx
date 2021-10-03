@@ -98,14 +98,21 @@ const Button = forwardRef<ForwardedRef<typeof DEFAULT_TAG>, IButton>((props, ref
       'py-2.5 px-3 max-w-max': size === 'small',
       'py-2.5 px-6 max-w-max': size === 'normal',
       'py-2 px-8 max-w-max': size === 'wide',
-      'opacity-25': disabled,
+      'opacity-50 cursor-not-allowed': disabled,
       'shadow-sm hover:shadow-md': withShadow,
     },
     className
   );
 
   return (
-    <Component type={type} ref={ref} className={rootClass} disabled={disabled} {...rest}>
+    <Component
+      type={type}
+      ref={ref}
+      className={rootClass}
+      aria-disabled={disabled}
+      disabled={disabled}
+      {...rest}
+    >
       {loading ? 'Loading...' : label || children}
     </Component>
   );

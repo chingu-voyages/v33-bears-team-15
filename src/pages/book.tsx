@@ -25,18 +25,30 @@ export default function Book({ name, author, src, rating, description }: IBook) 
     >
       <Container>
         <div className="grid grid-cols-3 gap-4">
-          <div>
-            <Image src={src} alt={name} height={198} width={178} layout="fixed" />
+          <div className="flex flex-col m-auto">
+            <Image
+              className="m-auto"
+              src={src}
+              alt={name}
+              height={198}
+              width={178}
+              layout="fixed"
+            />
             <br />
             <Button
               colorScheme="primary"
               size="normal"
-              className="mb-3.5"
+              className="m-auto"
               label="Start your free 30 days"
             />
             <br />
-            <Button colorScheme="none" size="normal" className="" label="Read preview" />
-            <p className="flex items-center">
+            <Button
+              colorScheme="none"
+              size="normal"
+              className="m-auto"
+              label="Read preview"
+            />
+            <p className="flex items-center m-1 justify-center">
               <button
                 type="button"
                 onClick={toggleSaved}
@@ -47,25 +59,25 @@ export default function Book({ name, author, src, rating, description }: IBook) 
               </button>
               <a className="text-lg">Save for later</a>
             </p>
-            <p className="flex items-center">
+            <p className="flex items-center m-1 justify-center">
               <a className="text-lg">Create a list</a>
             </p>
-            <p className="flex items-center">
+            <p className="flex items-center m-1 justify-center">
               <a className="text-lg">Download to app</a>
             </p>
-            <p className="flex items-center">
+            <p className="flex items-center m-1 justify-center">
               <a className="text-lg">Share</a>
             </p>
           </div>
           <div className="col-span-2">
-            <h1 className="text-4xl">{name}</h1>
-            <p>By {author}</p>
-            <p className="flex">
+            <h1 className="text-4xl m-2">{name}</h1>
+            <p className="">By {author}</p>
+            <p className="flex m-1">
               <Rating initialValue={rating} allowChange={false} className="mr-1" />(
               {rating}/5) Page Numbers - Amount of Time
             </p>
-            <h3 className="text-2xl">Description</h3>
-            <p>{description}</p>
+            <h3 className="text-3xl m-2">Description</h3>
+            <p className="">{description}</p>
           </div>
         </div>
       </Container>

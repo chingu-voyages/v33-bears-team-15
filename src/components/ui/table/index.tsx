@@ -11,6 +11,7 @@ import {
   usePagination,
   useRowSelect,
   Row,
+  Cell,
 } from 'react-table';
 
 import Button from '../button';
@@ -21,10 +22,12 @@ import useCustomCheckbox from './use-custom-checkbox';
 import ChevronDownIcon from '~/assets/icons/chevronDownIcon';
 import ChevronUpIcon from '~/assets/icons/chevronUpIcon';
 import SelectorIcon from '~/assets/icons/selectorIcon';
+import Link from '~/components/common/link';
 
 export interface ITable<T extends Record<string, unknown>> extends TableOptions<T> {
   searchKey: string;
   name?: string;
+  editLinkAccessor?: string;
   onAdd?: (instance: TableInstance<T>) => MouseEventHandler;
   onDelete?: (instance: TableInstance<T>) => MouseEventHandler;
   onEdit?: (instance: TableInstance<T>) => MouseEventHandler;
@@ -34,10 +37,28 @@ export interface ITable<T extends Record<string, unknown>> extends TableOptions<
 export default function Table<T extends Record<string, unknown>>(
   props: PropsWithChildren<ITable<T>>
 ): JSX.Element {
-  const { data, columns, searchKey, ...rest } = props;
+  const { data, columns, searchKey, editLinkAccessor = searchKey, ...rest } = props;
 
   const memoRows = useMemo(() => data, []);
-  const memoCols = useMemo(() => columns, []);
+  const memoCols = useMemo(
+    () => [
+      ...columns,
+      {
+        accessor: 'edit',
+        Cell: ({ row: { original } }: Cell<T, any>) => {
+          return (
+            <Link
+              className="font-semibold text-green-600 dark:text-green-400"
+              href={`/dahsboard/books/${original[editLinkAccessor]}`}
+            >
+              Edit
+            </Link>
+          );
+        },
+      },
+    ],
+    []
+  );
 
   const hooks = [useFilters, useSortBy, usePagination, useRowSelect, useCustomCheckbox];
 
@@ -59,6 +80,7 @@ export default function Table<T extends Record<string, unknown>>(
     {
       columns: memoCols,
       data: memoRows,
+      initialState: { pageSize: 5 },
       ...rest,
     },
     ...hooks
@@ -87,7 +109,10 @@ export default function Table<T extends Record<string, unknown>>(
                   key={`table__headRow-${headerIdx}`}
                   className="w-full h-16 border-gray-300 dark:border-gray-700 border-b py-8"
                 >
-                  {headerGroup.headers.map((column, columnIdx) => {
+                  {headerGroup.headers.map((column, columnIdx, self) => {
+                    const isNotLastColumn = columnIdx !== self.length - 1;
+                    const isNotFirstColumn = columnIdx !== 0;
+
                     return (
                       <th
                         {...column.getHeaderProps()}
@@ -95,23 +120,29 @@ export default function Table<T extends Record<string, unknown>>(
                         scope="col"
                         className="pl-8 text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4"
                       >
-                        <div
-                          {...column.getSortByToggleProps()}
-                          className="flex items-center"
-                        >
-                          {column.render('Header')}
-                          <span>
-                            {column.isSorted ? (
-                              column.isSortedDesc ? (
-                                <ChevronDownIcon className="w-5 ml-1.5" />
+                        {isNotLastColumn ? (
+                          <div
+                            {...column.getSortByToggleProps()}
+                            className="flex items-center"
+                          >
+                            {column.render('Header')}
+                            <span>
+                              {column.isSorted ? (
+                                column.isSortedDesc ? (
+                                  <ChevronDownIcon className="w-5 ml-1.5" />
+                                ) : (
+                                  <ChevronUpIcon className="w-5 ml-1.5" />
+                                )
                               ) : (
-                                <ChevronUpIcon className="w-5 ml-1.5" />
-                              )
-                            ) : (
-                              columnIdx !== 0 && <SelectorIcon className="w-5 ml-1.5" />
-                            )}
-                          </span>
-                        </div>
+                                isNotFirstColumn && (
+                                  <SelectorIcon className="w-5 ml-1.5" />
+                                )
+                              )}
+                            </span>
+                          </div>
+                        ) : (
+                          column.render('Header')
+                        )}
                       </th>
                     );
                   })}
@@ -127,14 +158,14 @@ export default function Table<T extends Record<string, unknown>>(
                 <tr
                   {...row.getRowProps()}
                   key={`table__bodyRow-${rowIdx}`}
-                  className="h-24 border-gray-300 dark:border-gray-700 border-b"
+                  className="border-gray-300 dark:border-gray-700 border-b"
                 >
                   {row.cells.map((cell, cellIdx) => {
                     return (
                       <td
                         {...cell.getCellProps()}
                         key={`table__bodyCell-${cellIdx}`}
-                        className="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4"
+                        className="pl-8 pr-6 py-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4"
                       >
                         {cell.render('Cell')}
                       </td>

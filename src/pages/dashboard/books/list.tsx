@@ -22,7 +22,7 @@ const data = [
     author: 'Morten T. Hansen',
     review: '123',
   },
-];
+] as const;
 
 const cols = [
   {
@@ -40,7 +40,7 @@ const cols = [
     accessor: 'review',
     minWidth: 150,
   },
-];
+] as const;
 
 export default function BookListDashboard() {
   return (

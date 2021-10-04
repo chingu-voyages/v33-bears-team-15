@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable jsx-a11y/no-onchange */
 /* eslint-disable no-nested-ternary */
 import { MouseEventHandler, PropsWithChildren, useMemo } from 'react';
@@ -19,10 +20,11 @@ import ChevronRightIcon from '~/assets/icons/chevronRightIcon';
 import useCustomCheckbox from './use-custom-checkbox';
 import ChevronDownIcon from '~/assets/icons/chevronDownIcon';
 import ChevronUpIcon from '~/assets/icons/chevronUpIcon';
+import SelectorIcon from '~/assets/icons/selectorIcon';
 
 export interface ITable<T extends Record<string, unknown>> extends TableOptions<T> {
-  name: string;
   searchKey: string;
+  name?: string;
   onAdd?: (instance: TableInstance<T>) => MouseEventHandler;
   onDelete?: (instance: TableInstance<T>) => MouseEventHandler;
   onEdit?: (instance: TableInstance<T>) => MouseEventHandler;
@@ -78,23 +80,18 @@ export default function Table<T extends Record<string, unknown>>(
         {/* React Table */}
         <table className="min-w-full bg-gray-50 dark:bg-gray-800" {...getTableProps()}>
           <thead>
-            {headerGroups.map((headerGroup) => {
-              const { key: headerGroupKey, ...getHeaderGroupProps } =
-                headerGroup.getHeaderGroupProps();
-
+            {headerGroups.map((headerGroup, headerIdx) => {
               return (
                 <tr
-                  {...getHeaderGroupProps}
-                  key={headerGroupKey}
+                  {...headerGroup.getHeaderGroupProps()}
+                  key={`table__headRow-${headerIdx}`}
                   className="w-full h-16 border-gray-300 dark:border-gray-700 border-b py-8"
                 >
-                  {headerGroup.headers.map((column) => {
-                    const { key: headerKey, ...getHeaderProps } = column.getHeaderProps();
-
+                  {headerGroup.headers.map((column, columnIdx) => {
                     return (
                       <th
-                        {...getHeaderProps}
-                        key={headerKey}
+                        {...column.getHeaderProps()}
+                        key={`table__headGroup-${columnIdx}`}
                         scope="col"
                         className="pl-8 text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4"
                       >
@@ -111,7 +108,7 @@ export default function Table<T extends Record<string, unknown>>(
                                 <ChevronUpIcon className="w-5 ml-1.5" />
                               )
                             ) : (
-                              ''
+                              columnIdx !== 0 && <SelectorIcon className="w-5 ml-1.5" />
                             )}
                           </span>
                         </div>
@@ -123,20 +120,20 @@ export default function Table<T extends Record<string, unknown>>(
             })}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {page.map((row, rowIdx) => {
               prepareRow(row);
 
               return (
                 <tr
                   {...row.getRowProps()}
-                  key={row.index}
+                  key={`table__bodyRow-${rowIdx}`}
                   className="h-24 border-gray-300 dark:border-gray-700 border-b"
                 >
-                  {row.cells.map((cell) => {
+                  {row.cells.map((cell, cellIdx) => {
                     return (
                       <td
                         {...cell.getCellProps()}
-                        key={cell.value}
+                        key={`table__bodyCell-${cellIdx}`}
                         className="pl-8 pr-6 text-left whitespace-no-wrap text-sm text-gray-800 dark:text-gray-100 tracking-normal leading-4"
                       >
                         {cell.render('Cell')}
@@ -150,43 +147,26 @@ export default function Table<T extends Record<string, unknown>>(
         </table>
 
         {/* Pagination */}
-        <div className="bg-gray-50 px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-          <div className="flex-1 flex justify-between sm:hidden">
-            <Button
-              className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              onClick={() => previousPage()}
-              disabled={!canPreviousPage}
-            >
-              Previous
-            </Button>
-            <Button
-              className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
-              onClick={() => nextPage()}
-              disabled={!canNextPage}
-            >
-              Next
-            </Button>
-          </div>
-          <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700">
-                Showing <span className="font-medium">{pageIndex + 1}</span> of{' '}
-                <span className="font-medium">{pageOptions.length}</span> results
-              </p>
-            </div>
-            <div className="flex relative">
-              <div className="text-sm text-gray-700 flex items-center mr-6">
+        <div className="bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 px-4 py-3 flex items-center justify-between border-t border-gray-300 dark:border-gray-700 sm:px-6 rounded-b-xl">
+          <div className="flex flex-1 sm:flex-row flex-col sm:items-center sm:justify-between">
+            <p className="text-sm mb-4 sm:mb-0">
+              Showing <span className="font-semibold">{pageIndex + 1}</span> of{' '}
+              <span className="font-semibold">{pageOptions.length}</span> results
+            </p>
+
+            <div className="flex sm:flex-row flex-col-reverse relative">
+              <div className="text-sm flex items-center sm:mt-0 sm:mr-6 mt-4">
                 <span className="mr-2">Rows per page:</span>
                 <select
                   value={pageSize}
                   onChange={(e) => {
                     setPageSize(Number(e.target.value));
                   }}
-                  className="block focus:ring-0 focus:border-gray-500 dark:focus:border-gray-500 hover:border-gray-500 dark:hover:border-gray-500 shadow-sm border-gray-300 dark:border-gray-700 rounded-md bg-gray-50 dark:bg-gray-800 dark:placeholder-gray-400 placeholder-gray-500"
+                  className="form-select focus:ring-0 focus:border-gray-500 dark:focus:border-gray-500 hover:border-gray-500 dark:hover:border-gray-500 shadow-sm border-gray-300 dark:border-gray-700 rounded-md bg-gray-100 dark:bg-gray-800 dark:placeholder-gray-400 placeholder-gray-500"
                 >
-                  {[5, 10, 25].map((pageSize) => (
-                    <option key={pageSize} value={pageSize}>
-                      {pageSize}
+                  {[5, 10, 25].map((size) => (
+                    <option key={size} value={size}>
+                      {size}
                     </option>
                   ))}
                 </select>
@@ -197,18 +177,20 @@ export default function Table<T extends Record<string, unknown>>(
                 aria-label="Pagination"
               >
                 <Button
-                  className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="px-2 rounded-l-md border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 text-gray-500 hover:text-gray-800 dark:hover:text-gray-400"
                   onClick={() => previousPage()}
                   disabled={!canPreviousPage}
+                  reset
                 >
                   <span className="sr-only">Previous</span>
                   <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
                 </Button>
 
                 <Button
-                  className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  className="px-2 rounded-r-md border border-gray-300 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 text-gray-500 hover:text-gray-800 dark:hover:text-gray-400"
                   onClick={() => nextPage()}
                   disabled={!canNextPage}
+                  reset
                 >
                   <span className="sr-only">Next</span>
                   <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />

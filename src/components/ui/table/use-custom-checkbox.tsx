@@ -21,7 +21,7 @@ const IndeterminateCheckbox = forwardRef<HTMLInputElement, TableToggleCommonProp
     return (
       <input
         type="checkbox"
-        className="cursor-pointer relative w-5 h-5 border rounded border-gray-400 dark:border-gray-200 bg-white dark:bg-gray-800 outline-none"
+        className="cursor-pointer relative w-5 h-5 border rounded border-gray-400 dark:border-gray-500 dark:hover:border-gray-400 bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-800 outline-none dark:focus:ring-gray-500 dark:focus:ring-offset-gray-800 focus:checked:bg-gray-700"
         ref={resolvedRef}
         {...rest}
       />

@@ -48,7 +48,7 @@ export default function Book({ name, author, src, rating, description }: IBook) 
               className="m-auto"
               label="Read preview"
             />
-            <p className="flex items-center m-1 justify-center">
+            <p className="flex items-center m-1 ml-5">
               <button
                 type="button"
                 onClick={toggleSaved}
@@ -59,13 +59,13 @@ export default function Book({ name, author, src, rating, description }: IBook) 
               </button>
               <a className="text-lg">Save for later</a>
             </p>
-            <p className="flex items-center m-1 justify-center">
+            <p className="flex items-center m-1 ml-5">
               <a className="text-lg">Create a list</a>
             </p>
-            <p className="flex items-center m-1 justify-center">
+            <p className="flex items-center m-1 ml-5">
               <a className="text-lg">Download to app</a>
             </p>
-            <p className="flex items-center m-1 justify-center">
+            <p className="flex items-center m-1 ml-5">
               <a className="text-lg">Share</a>
             </p>
           </div>

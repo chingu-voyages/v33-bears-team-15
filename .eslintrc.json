@@ -60,6 +60,7 @@
     "prefer-const": "error",
     "func-names": "off",
     "react/prop-types": "off",
+    "react/display-name": "off",
     "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-props-no-spreading": "off",

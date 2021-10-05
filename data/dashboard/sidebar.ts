@@ -31,8 +31,8 @@ const sidebarData: SidebarType[] = [
       {
         name: 'Books',
         subMenus: [
-          { label: 'List', href: '/' },
-          { label: 'Create', href: '/' },
+          { label: 'List', href: '/dashboard/books/list' },
+          { label: 'Create', href: '/dashboard/books/create' },
         ],
         icon: BookIcon,
         href: null,

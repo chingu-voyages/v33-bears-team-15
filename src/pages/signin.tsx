@@ -13,6 +13,8 @@ import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { storeuserid, selectUserid } from '../redux/userSlice';
 
 type FormValues = {
   email: string;
@@ -37,6 +39,8 @@ export default function Signin() {
   });
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
+  const dispatch = useAppDispatch();
+  const currentUserid = useAppSelector(selectUserid);
   const router = useRouter();
 
   const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
@@ -47,21 +51,19 @@ export default function Signin() {
       const signInPayload = { email: formData.email, password: formData.password };
       const signInRes = await axiosSignIn('/api/v1/auth/signin', signInPayload);
 
-      console.log(signInRes);
-
       const token = signInRes.data.access_token;
       const decoded = jwt(token);
 
       const utcSeconds = decoded.exp;
       const now = decoded.iat;
       const remainingDays = Math.floor((utcSeconds - now) / 86400);
+      const decodedId = decoded.sub;
 
-      console.log(utcSeconds, now, remainingDays);
-      console.log(token);
-      console.log(decoded);
+      dispatch(storeuserid(decodedId));
 
       Cookies.set('auth', '', { expires: remainingDays });
 
+      router.push('/library');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {

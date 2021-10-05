@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-named-as-default
 import axiosClient from '../lib/axiosClient';
 
 type CreateUser = { email: string; password: string; fullName: string };

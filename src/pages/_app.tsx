@@ -1,4 +1,6 @@
+import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
+import { store } from '../redux/store';
 import ErrorBoundary from '~/components/common/error-boundary';
 import Head from '~/components/common/head';
 import useTheme from '~/hooks/use-theme';
@@ -10,12 +12,12 @@ function MyApp({ Component, pageProps }: AppProps) {
   useTheme();
 
   return (
-    <>
+    <Provider store={store}>
       <Head />
       <ErrorBoundary>
         <Component {...pageProps} />
       </ErrorBoundary>
-    </>
+    </Provider>
   );
 }
 

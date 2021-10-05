@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5000",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "test:dev": "jest --watch",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^2.8.0",
+    "@reduxjs/toolkit": "^1.6.1",
     "axios": "^0.21.4",
     "classnames": "^2.3.1",
     "js-cookie": "^3.0.1",
@@ -26,7 +27,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.15.3",
+    "react-redux": "^7.2.5",
     "react-slick": "^0.28.1",
+    "redux": "^4.1.1",
     "slick-carousel": "^1.8.1",
     "yup": "^0.32.9"
   },
@@ -44,6 +47,7 @@
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.9",
     "@types/react-slick": "^0.23.5",
+    "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "all-contributors-cli": "^6.20.0",

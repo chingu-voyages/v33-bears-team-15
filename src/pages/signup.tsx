@@ -58,7 +58,7 @@ export default function Signup() {
 
       axiosSignUp('/api/v1/auth/signup', signUpPayload);
 
-      // router.push('/test');
+      router.push('/library');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {

@@ -2,23 +2,21 @@ import type { ComponentPropsWithoutRef } from 'react';
 
 export type IUploadIcon = ComponentPropsWithoutRef<'svg'>;
 
-function UploadIcon({ fill = 'none', ...rest }: IUploadIcon): JSX.Element {
+function UploadIcon({ strokeWidth = 2, ...rest }: IUploadIcon): JSX.Element {
   return (
     <svg
-      version="1"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 48 48"
-      enableBackground="new 0 0 48 48"
-      fill={fill}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
       {...rest}
     >
-      <g fill="#009688">
-        <polygon points="24,10.9 35,24 13,24" />
-        <rect x="20" y="40" width="8" height="4" />
-        <rect x="20" y="34" width="8" height="4" />
-        <rect x="20" y="21" width="8" height="11" />
-        <rect x="6" y="4" width="36" height="4" />
-      </g>
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={strokeWidth}
+        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+      />
     </svg>
   );
 }

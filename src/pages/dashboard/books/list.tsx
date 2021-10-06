@@ -56,7 +56,7 @@ export default function BookListDashboard() {
             </>
           ),
           as: Link,
-          href: '/dahsboard/books/create',
+          href: '/dashboard/books/create',
         }}
       >
         <Table columns={cols} data={data} searchKey="bookname" />

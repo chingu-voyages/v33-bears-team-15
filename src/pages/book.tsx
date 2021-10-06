@@ -5,6 +5,9 @@ import Container from '~/components/ui/container';
 import Button from '~/components/ui/button';
 import BookmarkIcon from '~/assets/icons/bookmarkIcon';
 import Rating from '~/components/rating';
+import DownloadIcon from '~/assets/icons/downloadIcon';
+import ListIcon from '~/assets/icons/listIcon';
+import ShareIcon from '~/assets/icons/shareIcon';
 
 export interface IBook {
   name: string;
@@ -55,17 +58,26 @@ export default function Book({ name, author, src, rating, description }: IBook) 
                 className=""
                 title="Save for later"
               >
-                <BookmarkIcon solid={saved} className="w-5" strokeWidth={1} />
+                <BookmarkIcon solid={saved} className="w-5 mr-2" strokeWidth={1} />
               </button>
               <a className="text-lg">Save for later</a>
             </p>
             <p className="flex items-center m-1 ml-5">
+              <button type="button">
+                <ListIcon className="w-5 mr-2" strokeWidth={1} />
+              </button>
               <a className="text-lg">Create a list</a>
             </p>
             <p className="flex items-center m-1 ml-5">
+              <button type="button">
+                <DownloadIcon className="w-5 mr-2" strokeWidth={1} />
+              </button>
               <a className="text-lg">Download to app</a>
             </p>
             <p className="flex items-center m-1 ml-5">
+              <button type="button">
+                <ShareIcon className="w-5 mr-2" strokeWidth={1} />
+              </button>
               <a className="text-lg">Share</a>
             </p>
           </div>

@@ -1,27 +1,40 @@
+/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { getJwtTokenFromCookies } from '~/utils';
 import type { RootState } from './store';
 
 // declaring the types for our state
+export type CredentialsType = {
+  id: string;
+  role: string;
+};
+
 export type UserState = {
-  id: number;
+  credentials: {
+    id: string;
+    role: string;
+  };
 };
 
 const initialState: UserState = {
-  id: 0,
+  credentials: {
+    id: getJwtTokenFromCookies()?.sub,
+    role: getJwtTokenFromCookies()?.claim,
+  },
 };
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    storeuserid: (state, action: PayloadAction<number>) => {
-      // eslint-disable-next-line no-param-reassign
-      state.id = action.payload;
+    setUserCredentials: ({ credentials }, action: PayloadAction<CredentialsType>) => {
+      credentials.id = action.payload.id;
+      credentials.role = action.payload.role;
     },
   },
 });
-export const { storeuserid } = userSlice.actions;
+export const { setUserCredentials } = userSlice.actions;
 
-export const selectUserid = (state: RootState) => state.user.id;
+export const selectUserCredentials = ({ user }: RootState) => user.credentials.id;
 
 export default userSlice.reducer;

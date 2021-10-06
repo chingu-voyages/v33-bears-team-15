@@ -1,10 +1,8 @@
-import jwt from 'jwt-decode';
-import Cookies from 'js-cookie';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import { axiosSignIn } from '../services/axiosAPI';
+import { signInWithEmailAndPassword } from '../services/axiosAPI';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
@@ -13,8 +11,9 @@ import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { storeuserid, selectUserid } from '../redux/userSlice';
+import { useAppDispatch } from '../redux/hooks';
+import { setUserCredentials } from '../redux/userSlice';
+import { decodeToken, setJwtTokenToCookies } from '~/utils';
 
 type FormValues = {
   email: string;
@@ -40,34 +39,21 @@ export default function Signin() {
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
-  const currentUserid = useAppSelector(selectUserid);
   const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async ({ email, password }) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
+      const { data } = await signInWithEmailAndPassword({ email, password });
+      const { sub, claim } = decodeToken(data.access_token);
 
-      const signInPayload = { email: formData.email, password: formData.password };
-      const signInRes = await axiosSignIn('/api/v1/auth/signin', signInPayload);
-
-      const token = signInRes.data.access_token;
-      const decoded = jwt(token);
-
-      const utcSeconds = decoded.exp;
-      const now = decoded.iat;
-      const remainingDays = Math.floor((utcSeconds - now) / 86400);
-      const decodedId = decoded.sub;
-
-      dispatch(storeuserid(decodedId));
-
-      Cookies.set('auth', '', { expires: remainingDays });
+      dispatch(setUserCredentials({ id: sub, role: claim }));
+      setJwtTokenToCookies(data.access_token);
 
       router.push('/library');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.message);
+      setServerError(error.response.data.message);
     }
   };
 

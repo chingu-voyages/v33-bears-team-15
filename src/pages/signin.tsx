@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import { axiosSignIn } from '../services/axiosAPI';
+import { signInWithEmailAndPassword, getUserData } from '../services/axiosAPI';
+import { decodeToken, setTokenToCookie } from '../utils/jwt';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
@@ -40,28 +41,19 @@ export default function Signin() {
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
-  const currentUserid = useAppSelector(selectUserid);
   const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async ({ email, password }) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
+      const signInPayload = { email, password };
+      const signInRes = await signInWithEmailAndPassword(signInPayload);
 
-      const signInPayload = { email: formData.email, password: formData.password };
-      const signInRes = await axiosSignIn('/api/v1/auth/signin', signInPayload);
+      const decodedData = decodeToken(signInRes);
 
-      const token = signInRes.data.access_token;
-      const decoded = jwt(token);
+      setTokenToCookie(decodedData);
 
-      const utcSeconds = decoded.exp;
-      const now = decoded.iat;
-      const remainingDays = Math.floor((utcSeconds - now) / 86400);
-      const decodedId = decoded.sub;
-
+      const decodedId = decodedData.sub;
       dispatch(storeuserid(decodedId));
-
-      Cookies.set('auth', '', { expires: remainingDays });
 
       router.push('/library');
       reset(DEFAULT_FORM_VALUES);

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import { axiosSignUp } from '../services/axiosAPI';
+import { signUpWithEmailAndPassword } from '../services/axiosAPI';
 import Container from '~/components/ui/container';
 import Footer from '~/components/footer';
 import SEO from '~/components/common/SEO';
@@ -45,18 +45,15 @@ export default function Signup() {
 
   const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async ({
+    email,
+    password,
+    fullName,
+  }) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password, formData.fullName);
+      const signUpPayload = { email, password, fullName };
 
-      const signUpPayload = {
-        email: formData.email,
-        password: formData.password,
-        fullName: formData.fullName,
-      };
-
-      axiosSignUp('/api/v1/auth/signup', signUpPayload);
+      signUpWithEmailAndPassword(signUpPayload);
 
       router.push('/library');
       reset(DEFAULT_FORM_VALUES);

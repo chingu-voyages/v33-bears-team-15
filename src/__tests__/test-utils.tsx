@@ -1,7 +1,9 @@
 import { render } from '@testing-library/react';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { NextRouter } from 'next/router';
+import { Provider } from 'react-redux';
 import { FC } from 'react';
+import { store } from '~/store/index';
 
 export * from '@testing-library/react';
 
@@ -50,7 +52,7 @@ export function customRender(
   // eslint-disable-next-line react/display-name
   const customWrapper: FC = ({ children }) => (
     <RouterContext.Provider value={{ ...mockRouter, ...router }}>
-      {children}
+      <Provider store={store}>{children}</Provider>
     </RouterContext.Provider>
   );
 

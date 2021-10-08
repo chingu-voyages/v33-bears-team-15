@@ -11,3 +11,7 @@ export function signUpWithEmailAndPassword(payload: CreateUser) {
 export function signInWithEmailAndPassword(payload: SignInUser) {
   return axiosClient.post('/api/v1/auth/signin', payload);
 }
+
+export function getUserData(userId: string) {
+  return axiosClient.get(`/api/v1/users/${userId}`);
+}

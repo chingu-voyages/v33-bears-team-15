@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
-import { signInWithEmailAndPassword } from '../services/axiosAPI';
+import { signInWithEmailAndPassword } from '~/services/axiosAPI';
+import { decodeToken, setTokenToCookie } from '~/utils/jwt';
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
@@ -13,7 +14,6 @@ import Input from '~/components/ui/input';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
 import { useAppDispatch } from '../redux/hooks';
 import { setUserCredentials } from '../redux/userSlice';
-import { decodeToken, setJwtTokenToCookies } from '~/utils';
 
 type FormValues = {
   email: string;
@@ -47,7 +47,7 @@ export default function Signin() {
       const { sub, claim } = decodeToken(data.access_token);
 
       dispatch(setUserCredentials({ id: sub, role: claim }));
-      setJwtTokenToCookies(data.access_token);
+      setTokenToCookie(data.access_token);
 
       router.push('/library');
       reset(DEFAULT_FORM_VALUES);

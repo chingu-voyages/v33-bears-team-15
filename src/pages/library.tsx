@@ -1,4 +1,4 @@
-import Layout from '~/components/layout';
+import Layout from '~/components/layouts/default';
 import Carousel from '~/components/library/carousel';
 import Slider from '~/components/library/slider';
 import Container from '~/components/ui/container';

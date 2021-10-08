@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import cn from 'classnames';
 import { ReactNode } from 'react';
+import { useRouter } from 'next/router';
 
 import MoonIcon from '~assets/icons/moonIcon';
 import SunIcon from '~assets/icons/sunIcon';
 import Logo from '~assets/images/logo.png';
-import Link from './common/link';
-import Container from './ui/container';
+import Link from './link';
+import Container from '../ui/container';
 import useTheme from '~/hooks/use-theme';
 
 enum HeaderVariant {
@@ -27,6 +28,8 @@ export default function Header({
   sticky = false,
 }: IHeader): JSX.Element {
   const { toggle, isDark } = useTheme();
+  const router = useRouter();
+  const isDashboard = router.pathname.includes('dashboard');
 
   const rootClass = cn('z-30 relative', {
     'border-b dark:border-gray-700 border-gray-300 h-16': withBorder,
@@ -58,9 +61,11 @@ export default function Header({
             </button>
           )}
 
-          <Link href="/signin" className={`ml-6 ${textClass} font-semibold`}>
-            Sign In
-          </Link>
+          {!isDashboard && (
+            <Link href="/signin" className={`ml-6 ${textClass} font-semibold`}>
+              Sign In
+            </Link>
+          )}
         </div>
       </Container>
     </header>

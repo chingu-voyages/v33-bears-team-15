@@ -1,17 +1,12 @@
 import jwt from 'jwt-decode';
 import Cookies from 'js-cookie';
 
-type TokenSignature = {
-  sub: string;
-  claim: '3' | '1' | '2' | '4' | '5';
-  iat: number;
-  exp: number;
-};
+import type { ITokenSignature } from '~/types';
 
 const JWT_KEY = 'jwt';
 
-export function decodeToken(token: string): TokenSignature {
-  return jwt<TokenSignature>(token);
+export function decodeToken(token: string): ITokenSignature {
+  return jwt<ITokenSignature>(token);
 }
 
 export function setTokenToCookie(token: string): void {
@@ -27,7 +22,7 @@ export function setTokenToCookie(token: string): void {
   Cookies.set(JWT_KEY, token, { expires: expirationDateInDays, secure: true });
 }
 
-export function getTokenFromCookie(): TokenSignature | null {
+export function getDecodedTokenFromCookie(): ITokenSignature | null {
   const cookieToken = Cookies.get(JWT_KEY);
 
   if (cookieToken) {
@@ -35,4 +30,14 @@ export function getTokenFromCookie(): TokenSignature | null {
   }
 
   return null;
+}
+
+export function getTokenFromCookie(): string | null {
+  const cookieToken = Cookies.get(JWT_KEY);
+
+  return cookieToken || null;
+}
+
+export function removeToken(): void {
+  return Cookies.remove(JWT_KEY);
 }

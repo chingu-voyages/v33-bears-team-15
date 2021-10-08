@@ -2,10 +2,9 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-import { signUpWithEmailAndPassword } from '../services/axiosAPI';
+
 import Container from '~/components/ui/container';
-import Footer from '~/components/footer';
+import Footer from '~/components/common/footer';
 import SEO from '~/components/common/SEO';
 import Link from '~/components/common/link';
 import Button from '~/components/ui/button';
@@ -15,19 +14,16 @@ import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
 import advantages from '~data/advantages';
+import useAuth from '~/hooks/use-auth';
 import { SIGNUP_SCHEMA } from '~/utils/validations';
-
-type FormValues = {
-  email: string;
-  password: string;
-  fullName: string;
-};
+import { ISignupDto } from '~/types';
+import useAuthRedirect from '~/hooks/use-auth-redirect';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
   fullName: '',
-} as FormValues;
+} as ISignupDto;
 
 export default function Signup() {
   const {
@@ -35,33 +31,26 @@ export default function Signup() {
     handleSubmit,
     formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISignupDto>({
     resolver: yupResolver(SIGNUP_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-
+  const { signUpWithEmailAndPassword } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const router = useRouter();
-
-  const onSubmitHandler: SubmitHandler<FormValues> = async (formData) => {
+  const onSubmitHandler: SubmitHandler<ISignupDto> = async (formDto) => {
     try {
-      const signUpPayload = {
-        email: formData.email,
-        password: formData.password,
-        fullName: formData.fullName,
-      };
+      await signUpWithEmailAndPassword(formDto);
 
-      await signUpWithEmailAndPassword(signUpPayload);
-
-      router.push('/library');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
       setServerError(error.message);
     }
   };
+
+  useAuthRedirect();
 
   return (
     <>

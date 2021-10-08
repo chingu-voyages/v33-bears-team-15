@@ -1,29 +1,23 @@
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
-import { signInWithEmailAndPassword } from '~/services/axiosAPI';
-import { decodeToken, setTokenToCookie } from '~/utils/jwt';
+
 import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import Link from '~/components/common/link';
-import Layout from '~/components/layout';
+import Layout from '~/components/layouts/default';
 import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
+import useAuth from '~/hooks/use-auth';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
-import { useAppDispatch } from '../redux/hooks';
-import { setUserCredentials } from '../redux/userSlice';
-
-type FormValues = {
-  email: string;
-  password: string;
-};
+import { ISigninDto } from '~/types/auth.type';
+import useAuthRedirect from '~/hooks/use-auth-redirect';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
-} as FormValues;
+} as ISigninDto;
 
 export default function Signin() {
   const {
@@ -31,31 +25,26 @@ export default function Signin() {
     handleSubmit,
     formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISigninDto>({
     resolver: yupResolver(SIGNIN_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-
+  const { signInWithEmailAndPassword } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
-  const dispatch = useAppDispatch();
-  const router = useRouter();
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async ({ email, password }) => {
+  const onSubmitHandler: SubmitHandler<ISigninDto> = async (formDto) => {
     try {
-      const { data } = await signInWithEmailAndPassword({ email, password });
-      const { sub, claim } = decodeToken(data.access_token);
+      await signInWithEmailAndPassword(formDto);
 
-      dispatch(setUserCredentials({ id: sub, role: claim }));
-      setTokenToCookie(data.access_token);
-
-      router.push('/library');
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
       setServerError(error.response.data.message);
     }
   };
+
+  useAuthRedirect();
 
   return (
     <Layout

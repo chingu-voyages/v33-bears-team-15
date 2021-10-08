@@ -1,9 +1,10 @@
 import { Provider } from 'react-redux';
 import { AppProps } from 'next/app';
-import { store } from '../redux/store';
+
 import ErrorBoundary from '~/components/common/error-boundary';
 import Head from '~/components/common/head';
 import useTheme from '~/hooks/use-theme';
+import { store } from '~/store/index';
 
 import 'slick-carousel/slick/slick.css';
 import '~/styles/globals.css';

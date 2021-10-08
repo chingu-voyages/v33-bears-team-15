@@ -132,6 +132,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
     <td align="center"><a href="https://chirila.dev/"><img src="https://avatars.githubusercontent.com/u/31253154?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrei Chirila</b></sub></a><br /><a href="https://github.com/chingu-voyages/v33-bears-team-15/commits?author=Kerosz" title="Code">💻</a></td>
     <td align="center"><a href="http://www.marylene.tech/"><img src="https://avatars.githubusercontent.com/u/16859034?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Marylene Sawyer</b></sub></a><br /><a href="https://github.com/chingu-voyages/v33-bears-team-15/commits?author=Bluette1" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/thomasgilmore95"><img src="https://avatars.githubusercontent.com/u/47087608?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas Gilmore</b></sub></a><br /><a href="https://github.com/chingu-voyages/v33-bears-team-15/commits?author=thomasgilmore95" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/monjurkhuda"><img src="https://avatars.githubusercontent.com/u/56175574?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Monjur-E-Khuda</b></sub></a><br /><a href="https://github.com/chingu-voyages/v33-bears-team-15/commits?author=monjurkhuda" title="Code">💻</a></td>
   </tr>
 </table>
 

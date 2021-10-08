@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { yupResolver } from '@hookform/resolvers/yup';
 import DashLayout from '~/components/layouts/dash';
 import Page from '~/components/dashboard/page';
 import Button from '~/components/ui/button';
@@ -8,6 +9,7 @@ import Input from '~/components/ui/input';
 import Textarea from '~/components/ui/textarea';
 import UploadIcon from '~/assets/icons/uploadIcon';
 import PlusIcon from '~/assets/icons/plusIcon';
+import { CREATE_BOOK_SCHEMA } from '~/utils';
 
 type FormValues = {
   name: string;
@@ -16,6 +18,7 @@ type FormValues = {
   file: any;
   isbn: string;
   author: string;
+  categories: string[];
 };
 
 const DEFAULT_FORM_VALUES = {
@@ -25,6 +28,7 @@ const DEFAULT_FORM_VALUES = {
   file: null,
   isbn: '',
   author: '',
+  categories: [],
 } as FormValues;
 
 export default function BookCreateDashboard() {
@@ -35,16 +39,14 @@ export default function BookCreateDashboard() {
     reset,
   } = useForm<FormValues>({
     defaultValues: DEFAULT_FORM_VALUES,
+    resolver: yupResolver(CREATE_BOOK_SCHEMA as any),
     mode: 'all',
   });
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<FormValues> = async (_data) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
-
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
@@ -109,6 +111,10 @@ export default function BookCreateDashboard() {
                 accept="image/jpeg,image/png"
                 type="file"
                 className="sr-only"
+                aria-invalid={!!errors.cover}
+                isError={errors.cover && touchedFields.cover}
+                error={errors.cover?.message}
+                {...register('cover')}
               />
             </label>
 
@@ -133,6 +139,10 @@ export default function BookCreateDashboard() {
                 accept="image/jpeg,image/png"
                 type="file"
                 className="sr-only"
+                aria-invalid={!!errors.file}
+                isError={errors.file && touchedFields.file}
+                error={errors.file?.message}
+                {...register('file')}
               />
             </label>
           </div>
@@ -162,7 +172,11 @@ export default function BookCreateDashboard() {
               />
             </div>
 
-            <Button colorScheme="primary" className="h-[fit-content] flex items-center">
+            <Button
+              type="submit"
+              colorScheme="primary"
+              className="h-[fit-content] flex items-center"
+            >
               <PlusIcon className="w-5 mr-2" strokeWidth={3} />
               <span>{isSubmitting ? 'Creating...' : 'Create Book'}</span>
             </Button>

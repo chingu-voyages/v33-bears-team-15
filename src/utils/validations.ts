@@ -43,4 +43,18 @@ export const SIGNUP_SCHEMA = Yup.object().shape({
     .required('Full name is a required field!'),
 });
 
-export default SIGNUP_SCHEMA;
+export const CREATE_BOOK_SCHEMA = Yup.object().shape({
+  name: Yup.string()
+    .min(5, 'Name must have at least 5 characters!')
+    .max(256, 'Name must be at most 256 characters!')
+    .required('Name must not be empty!'),
+  description: Yup.string()
+    .min(54, 'Description must have at least 54 characters!')
+    .max(4096, 'Description must be at most 4096 characters!')
+    .required('Description must not be empty!'),
+  author: Yup.string().required('Author must not be empty!'),
+  isbn: Yup.number().required('ISBN must not be empty!'),
+  // categories: Yup.string().required('Categories must not be empty!'),
+  cover: Yup.mixed().required('Cover image is required'),
+  file: Yup.mixed().required('Book PDF file is required'),
+});

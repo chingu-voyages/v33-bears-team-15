@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
     return headers;
   },
 });
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 2 });
 
 export const dekooApi = createApi({
   reducerPath: 'dekooApi',

@@ -6,9 +6,11 @@ import { useRouter } from 'next/router';
 import MoonIcon from '~assets/icons/moonIcon';
 import SunIcon from '~assets/icons/sunIcon';
 import Logo from '~assets/images/logo.png';
-import Link from './link';
-import Container from '../ui/container';
+import Link from '../link';
+import Container from '../../ui/container';
 import useTheme from '~/hooks/use-theme';
+import useAuth from '~/hooks/use-auth';
+import HeaderDropdown from './header-dropdown';
 
 enum HeaderVariant {
   normal,
@@ -28,6 +30,7 @@ export default function Header({
   sticky = false,
 }: IHeader): JSX.Element {
   const { toggle, isDark } = useTheme();
+  const { isLoggedIn, currentUser, logout } = useAuth();
   const router = useRouter();
   const isDashboard = router.pathname.includes('dashboard');
 
@@ -50,7 +53,7 @@ export default function Header({
           <Image width={125} height={37} src={Logo} alt="Dekoo" priority />
         </Link>
 
-        <div className="flex items-center">
+        <div className="flex items-center space-x-5">
           {isDark ? (
             <button type="button" onClick={() => toggle('light')}>
               <SunIcon className={`w-6 ${textClass}`} />
@@ -61,10 +64,16 @@ export default function Header({
             </button>
           )}
 
-          {!isDashboard && (
-            <Link href="/signin" className={`ml-6 ${textClass} font-semibold`}>
-              Sign In
-            </Link>
+          {isLoggedIn ? (
+            <>
+              <HeaderDropdown user={currentUser} logoutFn={logout} />
+            </>
+          ) : (
+            !isDashboard && (
+              <Link href="/signin" className={`${textClass} font-semibold`}>
+                Sign In
+              </Link>
+            )
           )}
         </div>
       </Container>

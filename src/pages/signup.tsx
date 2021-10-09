@@ -14,45 +14,43 @@ import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
 import advantages from '~data/advantages';
-import { SIGNUP_SCHEMA } from '~/utils/validations';
-
-type FormValues = {
-  email: string;
-  password: string;
-  fullName: string;
-};
+import useAuth from '~/hooks/use-auth';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
+import { SIGNUP_SCHEMA } from '~/utils';
+import { ISignupDto } from '~/types';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
   fullName: '',
-} as FormValues;
+} as ISignupDto;
 
 export default function Signup() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
+    formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISignupDto>({
     resolver: yupResolver(SIGNUP_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-
+  const { signUpWithEmailAndPassword, signInWithGoogleProvider } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<ISignupDto> = async (formDto) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
+      await signUpWithEmailAndPassword(formDto);
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.message);
+      setServerError(error.response.data.message);
     }
   };
+
+  useRoleAuthorization();
 
   return (
     <>
@@ -167,12 +165,13 @@ export default function Signup() {
                   colorScheme="primary"
                   size="full"
                   className="mb-3.5"
+                  disabled={isDirty && !isValid}
                 >
                   <MailIcon className="w-6 mr-2" />{' '}
                   {isSubmitting ? 'Loading...' : 'Continue with Email'}
                 </Button>
 
-                <Button variant="google" size="full">
+                <Button variant="google" size="full" onClick={signInWithGoogleProvider}>
                   <GoogleIcon className="w-6 mr-2" /> Continue with Google
                 </Button>
               </form>

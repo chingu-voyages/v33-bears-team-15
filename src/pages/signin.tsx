@@ -40,7 +40,7 @@ export default function Signin() {
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.response.data.message);
+      setServerError(error.data.message);
     }
   };
 

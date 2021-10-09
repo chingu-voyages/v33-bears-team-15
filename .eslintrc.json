@@ -58,6 +58,7 @@
     "no-shadow": "off",
     "prettier/prettier": ["error", {}, { "usePrettierrc": true }], // Use our .prettierrc file as source,
     "prefer-const": "error",
+    "no-underscore-dangle": "off",
     "func-names": "off",
     "camelcase": "off",
     "react/prop-types": "off",

@@ -18,6 +18,9 @@ export interface IUserStoreState {
     id: string | null;
     role: RoleType | null;
   };
-  user: IUser | null;
+  currentUser: IUser | null;
   isLoggedIn: boolean;
+  isSuperAdmin: boolean;
+  isAdmin: boolean;
+  isPublisher: boolean;
 }

@@ -9,8 +9,11 @@ const initialState: IUserStoreState = {
     id: getDecodedTokenFromCookie()?.sub,
     role: getDecodedTokenFromCookie()?.claim,
   },
-  user: null,
-  isLoggedIn: !!getDecodedTokenFromCookie()?.sub,
+  currentUser: null,
+  isLoggedIn: false,
+  isSuperAdmin: false,
+  isAdmin: false,
+  isPublisher: false,
 };
 
 export const userSlice = createSlice({
@@ -22,7 +25,7 @@ export const userSlice = createSlice({
       { payload }: PayloadAction<IUserStoreState>
     ) => {
       state.credentials = payload.credentials;
-      state.user = payload.user;
+      state.currentUser = payload.currentUser;
       state.isLoggedIn = payload.isLoggedIn;
     },
     resetUserCredentials: () => initialState,
@@ -31,6 +34,6 @@ export const userSlice = createSlice({
 
 export const { setUserCredentials, resetUserCredentials } = userSlice.actions;
 
-export const selectCurrentUser = ({ user }: RootState) => user;
+export const selectUser = ({ user }: RootState) => user;
 
 export default userSlice.reducer;

@@ -1,23 +1,14 @@
 import { useRouter } from 'next/router';
 import { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks/store';
-import {
-  resetUserCredentials,
-  selectCurrentUser,
-  setUserCredentials,
-} from '~/store/userSlice';
+import { resetUserCredentials, selectUser, setUserCredentials } from '~/store/userSlice';
 import {
   useGetUserByIdMutation,
   useSignInWithEmailAndPasswordMutation,
   useSignUpWithEmailAndPasswordMutation,
 } from '~/services/api';
-import {
-  decodeToken,
-  setTokenToCookie,
-  removeToken,
-  getTokenFromCookie,
-} from '~/utils/jwt';
-import { IAuthResponse, ISigninDto, ISignupDto } from '~/types';
+import { setTokenToCookie, removeToken, getTokenFromCookie } from '~/utils';
+import { IAuthResponse, ISigninDto, ISignupDto, Role, RoleType } from '~/types';
 
 export default function useAuth() {
   const [signInMutation] = useSignInWithEmailAndPasswordMutation();
@@ -25,23 +16,30 @@ export default function useAuth() {
   const [getUser] = useGetUserByIdMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const userState = useAppSelector(selectCurrentUser);
+  const userState = useAppSelector(selectUser);
 
-  const processUserAuth = ({ access_token, user }: IAuthResponse): void => {
+  const getUserRoles = (claim: RoleType) => {
+    return {
+      isSuperAdmin: claim === Role.SUPER_ADMIN,
+      isAdmin: claim === Role.ADMIN,
+      isPublisher: claim === Role.PUBLISHER,
+    };
+  };
+
+  const processUserAuth = useCallback(({ access_token, user }: IAuthResponse): void => {
     setTokenToCookie(access_token);
-
-    const { sub, claim } = decodeToken(access_token);
 
     dispatch(
       setUserCredentials({
-        credentials: { id: sub, role: claim },
-        user,
+        credentials: { id: user._id, role: user.role },
+        currentUser: user,
         isLoggedIn: true,
+        ...getUserRoles(user.role),
       })
     );
 
     router.replace('/library');
-  };
+  }, []);
 
   const signInWithEmailAndPassword = useCallback(
     async (signInDto: ISigninDto): Promise<void> => {
@@ -64,27 +62,31 @@ export default function useAuth() {
   const logout = useCallback((): void => {
     removeToken();
     dispatch(resetUserCredentials());
+    router.replace('/signin');
+  }, []);
+
+  const refetchUserOnMount = useCallback(async (): Promise<void> => {
+    const user = await getUser(userState.credentials.id).unwrap();
+
+    if (user) {
+      dispatch(
+        setUserCredentials({
+          ...userState,
+          currentUser: user,
+          isLoggedIn: true,
+          ...getUserRoles(user.role),
+        })
+      );
+    } else {
+      logout();
+    }
   }, []);
 
   useEffect(() => {
-    const refetchUserOnMount = async (token: string) => {
-      const { sub, claim } = decodeToken(token);
-
-      const user = await getUser(sub).unwrap();
-
-      dispatch(
-        setUserCredentials({
-          credentials: { id: sub, role: claim },
-          user,
-          isLoggedIn: true,
-        })
-      );
-    };
-
     const jwtToken = getTokenFromCookie();
 
     if (jwtToken) {
-      refetchUserOnMount(jwtToken);
+      refetchUserOnMount();
     }
   }, []);
 
@@ -92,8 +94,6 @@ export default function useAuth() {
     signInWithEmailAndPassword,
     signUpWithEmailAndPassword,
     logout,
-    user: userState.user,
-    isLoggedIn: userState.isLoggedIn,
-    credentials: userState.credentials,
+    ...userState,
   };
 }

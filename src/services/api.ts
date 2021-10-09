@@ -35,6 +35,12 @@ export const dekooApi = createApi({
         body: credentials,
       }),
     }),
+    signInWithGoogleProvider: build.mutation<IAuthResponse, void>({
+      query: () => ({
+        url: '/auth/google',
+        method: 'GET',
+      }),
+    }),
     getUserById: build.mutation<IUser, string>({
       query: (id) => ({
         url: `/users/${id}`,
@@ -47,8 +53,13 @@ export const dekooApi = createApi({
 export const {
   useSignInWithEmailAndPasswordMutation,
   useSignUpWithEmailAndPasswordMutation,
+  useSignInWithGoogleProviderMutation,
   useGetUserByIdMutation,
 } = dekooApi;
 
-export const { signInWithEmailAndPassword, signUpWithEmailAndPassword, getUserById } =
-  dekooApi.endpoints;
+export const {
+  signInWithEmailAndPassword,
+  signUpWithEmailAndPassword,
+  signInWithGoogleProvider,
+  getUserById,
+} = dekooApi.endpoints;

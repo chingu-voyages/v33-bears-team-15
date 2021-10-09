@@ -30,7 +30,7 @@ export default function Signin() {
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-  const { signInWithEmailAndPassword } = useAuth();
+  const { signInWithEmailAndPassword, signInWithGoogleProvider } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
   const onSubmitHandler: SubmitHandler<ISigninDto> = async (formDto) => {
@@ -114,7 +114,7 @@ export default function Signin() {
               {isSubmitting ? 'Loading...' : 'Continue with Email'}
             </Button>
 
-            <Button variant="google" size="full">
+            <Button variant="google" size="full" onClick={signInWithGoogleProvider}>
               <GoogleIcon className="w-6 mr-2" /> Continue with Google
             </Button>
 

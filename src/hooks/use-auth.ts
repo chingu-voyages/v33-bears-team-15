@@ -5,6 +5,7 @@ import { resetUserCredentials, selectUser, setUserCredentials } from '~/store/us
 import {
   useGetUserByIdMutation,
   useSignInWithEmailAndPasswordMutation,
+  useSignInWithGoogleProviderMutation,
   useSignUpWithEmailAndPasswordMutation,
 } from '~/services/api';
 import { setTokenToCookie, removeToken, getTokenFromCookie } from '~/utils';
@@ -13,6 +14,7 @@ import { IAuthResponse, ISigninDto, ISignupDto, Role, RoleType } from '~/types';
 export default function useAuth() {
   const [signInMutation] = useSignInWithEmailAndPasswordMutation();
   const [signUpMutation] = useSignUpWithEmailAndPasswordMutation();
+  const [signInWithGoogleMutation] = useSignInWithGoogleProviderMutation();
   const [getUser] = useGetUserByIdMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -49,6 +51,12 @@ export default function useAuth() {
     },
     []
   );
+
+  const signInWithGoogleProvider = useCallback(async (): Promise<void> => {
+    const data = await signInWithGoogleMutation().unwrap();
+
+    processUserAuth(data);
+  }, []);
 
   const signUpWithEmailAndPassword = useCallback(
     async (signUpDto: ISignupDto): Promise<void> => {
@@ -93,6 +101,7 @@ export default function useAuth() {
   return {
     signInWithEmailAndPassword,
     signUpWithEmailAndPassword,
+    signInWithGoogleProvider,
     logout,
     ...userState,
   };

@@ -4,10 +4,10 @@ import Featured from '~/components/home/featured';
 import Trending from '~/components/home/trending';
 import MostRead from '~/components/home/mostRead';
 import BookReview from '~/components/home/bookReview';
-import useAuthRedirect from '~/hooks/use-auth-redirect';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
 
 export default function Home() {
-  useAuthRedirect();
+  useRoleAuthorization();
 
   return (
     <Layout headerProps={{ variant: 'image' }} customMeta={{ title: 'Home | Dekoo' }}>

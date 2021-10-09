@@ -15,9 +15,9 @@ import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
 import advantages from '~data/advantages';
 import useAuth from '~/hooks/use-auth';
-import { SIGNUP_SCHEMA } from '~/utils/validations';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
+import { SIGNUP_SCHEMA } from '~/utils';
 import { ISignupDto } from '~/types';
-import useAuthRedirect from '~/hooks/use-auth-redirect';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
@@ -50,7 +50,7 @@ export default function Signup() {
     }
   };
 
-  useAuthRedirect();
+  useRoleAuthorization();
 
   return (
     <>

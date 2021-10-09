@@ -10,9 +10,9 @@ import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
 import useAuth from '~/hooks/use-auth';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
 import { ISigninDto } from '~/types/auth.type';
-import useAuthRedirect from '~/hooks/use-auth-redirect';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
@@ -44,7 +44,7 @@ export default function Signin() {
     }
   };
 
-  useAuthRedirect();
+  useRoleAuthorization();
 
   return (
     <Layout

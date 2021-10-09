@@ -2,8 +2,10 @@ import Layout from '~/components/layouts/default';
 import Container from '~/components/ui/container';
 import Avatar from '~/components/ui/avatar';
 import Carousel from '~/components/profile/carousel';
+import booksByCategories from '~data/books';
 
 export default function Profile() {
+  const mockData = booksByCategories.map((c) => c.data);
   return (
     <Layout headerProps={{ withBorder: true, variant: 'solid', sticky: true }}>
       <Container>
@@ -18,16 +20,8 @@ export default function Profile() {
             <p>Im cool</p>
           </div>
         </div>
-        <Carousel
-          title="Reading list"
-          data={[
-            {
-              name: 'hola',
-              author: 'me',
-              src: 'https://imgv2-2-f.scribdassets.com/img/audiobook_square_badge/399285183/original/216x216/ade11cc8e3/1629025589?v=1',
-            },
-          ]}
-        />
+        <Carousel title="Reading list" data={mockData[0]} />
+        <Carousel title="Published books" data={mockData[1]} />
       </Container>
     </Layout>
   );

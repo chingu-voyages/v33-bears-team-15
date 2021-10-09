@@ -5,6 +5,7 @@ export interface ICard {
   name: string;
   author: string;
   src: string;
+  rating?: number;
 }
 
 export default function Card({ name, author, src }: ICard) {

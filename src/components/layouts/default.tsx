@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import SEO, { ISEO } from '../common/SEO';
 import Footer from '../common/footer';
 import Header, { IHeader } from '../common/header';
+import useAuth from '~/hooks/use-auth';
 
 export interface IDefaultLayout {
   children?: ReactNode;
@@ -16,6 +17,8 @@ const DefaultLayout = ({
   customMeta,
   withFooter = true,
 }: IDefaultLayout) => {
+  useAuth();
+
   return (
     <>
       <SEO {...customMeta} />

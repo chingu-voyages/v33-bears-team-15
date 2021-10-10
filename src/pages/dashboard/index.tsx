@@ -6,7 +6,9 @@ import Layout from '~/components/layouts/default';
 import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
-import { SIGNIN_SCHEMA } from '~/utils/validations';
+import { SIGNIN_SCHEMA } from '~/utils';
+import { Role } from '~/types';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
 
 type FormValues = {
   email: string;
@@ -42,6 +44,8 @@ export default function DashboardSigninPage() {
       setServerError(error.message);
     }
   };
+
+  useRoleAuthorization();
 
   return (
     <Layout

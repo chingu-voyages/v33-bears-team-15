@@ -7,7 +7,7 @@ interface Ibook {
   srcPath: string;
 }
 /**
- * Takes in an arrays of books ids and returns books objects of each
+ * Takes in an arrays of books ids and returns the fetched data of each
  *
  * @param booksArray
  */

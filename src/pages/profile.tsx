@@ -13,6 +13,7 @@ export default function Profile() {
   console.log(userData, 'user');
   console.log(books(userData?.readingList));
 
+  // Todo!: Eliminate console.logs, and mock data
   return (
     <Layout headerProps={{ withBorder: true, variant: 'solid', sticky: true }}>
       <Container>
@@ -30,7 +31,8 @@ export default function Profile() {
             <p>{userData?.biography || 'I like books!'}</p>
           </div>
         </div>
-        <Carousel title="Reading list" data={mockData[0]} />
+        <Carousel title="Reading list" data={books(userData?.readingList)} />
+        {/* Todo?: Add published books to user entity */}
         <Carousel title="Published books" data={mockData[1]} />
       </Container>
     </Layout>

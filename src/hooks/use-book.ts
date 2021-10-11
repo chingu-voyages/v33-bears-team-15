@@ -1,28 +1,34 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const useBook = (booksArray: string[]): void => {
-  interface Ibook {
-    name: string;
-    description: string;
-    author: string;
-    srcPath: string;
-  }
+interface Ibook {
+  name: string;
+  description: string;
+  author: string;
+  srcPath: string;
+}
+/**
+ * Takes in an arrays of books ids and returns books objects of each
+ *
+ * @param booksArray
+ */
+export default function useBook(booksArray: string[]): any {
+  const [books, setBooks] = useState<any[]>([]);
 
-  return useEffect((): any => {
-    const books: any = booksArray.map(async (id) => {
-      try {
-        const buffer = await fetch(`${id}`);
-        const { name, description, author, srcPath } = await buffer.json();
-        const bookData: Ibook = { name, description, author, srcPath };
-
-        return [...books, bookData];
-      } catch (error) {
-        throw new Error(error);
-      }
-    });
-
-    return books;
+  useEffect((): any => {
+    const fetchBooks = async () => {
+      const data: any = booksArray.map(async (id) => {
+        try {
+          const buffer = await fetch(`https://svr.dekoo.tk/api/v1/books/${id}`);
+          const { name, description, author, srcPath } = await buffer.json();
+          const bookData: Ibook = { name, description, author, srcPath };
+          return bookData;
+        } catch (err) {
+          throw new Error(err);
+        }
+      });
+      setBooks(data);
+    };
+    if (!booksArray.length) fetchBooks();
   }, []);
-};
-
-export default useBook;
+  return books;
+}

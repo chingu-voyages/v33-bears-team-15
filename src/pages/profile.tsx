@@ -10,7 +10,7 @@ import books from '~/hooks/use-book';
 export default function Profile() {
   const mockData = booksByCategories.map((c) => c.data);
   const userData = useAuth().currentUser;
-
+  console.log(userData, 'user');
   console.log(books(userData?.readingList));
 
   return (

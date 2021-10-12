@@ -9,43 +9,42 @@ import Layout from '~/components/layouts/default';
 import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
+import useAuth from '~/hooks/use-auth';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
 import { SIGNIN_SCHEMA } from '~/utils/validations';
-
-type FormValues = {
-  email: string;
-  password: string;
-};
+import { ISigninDto } from '~/types/auth.type';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
-} as FormValues;
+} as ISigninDto;
 
 export default function Signin() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
+    formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISigninDto>({
     resolver: yupResolver(SIGNIN_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-
+  const { signInWithEmailAndPassword, signInWithGoogleProvider } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<ISigninDto> = async (formDto) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
+      await signInWithEmailAndPassword(formDto);
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.message);
+      setServerError(error.data.message);
     }
   };
+
+  useRoleAuthorization();
 
   return (
     <Layout
@@ -102,12 +101,20 @@ export default function Signin() {
               />
             </div>
 
-            <Button type="submit" colorScheme="primary" size="full" className="mb-3.5">
+            <div id="error_message" />
+
+            <Button
+              type="submit"
+              colorScheme="primary"
+              size="full"
+              className="mb-3.5"
+              disabled={isDirty && !isValid}
+            >
               <MailIcon className="w-6 mr-2" />{' '}
               {isSubmitting ? 'Loading...' : 'Continue with Email'}
             </Button>
 
-            <Button variant="google" size="full">
+            <Button variant="google" size="full" onClick={signInWithGoogleProvider}>
               <GoogleIcon className="w-6 mr-2" /> Continue with Google
             </Button>
 

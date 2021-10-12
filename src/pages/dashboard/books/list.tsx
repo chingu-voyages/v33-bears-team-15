@@ -3,6 +3,8 @@ import Page from '~/components/dashboard/page';
 import PlusIcon from '~/assets/icons/plusIcon';
 import Link from '~/components/common/link';
 import Table from '~/components/ui/table';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
+import { Role } from '~/types';
 
 const data = [
   {
@@ -43,6 +45,8 @@ const cols = [
 ] as const;
 
 export default function BookListDashboard() {
+  useRoleAuthorization([Role.ADMIN, Role.SUPER_ADMIN]);
+
   return (
     <DashLayout>
       <Page

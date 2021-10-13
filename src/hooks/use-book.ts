@@ -28,7 +28,7 @@ export default function useBook(booksArray: string[]): any {
       });
       setBooks(data);
     };
-    if (!booksArray.length) fetchBooks();
+    if (!booksArray?.length) fetchBooks();
   }, []);
   return books;
 }

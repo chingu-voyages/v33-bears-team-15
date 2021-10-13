@@ -4,6 +4,7 @@ import Avatar from '~/components/ui/avatar';
 import Carousel from '~/components/profile/carousel';
 import useAuth from '~/hooks/use-auth';
 import booksByCategories from '~data/books';
+import Popup from '~/components/profile/editForm';
 
 import books from '~/hooks/use-book';
 
@@ -11,7 +12,6 @@ export default function Profile() {
   const mockData = booksByCategories.map((c) => c.data);
   const userData = useAuth().currentUser;
   console.log(userData, 'user');
-  console.log(books(userData?.readingList));
 
   // Todo!: Eliminate console.logs, and mock data
   return (
@@ -31,10 +31,11 @@ export default function Profile() {
             <p>{userData?.biography || 'I like books!'}</p>
           </div>
         </div>
-        <Carousel title="Reading list" data={books(userData?.readingList)} />
+        <Carousel title="Reading list" data={mockData[0]} />
         {/* Todo?: Add published books to user entity */}
         <Carousel title="Published books" data={mockData[1]} />
       </Container>
+      <Popup />
     </Layout>
   );
 }

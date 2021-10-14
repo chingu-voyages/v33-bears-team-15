@@ -32,7 +32,7 @@ export default function useRoleAuthorization(roles?: RoleType[]): void {
       router.replace('/signin');
     }
 
-    if (roles && roles.indexOf(currentUser.role) === -1) {
+    if (roles && currentUser && roles.indexOf(currentUser.role) === -1) {
       // role not authorised so redirect to home page
       if (isLoggedIn || currentUser) {
         router.replace('/library');

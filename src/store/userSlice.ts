@@ -27,6 +27,9 @@ export const userSlice = createSlice({
       state.credentials = payload.credentials;
       state.currentUser = payload.currentUser;
       state.isLoggedIn = payload.isLoggedIn;
+      state.isSuperAdmin = payload.isSuperAdmin;
+      state.isAdmin = payload.isAdmin;
+      state.isPublisher = payload.isPublisher;
     },
     resetUserCredentials: () => initialState,
   },

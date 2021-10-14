@@ -1,19 +1,25 @@
+import { useState } from 'react';
+
 import Layout from '~/components/layouts/default';
 import Container from '~/components/ui/container';
 import Avatar from '~/components/ui/avatar';
 import Carousel from '~/components/profile/carousel';
 import useAuth from '~/hooks/use-auth';
 import booksByCategories from '~data/books';
-import Popup from '~/components/profile/editForm';
+import Popup from '~/components/profile/editForm-popup';
 
 import books from '~/hooks/use-book';
 
 export default function Profile() {
   const mockData = booksByCategories.map((c) => c.data);
   const userData = useAuth().currentUser;
-  console.log(userData, 'user');
+  const [showPopup, setShowPopup] = useState(false);
 
-  // Todo!: Eliminate console.logs, and mock data
+  const hidePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+  // Todo!: Eliminate mock data
   return (
     <Layout headerProps={{ withBorder: true, variant: 'solid', sticky: true }}>
       <Container>
@@ -27,7 +33,13 @@ export default function Profile() {
             className="flex-initial"
           />
           <div className="flex-initial ml-24">
-            <h1>About me</h1>
+            {userData?.role ? (
+              <h1>
+                About me - <span className="bg-gray-300 text-black">{userData.role}</span>
+              </h1>
+            ) : (
+              <h1>About me</h1>
+            )}
             <p>{userData?.biography || 'I like books!'}</p>
           </div>
         </div>
@@ -35,7 +47,9 @@ export default function Profile() {
         {/* Todo?: Add published books to user entity */}
         <Carousel title="Published books" data={mockData[1]} />
       </Container>
-      <Popup />
+      <div className={showPopup ? 'visible' : 'invisible'}>
+        <Popup user={userData} hidePopup={hidePopup} />
+      </div>
     </Layout>
   );
 }

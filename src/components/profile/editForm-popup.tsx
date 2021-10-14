@@ -1,10 +1,17 @@
-const ProfileForm = ({ _userData: { name, description } }: any) => (
+import { IUser } from '~/types/user.type';
+
+type User = {
+  user: IUser;
+  hidePopup: any;
+};
+
+const ProfileForm = ({ user: { username, biography, email, _id }, hidePopup }: User) => (
   <form
     className="fixed z-10 inset-0 overflow-y-auto"
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
-    action=""
+    action={`https://svr.dekoo.tk/api/v1/users/${_id}`}
     method="POST"
     encType="multipart/form-data"
   >
@@ -43,13 +50,14 @@ const ProfileForm = ({ _userData: { name, description } }: any) => (
               </h3>
               {/* Todo?: Update user reading lists */}
               <div className="mt-2">
-                <input type="text" name="name" id="name" placeholder={name} />
+                <input type="text" name="username" id="username" placeholder={username} />
                 <input
                   type="text"
-                  name="description"
+                  name="biography"
                   id="description"
-                  placeholder={description}
+                  placeholder={biography}
                 />
+                <input type="text" name="email" id="email" placeholder={email} />
               </div>
             </div>
           </div>
@@ -58,12 +66,14 @@ const ProfileForm = ({ _userData: { name, description } }: any) => (
           <button
             type="submit"
             className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+            onClick={hidePopup}
           >
             Make changes
           </button>
           <button
             type="button"
             className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+            onClick={hidePopup}
           >
             Cancel
           </button>

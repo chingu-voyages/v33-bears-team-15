@@ -7,6 +7,7 @@ module.exports = {
       'images.unsplash.com',
       'minimals.cc',
       'res.cloudinary.com',
+      'localhost',
     ],
   },
 };

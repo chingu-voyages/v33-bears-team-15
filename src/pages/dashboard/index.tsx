@@ -6,19 +6,15 @@ import Layout from '~/components/layouts/default';
 import Button from '~/components/ui/button';
 import Container from '~/components/ui/container';
 import Input from '~/components/ui/input';
-import { SIGNIN_SCHEMA } from '~/utils';
-import { Role } from '~/types';
+import useAuth from '~/hooks/use-auth';
 import useRoleAuthorization from '~/hooks/use-role-authorization';
-
-type FormValues = {
-  email: string;
-  password: string;
-};
+import { SIGNIN_SCHEMA } from '~/utils';
+import { ISigninDto } from '~/types';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
-} as FormValues;
+} as ISigninDto;
 
 export default function DashboardSigninPage() {
   const {
@@ -26,22 +22,23 @@ export default function DashboardSigninPage() {
     handleSubmit,
     formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISigninDto>({
     resolver: yupResolver(SIGNIN_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
+  const { signInAsAdmin } = useAuth();
 
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<ISigninDto> = async (formDto) => {
     try {
-      // @TODO Implement submit
+      await signInAsAdmin(formDto);
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.message);
+      setServerError(error.data.message);
     }
   };
 

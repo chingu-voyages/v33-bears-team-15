@@ -5,46 +5,24 @@ import Link from '~/components/common/link';
 import Table from '~/components/ui/table';
 import useRoleAuthorization from '~/hooks/use-role-authorization';
 import { Role } from '~/types';
-
-const data = [
-  {
-    bookname: "The Catalyst: How to Change Anyone's Mind",
-    author: 'Jonah Berger',
-    review: '308',
-  },
-
-  {
-    bookname: 'What You Do Is Who You Are: How To Create Your Business Culture',
-    author: 'Ben Horowitz',
-    review: '442',
-  },
-
-  {
-    bookname: 'Great by Choice: Uncertainty, Chaos',
-    author: 'Morten T. Hansen',
-    review: '123',
-  },
-] as const;
+import { useGetAllBooksQuery } from '~/services/api';
 
 const cols = [
   {
     Header: 'Name',
-    accessor: 'bookname',
+    accessor: 'name',
     minWidth: 150,
   },
   {
-    Header: 'Author',
-    accessor: 'author',
-    minWidth: 150,
-  },
-  {
-    Header: 'Reviews',
-    accessor: 'review',
+    Header: 'Description',
+    accessor: 'description',
     minWidth: 150,
   },
 ] as const;
 
 export default function BookListDashboard() {
+  const { data, isLoading } = useGetAllBooksQuery();
+
   useRoleAuthorization([Role.ADMIN, Role.SUPER_ADMIN]);
 
   return (
@@ -63,7 +41,17 @@ export default function BookListDashboard() {
           href: '/dashboard/books/create',
         }}
       >
-        <Table columns={cols} data={data} searchKey="bookname" />
+        {isLoading ? (
+          'Loading...'
+        ) : (
+          <Table
+            columns={cols}
+            data={data as any}
+            searchKey="name"
+            editHref="/dashboard/authors"
+            editAccessor="_id"
+          />
+        )}
       </Page>
     </DashLayout>
   );

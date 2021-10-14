@@ -37,6 +37,12 @@ export const SIGNIN_SCHEMA = Yup.object().shape({
 export const SIGNUP_SCHEMA = Yup.object().shape({
   email: emailValidation,
   password: passwordValidation,
+  username: Yup.string()
+    .lowercase('Username must be lowercase only!')
+    .min(3, 'Username must be at least 3 characters long!')
+    .max(12, 'Username must be at most 12 characters long!')
+    .required('Username is a required field!')
+    .strict(),
   fullName: Yup.string()
     .min(4, 'Full name must be at least 4 characters long!')
     .max(54, 'Password must be 54 characters at most!')
@@ -52,9 +58,30 @@ export const CREATE_BOOK_SCHEMA = Yup.object().shape({
     .min(54, 'Description must have at least 54 characters!')
     .max(4096, 'Description must be at most 4096 characters!')
     .required('Description must not be empty!'),
-  author: Yup.string().required('Author must not be empty!'),
   isbn: Yup.number().required('ISBN must not be empty!'),
-  // categories: Yup.string().required('Categories must not be empty!'),
   cover: Yup.mixed().required('Cover image is required'),
   file: Yup.mixed().required('Book PDF file is required'),
+});
+
+export const CREATE_CATEGORY_SCHEMA = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Name must have at least 3 characters!')
+    .max(256, 'Name must be at most 256 characters!')
+    .required('Name must not be empty!'),
+  description: Yup.string()
+    .min(20, 'Description must have at least 20 characters!')
+    .max(2048, 'Description must be at most 2048 characters!')
+    .required('Description must not be empty!'),
+});
+
+export const CREATE_AUTHOR_SCHEMA = Yup.object().shape({
+  name: Yup.string()
+    .min(3, 'Name must have at least 3 characters!')
+    .max(256, 'Name must be at most 256 characters!')
+    .required('Name must not be empty!'),
+  biography: Yup.string()
+    .min(20, 'Description must have at least 20 characters!')
+    .max(4096, 'Description must be at most 4096 characters!')
+    .required('Description must not be empty!'),
+  avatar: Yup.mixed().required('Avatar image is required'),
 });

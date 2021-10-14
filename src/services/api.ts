@@ -7,7 +7,6 @@ import type {
   ISigninDto,
   ISignupDto,
   IAuthor,
-  CreateAuthorDto,
   IBook,
 } from '~/types';
 import { CreateCategoryDto, ICategory } from '~/types/category.type';

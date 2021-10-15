@@ -5,40 +5,40 @@ import Link from '~/components/common/link';
 import Table from '~/components/ui/table';
 import useRoleAuthorization from '~/hooks/use-role-authorization';
 import { Role } from '~/types';
-import { useGetAllBooksQuery } from '~/services/api';
+import { useGetAllAuthorsQuery } from '~/services/api';
 
 const cols = [
   {
     Header: 'Name',
     accessor: 'name',
-    minWidth: 150,
+    minWidth: 250,
   },
   {
-    Header: 'Description',
-    accessor: 'description',
+    Header: 'Biography',
+    accessor: 'biography',
     minWidth: 150,
   },
 ] as const;
 
-export default function BookListDashboard() {
-  const { data, isLoading } = useGetAllBooksQuery();
+export default function CategoryListDashboard() {
+  const { data, isLoading } = useGetAllAuthorsQuery();
 
   useRoleAuthorization([Role.ADMIN, Role.SUPER_ADMIN]);
 
   return (
     <DashLayout>
       <Page
-        title="Book List"
+        title="Author List"
         withButton
         buttonProps={{
           children: (
             <>
               <PlusIcon className="w-5 mr-2" strokeWidth={3} />
-              <span>New Book</span>
+              <span>New Author</span>
             </>
           ),
           as: Link,
-          href: '/dashboard/books/create',
+          href: '/dashboard/authors/create',
         }}
       >
         {isLoading ? (

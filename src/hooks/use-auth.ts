@@ -3,10 +3,11 @@ import { useCallback, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '~/hooks/store';
 import { resetUserCredentials, selectUser, setUserCredentials } from '~/store/userSlice';
 import {
-  useGetUserByIdMutation,
   useSignInWithEmailAndPasswordMutation,
+  useSignInAsAdminMutation,
   useSignInWithGoogleProviderMutation,
   useSignUpWithEmailAndPasswordMutation,
+  useGetUserByIdQuery,
 } from '~/services/api';
 import { setTokenToCookie, removeToken, getTokenFromCookie } from '~/utils';
 import { IAuthResponse, ISigninDto, ISignupDto, Role, RoleType } from '~/types';
@@ -14,11 +15,12 @@ import { IAuthResponse, ISigninDto, ISignupDto, Role, RoleType } from '~/types';
 export default function useAuth() {
   const [signInMutation] = useSignInWithEmailAndPasswordMutation();
   const [signUpMutation] = useSignUpWithEmailAndPasswordMutation();
+  const [signInAsAdminMutation] = useSignInAsAdminMutation();
   const [signInWithGoogleMutation] = useSignInWithGoogleProviderMutation();
-  const [getUser] = useGetUserByIdMutation();
   const router = useRouter();
   const dispatch = useAppDispatch();
   const userState = useAppSelector(selectUser);
+  const { data, isLoading } = useGetUserByIdQuery(userState.credentials?.id);
 
   const getUserRoles = (claim: RoleType) => {
     return {
@@ -52,6 +54,12 @@ export default function useAuth() {
     []
   );
 
+  const signInAsAdmin = useCallback(async (signInDto: ISigninDto): Promise<void> => {
+    const data = await signInAsAdminMutation(signInDto).unwrap();
+
+    processUserAuth(data);
+  }, []);
+
   const signInWithGoogleProvider = useCallback(async (): Promise<void> => {
     const data = await signInWithGoogleMutation().unwrap();
 
@@ -74,21 +82,17 @@ export default function useAuth() {
   }, []);
 
   const refetchUserOnMount = useCallback(async (): Promise<void> => {
-    const user = await getUser(userState.credentials.id).unwrap();
-
-    if (user) {
+    if (data && !isLoading) {
       dispatch(
         setUserCredentials({
           ...userState,
-          currentUser: user,
+          currentUser: data,
           isLoggedIn: true,
-          ...getUserRoles(user.role),
+          ...getUserRoles(data.role),
         })
       );
-    } else {
-      logout();
     }
-  }, []);
+  }, [data, isLoading]);
 
   useEffect(() => {
     const jwtToken = getTokenFromCookie();
@@ -96,10 +100,11 @@ export default function useAuth() {
     if (jwtToken) {
       refetchUserOnMount();
     }
-  }, []);
+  }, [data]);
 
   return {
     signInWithEmailAndPassword,
+    signInAsAdmin,
     signUpWithEmailAndPassword,
     signInWithGoogleProvider,
     logout,

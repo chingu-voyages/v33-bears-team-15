@@ -1,5 +1,7 @@
 import BookIcon from '~/assets/icons/bookIcon';
+import CollectionIcon from '~/assets/icons/collectionIcon';
 import HomeIcon from '~/assets/icons/homeIcon';
+import UserIcon from '~/assets/icons/userIcon';
 
 export type SidebarMenuType = {
   name: string;
@@ -35,6 +37,24 @@ const sidebarData: SidebarType[] = [
           { label: 'Create', href: '/dashboard/books/create' },
         ],
         icon: BookIcon,
+        href: null,
+      },
+      {
+        name: 'Categories',
+        subMenus: [
+          { label: 'List', href: '/dashboard/categories/list' },
+          { label: 'Create', href: '/dashboard/categories/create' },
+        ],
+        icon: CollectionIcon,
+        href: null,
+      },
+      {
+        name: 'Authors',
+        subMenus: [
+          { label: 'List', href: '/dashboard/authors/list' },
+          { label: 'Create', href: '/dashboard/authors/create' },
+        ],
+        icon: UserIcon,
         href: null,
       },
     ],

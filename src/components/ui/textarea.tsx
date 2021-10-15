@@ -1,28 +1,22 @@
 import cn from 'classnames';
-import { forwardRef, ComponentPropsWithRef, useState } from 'react';
-import EyeIcon from '~/assets/icons/eyeIcon';
-import EyeOffIcon from '~/assets/icons/eyeOffIcon';
+import { forwardRef, ComponentPropsWithRef } from 'react';
 
-export interface InputProps extends ComponentPropsWithRef<'input'> {
+export interface TextareaProps extends ComponentPropsWithRef<'textarea'> {
   isError?: boolean;
   error?: string;
-  showPasswordToggle?: boolean;
 }
 
-const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>((props, ref) => {
   const {
-    type = 'text',
     className,
     disabled,
     readOnly,
     isError,
     error,
     hidden,
-    showPasswordToggle,
+    rows = 3,
     ...rest
   } = props;
-
-  const [inputType, setInputType] = useState<HTMLInputElement['type']>(type);
 
   const rootClass = cn(
     'block focus:ring-0 w-full shadow-sm border-gray-300 dark:border-gray-700 rounded-md bg-gray-100 dark:bg-gray-800 dark:placeholder-gray-400 placeholder-gray-500',
@@ -39,28 +33,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   return (
     <div className="relative">
-      <input
-        type={inputType}
+      <textarea
         ref={ref}
         className={hidden ? '' : rootClass}
         disabled={disabled}
         readOnly={readOnly}
+        rows={rows}
         hidden={hidden}
         {...rest}
       />
-      {showPasswordToggle && (
-        <div className="absolute right-2 top-0 translate-y-1/2 cursor-pointer text-gray-400">
-          {inputType === 'password' ? (
-            <button type="button" onClick={() => setInputType('text')}>
-              <EyeIcon className="w-5" />
-            </button>
-          ) : (
-            <button type="button" onClick={() => setInputType('password')}>
-              <EyeOffIcon className="w-5" />
-            </button>
-          )}
-        </div>
-      )}
 
       {isError && (
         <span
@@ -74,4 +55,4 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   );
 });
 
-export default Input;
+export default Textarea;

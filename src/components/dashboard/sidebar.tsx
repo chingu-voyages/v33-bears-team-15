@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { Disclosure } from '@headlessui/react';
 
+import { memo } from 'react';
 import Link from '../common/link';
 import List from '../ui/list';
 import Avatar from '../ui/avatar';
@@ -8,8 +9,16 @@ import MinusIcon from '~/assets/icons/minusIcon';
 import PlusIcon from '~/assets/icons/plusIcon';
 import Logo from '~assets/images/logo.png';
 import sidebarData from '~data/dashboard/sidebar';
+import useAuth from '~/hooks/use-auth';
 
-export default function Sidebar() {
+function Sidebar() {
+  const { currentUser, isAdmin, isSuperAdmin } = useAuth();
+  // const { isAdmin, isSuperAdmin } = getUserRoles(currentUser?.role);
+
+  if (!currentUser) {
+    return <h1>Loading</h1>;
+  }
+
   return (
     <aside className="hidden lg:block w-[355px] py-7 px-5 border-r dark:border-gray-700 border-gray-300 min-h-screen">
       {/* Logo */}
@@ -20,8 +29,9 @@ export default function Sidebar() {
       {/* Avatar */}
       <div className="flex px-6 py-4 dark:bg-darkGray bg-gray-100 rounded-2xl mt-6 mb-10">
         <Avatar
-          src="https://res.cloudinary.com/minimal-ui/image/upload/v1614655910/upload_minimal/avatar/minimal_avatar.jpg"
-          title="Avatar Mock"
+          src={`${process.env.NEXT_PUBLIC_API_HOSTNAME}${currentUser.avatar}`}
+          title={currentUser.username || currentUser.fullName}
+          alt={currentUser.username || currentUser.fullName}
           size={44}
         />
         <div className="ml-4 flex flex-col">
@@ -29,9 +39,12 @@ export default function Sidebar() {
             href="/dashboard/home"
             className="dark:text-gray-50 text-gray-900 font-semibold"
           >
-            Admin Mock
+            {currentUser.fullName}
           </Link>
-          <span className="leading-5">admin</span>
+          <span className="leading-5 text-sm">
+            {isAdmin && 'admin'}
+            {isSuperAdmin && 'super-admin'}
+          </span>
         </div>
       </div>
 
@@ -98,3 +111,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
+export default memo(Sidebar);

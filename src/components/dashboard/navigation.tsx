@@ -10,16 +10,22 @@ import MenuIcon from '~/assets/icons/menuIcon';
 import useTheme from '~/hooks/use-theme';
 import dropdownData from '~data/dashboard/dropdown';
 import Dropdown from '../ui/dropdown';
+import useAuth from '~/hooks/use-auth';
 
 export interface INavigation {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function Navigation({ setIsOpen }: INavigation) {
+  const { currentUser, logout } = useAuth();
   const { toggle, isDark } = useTheme();
 
+  if (!currentUser) {
+    return <h1>Loading</h1>;
+  }
+
   return (
-    <nav className="sticky top-0 h-20 bg-lightFaded dark:bg-darkFaded flex items-center w-full lg:justify-end justify-between">
+    <nav className="sticky top-0 h-20 bg-lightFaded dark:bg-darkFaded flex items-center w-full lg:justify-end justify-between z-40">
       <button type="button" className="lg:hidden" onClick={() => setIsOpen(true)}>
         <span className="sr-only">Open menu</span>
         <MenuIcon className="w-6" aria-hidden="true" />
@@ -39,8 +45,9 @@ export default function Navigation({ setIsOpen }: INavigation) {
         <Dropdown
           button={
             <Avatar
-              src="https://res.cloudinary.com/minimal-ui/image/upload/v1614655910/upload_minimal/avatar/minimal_avatar.jpg"
-              title="Avatar Mock"
+              src={`${process.env.NEXT_PUBLIC_API_HOSTNAME}${currentUser.avatar}`}
+              title={currentUser.username || currentUser.fullName}
+              alt={currentUser.username || currentUser.fullName}
               size={36}
             />
           }
@@ -48,9 +55,9 @@ export default function Navigation({ setIsOpen }: INavigation) {
           <div className="px-4 py-3.5">
             <div className="flex flex-col cursor-default">
               <span className="dark:text-gray-50 text-gray-900 font-semibold text-lg">
-                Admin Mock
+                {currentUser.fullName}
               </span>
-              <span className="leading-5">admin@dekoo.tk</span>
+              <span className="leading-5">{currentUser.email}</span>
             </div>
           </div>
           <List className="px-2 py-2">
@@ -73,7 +80,7 @@ export default function Navigation({ setIsOpen }: INavigation) {
               </Dropdown.Item>
             ))}
 
-            <Button className="mb-2 mt-4 rounded-lg" variant="shadow">
+            <Button className="mb-2 mt-4 rounded-lg" variant="shadow" onClick={logout}>
               Logout
             </Button>
           </List>

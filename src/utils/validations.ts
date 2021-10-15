@@ -77,11 +77,11 @@ export const CREATE_CATEGORY_SCHEMA = Yup.object().shape({
 export const CREATE_AUTHOR_SCHEMA = Yup.object().shape({
   name: Yup.string()
     .min(3, 'Name must have at least 3 characters!')
-    .max(256, 'Name must be at most 256 characters!')
+    .max(54, 'Name must be at most 54 characters!')
     .required('Name must not be empty!'),
   biography: Yup.string()
-    .min(20, 'Description must have at least 20 characters!')
-    .max(4096, 'Description must be at most 4096 characters!')
+    .min(12, 'Description must have at least 12 characters!')
+    .max(2048, 'Description must be at most 2048 characters!')
     .required('Description must not be empty!'),
   avatar: Yup.mixed().required('Avatar image is required'),
 });

@@ -133,8 +133,8 @@ export default function Signup() {
 
                   <Input
                     type="text"
-                    id="usernamee"
-                    autoComplete="usernamee"
+                    id="username"
+                    autoComplete="username"
                     placeholder="Username"
                     aria-invalid={!!errors.username}
                     isError={errors.username && touchedFields.username}

@@ -4,7 +4,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import Container from '~/components/ui/container';
-import Footer from '~/components/footer';
+import Footer from '~/components/common/footer';
 import SEO from '~/components/common/SEO';
 import Link from '~/components/common/link';
 import Button from '~/components/ui/button';
@@ -14,45 +14,44 @@ import GoogleIcon from '~/assets/icons/googleIcon';
 import MailIcon from '~/assets/icons/mailIcon';
 import CheckCircleIcon from '~/assets/icons/checkCircleIcon';
 import advantages from '~data/advantages';
-import { SIGNUP_SCHEMA } from '~/utils/validations';
-
-type FormValues = {
-  email: string;
-  password: string;
-  fullName: string;
-};
+import useAuth from '~/hooks/use-auth';
+import useRoleAuthorization from '~/hooks/use-role-authorization';
+import { SIGNUP_SCHEMA } from '~/utils';
+import { ISignupDto } from '~/types';
 
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
+  username: '',
   fullName: '',
-} as FormValues;
+} as ISignupDto;
 
 export default function Signup() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
+    formState: { errors, isSubmitting, touchedFields, isValid, isDirty },
     reset,
-  } = useForm<FormValues>({
+  } = useForm<ISignupDto>({
     resolver: yupResolver(SIGNUP_SCHEMA) as any,
     defaultValues: DEFAULT_FORM_VALUES,
     mode: 'all',
   });
-
+  const { signUpWithEmailAndPassword, signInWithGoogleProvider } = useAuth();
   const [serverErrorState, setServerError] = useState<string | null>(null);
 
-  const onSubmitHandler: SubmitHandler<FormValues> = async () => {
+  const onSubmitHandler: SubmitHandler<ISignupDto> = async (formDto) => {
     try {
-      // @TODO Implement submit
-      // await onSubmit(formData.email, formData.password);
+      await signUpWithEmailAndPassword(formDto);
 
       reset(DEFAULT_FORM_VALUES);
       setServerError(null);
     } catch (error) {
-      setServerError(error.message);
+      setServerError(error.data.message);
     }
   };
+
+  useRoleAuthorization();
 
   return (
     <>
@@ -128,6 +127,23 @@ export default function Signup() {
                 </div>
 
                 <div className="mb-3.5">
+                  <label htmlFor="fullName" className="sr-only">
+                    Username
+                  </label>
+
+                  <Input
+                    type="text"
+                    id="username"
+                    autoComplete="username"
+                    placeholder="Username"
+                    aria-invalid={!!errors.username}
+                    isError={errors.username && touchedFields.username}
+                    error={errors.username?.message}
+                    {...register('username')}
+                  />
+                </div>
+
+                <div className="mb-3.5">
                   <label htmlFor="password" className="sr-only">
                     Password
                   </label>
@@ -167,12 +183,13 @@ export default function Signup() {
                   colorScheme="primary"
                   size="full"
                   className="mb-3.5"
+                  disabled={isDirty && !isValid}
                 >
                   <MailIcon className="w-6 mr-2" />{' '}
                   {isSubmitting ? 'Loading...' : 'Continue with Email'}
                 </Button>
 
-                <Button variant="google" size="full">
+                <Button variant="google" size="full" onClick={signInWithGoogleProvider}>
                   <GoogleIcon className="w-6 mr-2" /> Continue with Google
                 </Button>
               </form>

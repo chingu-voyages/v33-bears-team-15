@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import Image from 'next/image';
-import Layout from '~/components/layout';
+import Layout from '~/components/layouts/default';
 import Container from '~/components/ui/container';
 import Button from '~/components/ui/button';
 import BookmarkIcon from '~/assets/icons/bookmarkIcon';

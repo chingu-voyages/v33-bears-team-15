@@ -4,7 +4,7 @@ module.exports = {
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     fontFamily: {
-      sans: ['Source Sans Pro', 'Helvetica', 'Arial', 'sans-serif'],
+      sans: ['Noto Sans Display', 'Helvetica', 'Arial', 'sans-serif'],
       serif: ['Source Serif Pro', 'serif'],
     },
     screens: {

@@ -22,6 +22,7 @@ import { ISignupDto } from '~/types';
 const DEFAULT_FORM_VALUES = {
   email: '',
   password: '',
+  username: '',
   fullName: '',
 } as ISignupDto;
 
@@ -122,6 +123,23 @@ export default function Signup() {
                     isError={errors.email && touchedFields.email}
                     error={errors.email?.message}
                     {...register('email')}
+                  />
+                </div>
+
+                <div className="mb-3.5">
+                  <label htmlFor="fullName" className="sr-only">
+                    Username
+                  </label>
+
+                  <Input
+                    type="text"
+                    id="username"
+                    autoComplete="username"
+                    placeholder="Username"
+                    aria-invalid={!!errors.username}
+                    isError={errors.username && touchedFields.username}
+                    error={errors.username?.message}
+                    {...register('username')}
                   />
                 </div>
 

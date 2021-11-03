@@ -27,17 +27,18 @@ import Link from '~/components/common/link';
 export interface ITable<T extends Record<string, unknown>> extends TableOptions<T> {
   searchKey: string;
   name?: string;
-  editLinkAccessor?: string;
+  editHref?: string;
+  editAccessor?: string;
   onAdd?: (instance: TableInstance<T>) => MouseEventHandler;
   onDelete?: (instance: TableInstance<T>) => MouseEventHandler;
-  onEdit?: (instance: TableInstance<T>) => MouseEventHandler;
+  onEdit?: (instance: TableInstance<T>) => MouseEventHandler | string;
   onClick?: (row: Row<T>) => void;
 }
 
 export default function Table<T extends Record<string, unknown>>(
   props: PropsWithChildren<ITable<T>>
 ): JSX.Element {
-  const { data, columns, searchKey, editLinkAccessor = searchKey, ...rest } = props;
+  const { data, columns, searchKey, editHref, editAccessor, ...rest } = props;
 
   const memoRows = useMemo(() => data, []);
   const memoCols = useMemo(
@@ -49,7 +50,7 @@ export default function Table<T extends Record<string, unknown>>(
           return (
             <Link
               className="font-semibold text-green-600 dark:text-green-400"
-              href={`/dahsboard/books/${original[editLinkAccessor]}`}
+              href={`${editHref}/${original[editAccessor]}`}
             >
               Edit
             </Link>

@@ -5,7 +5,7 @@ import Link from '~/components/common/link';
 import Table from '~/components/ui/table';
 import useRoleAuthorization from '~/hooks/use-role-authorization';
 import { Role } from '~/types';
-import { useGetAllBooksQuery } from '~/services/api';
+import { useGetAllCategoriesQuery } from '~/services/api';
 
 const cols = [
   {
@@ -20,25 +20,25 @@ const cols = [
   },
 ] as const;
 
-export default function BookListDashboard() {
-  const { data, isLoading } = useGetAllBooksQuery();
+export default function CategoryListDashboard() {
+  const { data, isLoading } = useGetAllCategoriesQuery();
 
   useRoleAuthorization([Role.ADMIN, Role.SUPER_ADMIN]);
 
   return (
     <DashLayout>
       <Page
-        title="Book List"
+        title="Category List"
         withButton
         buttonProps={{
           children: (
             <>
               <PlusIcon className="w-5 mr-2" strokeWidth={3} />
-              <span>New Book</span>
+              <span>New Category</span>
             </>
           ),
           as: Link,
-          href: '/dashboard/books/create',
+          href: '/dashboard/categories/create',
         }}
       >
         {isLoading ? (
@@ -48,7 +48,7 @@ export default function BookListDashboard() {
             columns={cols}
             data={data as any}
             searchKey="name"
-            editHref="/dashboard/authors"
+            editHref="/dashboard/categories"
             editAccessor="_id"
           />
         )}

@@ -9,6 +9,7 @@ export interface IAuthResponse {
 export interface ISignupDto {
   email: string;
   password: string;
+  username: string;
   fullName: string;
 }
 

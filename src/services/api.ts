@@ -156,4 +156,6 @@ export const {
   signInWithGoogleProvider,
   getUserById,
   createCategory,
+  getBookById,
+  getAllBooks,
 } = dekooApi.endpoints;
